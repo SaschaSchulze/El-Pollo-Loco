@@ -6,6 +6,8 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    coinsBar = new CoinsBar();
+    bottlesBar = new BottlesBar();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -30,7 +32,7 @@ class World {
 
     checkThrowObjects() {
         if(this.keyboard.SPACE && this.character) {
-            let bottle = new ThrowableObject(this.character.x +100, this.character.y + 100, this);
+            let bottle = new ThrowableObject(this.character.x +60, this.character.y + 80, this);
             this.throwableObjects.push(bottle);
         }
     }
@@ -55,6 +57,8 @@ class World {
         this.ctx.translate(-this.camera_x, 0); // Zurück
         // ----------------Space for foxed objects --------------------
         this.addToMap(this.statusBar);
+        this.addToMap(this.coinsBar);
+        this.addToMap(this.bottlesBar);
         this.ctx.translate(this.camera_x, 0); // Vorwärts
 
         this.addToMap(this.character);

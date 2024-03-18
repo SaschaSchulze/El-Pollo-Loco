@@ -1,12 +1,11 @@
-class StatusBar extends DrawableObject {
-
+class CoinsBar extends DrawableObject {
     IMAGES = [
-        'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png', // 0
-        'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png', // 1
-        'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/blue/40.png', // 2
-        'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/blue/60.png', // 3
-        'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/blue/80.png', // 4
-        'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png', // 5
+        'img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png',
+        'img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/20.png',
+        'img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/40.png',
+        'img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/60.png',
+        'img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/80.png',
+        'img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png'
     ];
 
     percentage = 100;
@@ -15,7 +14,7 @@ class StatusBar extends DrawableObject {
         super();
         this.loadImages(this.IMAGES);
         this.x = 10;
-        this.y = 10;
+        this.y = 60;
         this.width = 200;
         this.height = 60;
         this.setPercentage(100);

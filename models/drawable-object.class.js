@@ -21,7 +21,7 @@ class DrawableObject {
         if (this instanceof Character || this instanceof Chicken) { // Überprüfen, ob wir ein Character oder ein Chicken sind, sonst wird Funktion nicht ausgeführt
             ctx.beginPath();
             ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
+            ctx.strokeStyle = 'red';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
