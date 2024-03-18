@@ -8,6 +8,7 @@ class World {
     statusBar = new StatusBar();
     coinsBar = new CoinsBar();
     bottlesBar = new BottlesBar();
+    bossBar = new BossBar();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -59,6 +60,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bottlesBar);
+        this.addToMap(this.bossBar);
         this.ctx.translate(this.camera_x, 0); // Vorwärts
 
         this.addToMap(this.character);
