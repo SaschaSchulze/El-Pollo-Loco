@@ -4,6 +4,8 @@ class moveableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
+    coins = 0;
+    bottles = 0;
     lastHit = 0;
 
     applyGravity() {
@@ -31,12 +33,40 @@ class moveableObject extends DrawableObject {
             this.y < moveableObject.y + moveableObject.height
     }
 
+    isCollectCoins(coins) {
+        return this.x + this.width > coins.x &&
+            this.y + this.height > coins.y &&
+            this.x < coins.x &&
+            this.y < coins.y + coins.height
+    }
+
+    isCollectBottles(bottles) {
+        return this.x + this.width > bottles.x &&
+            this.y + this.height > bottles.y &&
+            this.x < bottles.x &&
+            this.y < bottles.y + bottles.height
+    }
+
     hit() {
         this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime(); // Zeitpunkt ab dem 1.1.1970 in Millisekunden
+        }
+    }
+
+    hitCoin() {
+        this.coins += 20;
+        if (this.coins > 100) {
+            this.coins = 100;
+        }
+    }
+
+    hitBottle() {
+        this.bottles += 20;
+        if (this.bottles > 100) {
+            this.bottles = 100;
         }
     }
 

@@ -8,7 +8,7 @@ class BottlesBar extends DrawableObject {
         'img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png'
     ];
 
-    percentage = 100;
+    percentage = 0;
 
     constructor() {
         super();
@@ -17,28 +17,28 @@ class BottlesBar extends DrawableObject {
         this.y = 110;
         this.width = 200;
         this.height = 60;
-        this.setPercentage(0);
+        this.setPercentageBottle(0);
     }
 
-    setPercentage(percentage) {
+    setPercentageBottle(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
     resolveImageIndex() {
-        if (this.percentage == 100) {
-            return 5; // 5 Gibt die Stelle im Array IMAGES an, also das letzte Bild
-        } else if (this.percentage > 80) {
-            return 4;
-        } else if (this.percentage > 60) {
-            return 3;
-        } else if (this.percentage > 40) {
-            return 2;
-        } else if (this.percentage > 20) {
+        if (this.percentage < 20) {
+            return 0; // 5 gibt die Stelle im Array IMAGES an, also das letzte Bild
+        } else if (this.percentage < 40) {
             return 1;
+        } else if (this.percentage < 60) {
+            return 2;
+        } else if (this.percentage < 80) {
+            return 3;
+        } else if (this.percentage < 100) {
+            return 4;
         } else {
-            return 0;
+            return 5;
         }
     }
 }

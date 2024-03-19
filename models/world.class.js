@@ -15,6 +15,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        
         this.draw();
         this.setWorld();
         this.run();
@@ -28,6 +29,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
+            this.checkCollectableObjects();
         }, 200);
     }
 
@@ -44,6 +46,24 @@ class World {
             if (this.character.isColliding(enemy)) {  
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+    checkCollectableObjects() {
+        this.level.coins.forEach((coins, index) => {
+            if (this.character.isCollectCoins(coins)) {
+                this.character.hitCoin();
+                this.coinsBar.setPercentageCoin(this.coinsBar.percentage + 20);
+                this.level.coins.splice(index, 1);
+            }
+        });
+
+        this.level.bottles.forEach((bottles, index) => {
+            if (this.character.isCollectBottles(bottles)) {
+                this.character.hitBottle();
+                this.bottlesBar.setPercentageBottle(this.bottlesBar.percentage + 20);
+                this.level.bottles.splice(index, 1);
             }
         });
     }
