@@ -97,4 +97,8 @@ class Character extends moveableObject {
     jump() {
         this.speedY = 30;
     }
+
+    isJumpingOnEnemy(enemies) {
+        return this.speedY > 0 && this.isColliding(enemies) && this.y < enemies.y;
+    }
 }

@@ -41,11 +41,14 @@ class World {
     }
 
     checkCollisions() {
-        // Check collision
-        this.level.enemies.forEach( (enemy) => {
-            if (this.character.isColliding(enemy)) {  
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+        this.level.enemies.forEach((enemies) => {
+            if (this.character.isColliding(enemies)) {
+                if (this.character.isJumpingOnEnemy(enemies)) {
+                    enemies.die();
+                } else {
+                    this.character.hit();
+                    this.statusBar.setPercentage(this.character.energy);
+                }
             }
         });
     }
@@ -68,7 +71,6 @@ class World {
         });
     }
 
-    
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // löscht das canvas zum Anfang immer wieder
 
