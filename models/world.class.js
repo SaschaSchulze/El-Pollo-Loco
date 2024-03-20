@@ -41,11 +41,15 @@ class World {
     }
 
     checkCollisions() {
-        this.level.enemies.forEach((enemies) => {
-            if (this.character.isColliding(enemies)) {
-                if (this.character.isJumpingOnEnemy(enemies)) {
-                    enemies.die();
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                if (enemy.isDead && this.character.isJumpingOnEnemy(enemy)) {
+                    // Wenn der Charakter auf dem toten Feind springt, wird keine Aktion ausgeführt
+                } else if (!enemy.isDead && !this.character.isJumpingOnEnemy(enemy)) {
+                    // Wenn der Charakter auf dem Feind springt, markiere den Feind als tot
+                    enemy.die();
                 } else {
+                    // Andernfalls wird der Charakter verletzt
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
                 }
