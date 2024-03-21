@@ -30,7 +30,7 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkCollectableObjects();
-        }, 200);
+        }, 50);
     }
 
     checkThrowObjects() {
@@ -43,15 +43,19 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                if (enemy.isDead && this.character.isJumpingOnEnemy(enemy)) {
-                    // Wenn der Charakter auf dem toten Feind springt, wird keine Aktion ausgeführt
-                } else if (!enemy.isDead && !this.character.isJumpingOnEnemy(enemy)) {
-                    // Wenn der Charakter auf dem Feind springt, markiere den Feind als tot
-                    enemy.die();
+                if (enemy.isDead) {
+                    if (this.character.isJumpingOnEnemy(enemy)) {
+                        // Wenn der Charakter auf dem toten Feind springt, wird keine Aktion ausgeführt
+                    }
                 } else {
-                    // Andernfalls wird der Charakter verletzt
-                    this.character.hit();
-                    this.statusBar.setPercentage(this.character.energy);
+                    if (!this.character.isJumpingOnEnemy(enemy) && this.character.speedY <= 0) {
+                        // Andernfalls wird der Charakter verletzt, wenn er nicht auf dem Feind springt
+                        this.character.hit();
+                        this.statusBar.setPercentage(this.character.energy);
+                    } else if (this.character.isJumpingOnEnemy(enemy) && this.character.y < enemy.y) {
+                        // Wenn der Charakter von oben auf dem lebenden Feind landet, markiere den Feind als tot
+                        enemy.die();
+                    }
                 }
             }
         });
