@@ -30,7 +30,7 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkCollectableObjects();
-        }, 200);
+        }, 10);
     }
 
     checkThrowObjects() {
@@ -41,11 +41,20 @@ class World {
     }
 
     checkCollisions() {
-        // Check collision
-        this.level.enemies.forEach( (enemy) => {
-            if (this.character.isColliding(enemy)) {  
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                if (enemy.isDead && this.character.isJumpingOnEnemy(enemy)) {
+                    // Wenn der Charakter auf dem toten Feind springt, wird keine Aktion ausgeführt
+                } else if (!enemy.isDead && !this.character.isJumpingOnEnemy(enemy)) {
+                    // Wenn der Charakter den lebenden Feind berührt, wird der Charakter verletzt
+                    if (this.character.isCollidingFromSide(enemy)) { // Überprüfen, ob die Kollision von der Seite erfolgt
+                        this.character.hit();
+                        this.statusBar.setPercentage(this.character.energy);
+                    }
+                } else if (this.character.isJumpingOnEnemy(enemy)) {
+                    // Wenn der Charakter auf dem Feind springt, markiere den Feind als tot
+                    enemy.die();
+                }
             }
         });
     }
