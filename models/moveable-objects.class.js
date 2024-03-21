@@ -48,13 +48,11 @@ class moveableObject extends DrawableObject {
     }
 
     hit() {
-        if (this.speedY > 0) {
-            this.energy -= 5;
-            if (this.energy < 0) {
-                this.energy = 0;
-            } else {
-                this.lastHit = new Date().getTime();
-            }
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime(); // Zeitpunkt ab dem 1.1.1970 in Millisekunden
         }
     }
 
