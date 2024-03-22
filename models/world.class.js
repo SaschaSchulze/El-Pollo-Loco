@@ -30,7 +30,8 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkCollectableObjects();
-        }, 10);
+            this.checkCollisionWithBottle();
+        }, 200);
     }
 
     checkThrowObjects() {
@@ -57,18 +58,26 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 if (enemy.isDead && this.character.isJumpingOnEnemy(enemy)) {
-                    // Wenn der Charakter auf dem toten Feind springt, wird keine Aktion ausgeführt
                 } else if (!enemy.isDead && !this.character.isJumpingOnEnemy(enemy)) {
-                    // Wenn der Charakter den lebenden Feind berührt, wird der Charakter verletzt
-                    if (this.character.isCollidingFromSide(enemy)) { // Überprüfen, ob die Kollision von der Seite erfolgt
+                    if (this.character.isCollidingFromSide(enemy)) {
                         this.character.hit();
                         this.statusBar.setPercentage(this.character.energy);
                     }
                 } else if (this.character.isJumpingOnEnemy(enemy)) {
-                    // Wenn der Charakter auf dem Feind springt, markiere den Feind als tot
                     enemy.die();
                 }
             }
+        });
+    }
+
+    checkCollisionWithBottle() {
+        this.throwableObjects.forEach((bottle, bottleIndex) => {
+            this.level.enemies.forEach((enemy, enemyIndex) => {
+                if (bottle.isColliding(enemy)) {
+                    enemy.die();
+                    this.throwableObjects.splice(bottleIndex, 1);
+                }
+            });
         });
     }
 
@@ -85,9 +94,9 @@ class World {
             if (this.character.isCollectBottles(bottles)) {
                 this.character.collectBottles();
                 this.character.hitBottle();
-                let newPercentage = this.bottlesBar.percentage + 20; // Erhöhe den Prozentsatz um 20%
+                let newPercentage = this.bottlesBar.percentage + 20;
                 if (newPercentage > 100) {
-                    newPercentage = 100; // Stelle sicher, dass der Prozentsatz nicht über 100% steigt
+                    newPercentage = 100;
                 }
                 this.bottlesBar.setPercentageBottle(newPercentage);
                 console.log("Aktueller Prozentsatz der Flaschen-Statusleiste nach Sammeln:", newPercentage);
