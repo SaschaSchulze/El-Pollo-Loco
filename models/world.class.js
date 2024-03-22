@@ -34,9 +34,22 @@ class World {
     }
 
     checkThrowObjects() {
-        if(this.keyboard.SPACE && this.character) {
-            let bottle = new ThrowableObject(this.character.x +60, this.character.y + 80, this);
+        if(this.keyboard.SPACE && this.character.availableBottles > 0 && !this.character.isThrowingBottle) {
+            let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 80, this);
             this.throwableObjects.push(bottle);
+            this.character.isThrowingBottle = true;
+            this.character.availableBottles--;
+    
+            let newPercentage = this.bottlesBar.percentage - 20;
+    
+            if (newPercentage < 0) {
+                newPercentage = 0;
+            }
+    
+            this.bottlesBar.setPercentageBottle(newPercentage);
+            console.log("Aktueller Prozentsatz der Flaschen-Statusleiste nach Wurf:", newPercentage);
+        } else if (!this.keyboard.SPACE) {
+            this.character.isThrowingBottle = false;
         }
     }
 
@@ -67,12 +80,17 @@ class World {
                 this.level.coins.splice(index, 1);
             }
         });
-
+    
         this.level.bottles.forEach((bottles, index) => {
             if (this.character.isCollectBottles(bottles)) {
                 this.character.collectBottles();
                 this.character.hitBottle();
-                this.bottlesBar.setPercentageBottle(this.character.bottles);
+                let newPercentage = this.bottlesBar.percentage + 20; // Erhöhe den Prozentsatz um 20%
+                if (newPercentage > 100) {
+                    newPercentage = 100; // Stelle sicher, dass der Prozentsatz nicht über 100% steigt
+                }
+                this.bottlesBar.setPercentageBottle(newPercentage);
+                console.log("Aktueller Prozentsatz der Flaschen-Statusleiste nach Sammeln:", newPercentage);
                 this.level.bottles.splice(index, 1);
             }
         });
