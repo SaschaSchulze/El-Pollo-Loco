@@ -70,8 +70,9 @@ class World {
 
         this.level.bottles.forEach((bottles, index) => {
             if (this.character.isCollectBottles(bottles)) {
+                this.character.collectBottles();
                 this.character.hitBottle();
-                this.bottlesBar.setPercentageBottle(this.bottlesBar.percentage + 20);
+                this.bottlesBar.setPercentageBottle(this.character.bottles);
                 this.level.bottles.splice(index, 1);
             }
         });
