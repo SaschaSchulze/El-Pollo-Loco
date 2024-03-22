@@ -10,13 +10,20 @@ class Bottles extends moveableObject {
         'img_pollo_locco/img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
     ];
 
+    IMAGES_FLYING_BOTTLES = [
+        'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
+        'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
+        'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
+        'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png',
+    ];
+
     constructor() {
         super();
         this.loadImage('img_pollo_locco/img/6_salsa_bottle/1_salsa_bottle_on_ground.png');
         this.loadImages(this.IMAGES_BOTTLES);
         this.speed = 0.10 + Math.random() *0.30;
         this.generateRandomPosition();
-        this.animateCoins();
+        this.animateBottles();
     }
 
     generateRandomPosition() {
@@ -37,7 +44,7 @@ class Bottles extends moveableObject {
         this.generatedPositions.push({x: this.x, y: this.y});
     }
 
-    animateCoins() {
+    animateBottles() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_BOTTLES);
         }, 800);
