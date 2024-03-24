@@ -99,7 +99,6 @@ class Character extends moveableObject {
     }
 
     isJumpingOnEnemy(enemy) {
-        // Überprüfen, ob der Charakter von oben auf das Chicken springt und ob das Chicken nicht tot ist
         return this.speedY > 0 && this.isColliding(enemy) && this.y < enemy.y && !enemy.isDead;
     }
 

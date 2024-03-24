@@ -72,14 +72,13 @@ class World {
     }
 
     checkCollisionWithBottle() {
-        this.throwableObjects.forEach((bottle, bottleIndex) => {
-            this.level.enemies.forEach((enemy, enemyIndex) => {
-                if (bottle.isColliding(enemy)) {
+        this.throwableObjects.forEach((bottles, bottleIndex) => {
+            this.level.enemies.forEach((enemy) => {
+                if (bottles.isColliding(enemy)) {
                     enemy.die();
-                    bottle.stopAnimation();
+                    bottles.stopAnimation();
                     this.throwableObjects.splice(bottleIndex, 1);
-                    
-                    bottle.playSplashAnimation();
+                    bottles.playSplashAnimation();
                 }
             });
         });
