@@ -77,7 +77,7 @@ class World {
                 if (bottles.isColliding(enemy)) {
                     enemy.die();
                     bottles.stopAnimation();
-                    this.throwableObjects.splice(bottleIndex, 1);
+                    //this.throwableObjects.splice(bottleIndex, 1);
                     bottles.playSplashAnimation();
                 }
             });
