@@ -31,7 +31,7 @@ class World {
             this.checkThrowObjects();
             this.checkCollectableObjects();
             this.checkCollisionWithBottle();
-        }, 200);
+        }, 50);
     }
 
     checkThrowObjects() {
@@ -48,7 +48,6 @@ class World {
             }
     
             this.bottlesBar.setPercentageBottle(newPercentage);
-            console.log("Aktueller Prozentsatz der Flaschen-Statusleiste nach Wurf:", newPercentage);
     
             bottle.animateFlyingBottle();
         } else if (!this.keyboard.SPACE) {
@@ -77,7 +76,10 @@ class World {
             this.level.enemies.forEach((enemy, enemyIndex) => {
                 if (bottle.isColliding(enemy)) {
                     enemy.die();
+                    bottle.stopAnimation();
                     this.throwableObjects.splice(bottleIndex, 1);
+                    
+                    bottle.playSplashAnimation();
                 }
             });
         });
@@ -101,7 +103,6 @@ class World {
                     newPercentage = 100;
                 }
                 this.bottlesBar.setPercentageBottle(newPercentage);
-                console.log("Aktueller Prozentsatz der Flaschen-Statusleiste nach Sammeln:", newPercentage);
                 this.level.bottles.splice(index, 1);
             }
         });

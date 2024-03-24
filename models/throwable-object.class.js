@@ -7,6 +7,7 @@ class ThrowableObject extends moveableObject {
         this.width = 50;
         this.world = world; 
         this.throw();
+        this.isAnimating = false; 
     }
 
     IMAGES_FLYING_BOTTLES = [
@@ -37,7 +38,7 @@ class ThrowableObject extends moveableObject {
             this.speedY = 20;
             this.applyGravity();
 
-            setInterval(() => {
+            this.animationInterval = setInterval(() => {
                 this.x += this.speedX;
                 this.y -= this.speedY;
             }, 25);
@@ -45,11 +46,32 @@ class ThrowableObject extends moveableObject {
     }
 
     animateFlyingBottle() {
-        if (this.IMAGES_FLYING_BOTTLES && this.IMAGES_FLYING_BOTTLES.length > 0) {
+        if (!this.isAnimating && this.IMAGES_FLYING_BOTTLES && this.IMAGES_FLYING_BOTTLES.length > 0) {
+            this.isAnimating = true;
             this.loadImages(this.IMAGES_FLYING_BOTTLES);
             setInterval(() => {
-                this.playAnimation(this.IMAGES_FLYING_BOTTLES);
+                if (this.isAnimating) {
+                    this.playAnimation(this.IMAGES_FLYING_BOTTLES);
+                }
             }, 100);
         }
+    }
+
+    stopAnimation() {
+        this.isAnimating = false;
+        clearInterval(this.animationInterval);
+    }
+
+    playSplashAnimation() {
+        console.log('aufruf der splashanimation');
+        this.loadImages(this.IMAGES_SPLASH_BOTTLES);
+        let currentIndex = 0;
+        const splashInterval = setInterval(() => {
+            this.img = this.imageCache[this.IMAGES_SPLASH_BOTTLES[currentIndex]];
+            currentIndex++;
+            if (currentIndex >= this.IMAGES_SPLASH_BOTTLES.length) {
+                clearInterval(splashInterval);
+            }
+        }, 300);
     }
 }

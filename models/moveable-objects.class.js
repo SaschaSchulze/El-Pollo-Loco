@@ -6,7 +6,7 @@ class moveableObject extends DrawableObject {
     energy = 100;
     coins = 0;
     bottles = 0;
-    availableBottles = 0; // Corrected variable name
+    availableBottles = 0;
     lastHit = 0;
 
     applyGravity() {
@@ -42,7 +42,7 @@ class moveableObject extends DrawableObject {
     }
 
     isCollectBottles(bottles) {
-        console.log('verfügbared Flaschen', this.availableBottles); // Corrected variable name
+        console.log('verfügbared Flaschen', this.availableBottles);
         return this.x + this.width > bottles.x &&
             this.y + this.height > bottles.y &&
             this.x < bottles.x &&
@@ -65,8 +65,8 @@ class moveableObject extends DrawableObject {
         }
     }
 
-    collectBottles() { // Corrected method name
-        this.availableBottles += 1; // Corrected incrementation
+    collectBottles() {
+        this.availableBottles += 1;
     }
 
     hitBottle() {
