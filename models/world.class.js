@@ -50,8 +50,7 @@ class World {
             this.bottlesBar.setPercentageBottle(newPercentage);
             console.log("Aktueller Prozentsatz der Flaschen-Statusleiste nach Wurf:", newPercentage);
     
-            // Hier die animateFlyingBottle() Funktion aufrufen
-            bottle.animateFlyingBottle(); // Animation der geworfenen Flasche starten
+            bottle.animateFlyingBottle();
         } else if (!this.keyboard.SPACE) {
             this.character.isThrowingBottle = false;
         }

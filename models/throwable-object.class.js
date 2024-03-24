@@ -16,6 +16,16 @@ class ThrowableObject extends moveableObject {
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png',
     ];
 
+    IMAGES_SPLASH_BOTTLES = [
+        'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
+        'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
+        'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png',
+        'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
+        'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
+        'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
+
+    ];
+
     throw() {
         if (this.world && this.world.character) {
             if (this.world.character.otherDirection) {
