@@ -3,6 +3,7 @@ class Endboss extends moveableObject {
     height = 400;
     width = 300;
     y = 70;
+    moveSpeed = 5;
 
     IMAGES_WALKING = [
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -53,30 +54,57 @@ class Endboss extends moveableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.x = 2500;
         this.animateWalkingBoss();
-        this.animateAngry();
         this.isDead = false;
     }
 
     animateWalkingBoss() {
         let walkingIndex = 0;
-    
-        setInterval(() => {
+        let walkingCounter = 0;
+        let walkingInterval = setInterval(() => {
             if (!this.isDead) {
-                this.moveLeft();
+                if (walkingCounter === 10) {
+                    clearInterval(walkingInterval);
+                    console.log('animateWalkingBoss() wurde gestoppt.');
+                    this.animateAngry();
+                } else {
+                    this.moveLeft();
+                    this.loadImage(this.IMAGES_WALKING[walkingIndex]);
+                    walkingIndex = (walkingIndex + 1) % this.IMAGES_WALKING.length;
+                    if (walkingIndex === 0) {
+                        walkingCounter++;
+                    }
+                }
             }
-        }, 1000 / 60); // Bewegungsintervall: 60x pro Sekunde wird bewegt
-    
-        setInterval(() => {
-            if (!this.isDead) {
-                this.loadImage(this.IMAGES_WALKING[walkingIndex]);
-                walkingIndex = (walkingIndex + 1) % this.IMAGES_WALKING.length;
+        }, 1000 / 10); // Bewegungsintervall: 10x pro Sekunde wird bewegt
+    }
+
+    moveLeft() {
+        this.x -= this.moveSpeed;
+    }
+
+    animateAngry() {
+        let angryIndex = 0;
+        let angryCounter = 0;
+        let angryInterval = setInterval(() => {
+            if (this.angryCounter === 1) {
+                clearInterval(angryInterval);
+                console.log('animateAngry() wurde gestoppt.');
+                this.animateAttack();
+            } else {
+                this.playAnimation(this.IMAGES_ANGRY);
+                angryIndex = (angryIndex + 1) % this.IMAGES_ANGRY.length;
+                if (angryIndex === 0) {
+                    this.angryCounter++;
+                }
             }
         }, 200);
     }
 
-    animateAngry() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_ANGRY);
-        }, 200)
+    animateAttack() {
+        let attackIndex = 0;
+        let attackInterval = setInterval(() => {
+            this.playAnimation(this.IMAGES_ATTACK);
+            attackIndex = (attackIndex + 1) % this.IMAGES_ATTACK.length;
+        }, 200);
     }
 }
