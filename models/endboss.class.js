@@ -46,22 +46,15 @@ class Endboss extends moveableObject {
     ];
 
     constructor() {
-        super().loadImage(this.IMAGES_ANGRY[0]);
-        this.loadImages(this.IMAGES_WALKING);
+        super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_ANGRY);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 2500;
+        this.animateWalkingBoss();
         this.animateAngry();
         this.isDead = false;
-        this.animateWalkingBoss();
-    }
-
-    animateAngry() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_ANGRY);
-        }, 200)
     }
 
     animateWalkingBoss() {
@@ -79,5 +72,11 @@ class Endboss extends moveableObject {
                 walkingIndex = (walkingIndex + 1) % this.IMAGES_WALKING.length;
             }
         }, 200);
+    }
+
+    animateAngry() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_ANGRY);
+        }, 200)
     }
 }
