@@ -94,7 +94,7 @@ class World {
                     if (newPercentage < 0) {
                         newPercentage = 0;
                     }
-                    this.bossBar.setPercentage(newPercentage);
+                    this.bossBar.setPercentageBoss(newPercentage);
                     bottle.playSplashAnimation();
                 }
             });
