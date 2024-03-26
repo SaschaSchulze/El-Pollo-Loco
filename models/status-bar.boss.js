@@ -17,10 +17,10 @@ class BossBar extends DrawableObject {
         this.y = 15;
         this.width = 200;
         this.height = 60;
-        this.setPercentage(100);
+        this.setPercentageBoss(100);
     }
 
-    setPercentage(percentage) {
+    setPercentageBoss(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
@@ -29,13 +29,13 @@ class BossBar extends DrawableObject {
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5; // 5 Gibt die Stelle im Array IMAGES an, also das letzte Bild
-        } else if (this.percentage > 80) {
+        } else if (this.percentage > 79) {
             return 4;
-        } else if (this.percentage > 60) {
+        } else if (this.percentage > 59) {
             return 3;
-        } else if (this.percentage > 40) {
+        } else if (this.percentage > 39) {
             return 2;
-        } else if (this.percentage > 20) {
+        } else if (this.percentage > 19) {
             return 1;
         } else {
             return 0;
