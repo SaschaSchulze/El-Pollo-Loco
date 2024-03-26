@@ -8,7 +8,7 @@ class ThrowableObject extends moveableObject {
         this.world = world; 
         this.throw();
         this.isAnimating = false; 
-        this.isAnimatingSplash = false;
+        //this.isAnimatingSplash = false;
     }
 
     IMAGES_FLYING_BOTTLES = [
@@ -63,13 +63,14 @@ class ThrowableObject extends moveableObject {
         this.isAnimating = false;
         clearInterval(this.animationInterval);
         this.speedX = 0;
-        this.speedY = 0;
+        this.speedY = -5;
         this.x = Math.round(this.x);
         this.y = Math.round(this.y);
     }
 
     playSplashAnimation() {
         if (!this.isAnimatingSplash) {
+            console.log('start');
             this.isAnimatingSplash = true;
             this.loadImages(this.IMAGES_SPLASH_BOTTLES);
     
@@ -80,8 +81,10 @@ class ThrowableObject extends moveableObject {
                 if (currentFrame < totalFrames) {
                     this.playAnimation([this.IMAGES_SPLASH_BOTTLES[currentFrame]]);
                     currentFrame++;
+                    //this.stopAnimation();
                 } else {
                     clearInterval(animationInterval);
+                    this.isAnimatingSplash = false; 
                 }
             }, 100);
         }

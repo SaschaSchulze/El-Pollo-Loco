@@ -31,7 +31,7 @@ class World {
             this.checkThrowObjects();
             this.checkCollectableObjects();
             this.checkCollisionWithBottle();
-            this.checkCollisionWithEndboss();
+            this.checkCollisionWithEndBoss();
         }, 50);
     }
 
@@ -84,18 +84,21 @@ class World {
         });
     }
 
-    checkCollisionWithEndboss() {
+    checkCollisionWithEndBoss() {
         this.throwableObjects.forEach((bottle) => {
             this.level.enemies.forEach((enemy) => {
                 if (enemy instanceof Endboss && bottle.isColliding(enemy)) {
-                    enemy.die(); 
-                    bottle.stopAnimation();
-                    let newPercentage = this.bossBar.percentage - 20;
-                    if (newPercentage < 0) {
-                        newPercentage = 0;
+                    if (!bottle.hasCollided) {
+                        enemy.die(); 
+                        bottle.stopAnimation();
+                        bottle.playSplashAnimation();
+                        bottle.hasCollided = true;
+                        let newPercentage = this.bossBar.percentage - 20;
+                        if (newPercentage < 0) {
+                            newPercentage = 0;
+                        }
+                        this.bossBar.setPercentageBoss(newPercentage);
                     }
-                    this.bossBar.setPercentageBoss(newPercentage);
-                    bottle.playSplashAnimation();
                 }
             });
         });

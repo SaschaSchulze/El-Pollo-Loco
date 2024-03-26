@@ -4,6 +4,7 @@ class Endboss extends moveableObject {
     width = 300;
     y = 70;
     moveSpeed = 5;
+    isDisabled = false;
 
     IMAGES_WALKING = [
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -119,6 +120,21 @@ class Endboss extends moveableObject {
                 }
             }
         }, 200);
+    }
+
+    disableCollision() {
+        this.isDisabled = true;
+        setTimeout(() => {
+            this.isDisabled = false;
+        }, 3000); // 3000 Millisekunden = 3 Sekunden
+    }
+
+    isColliding(moveableObject) {
+        if (this.isDisabled) {
+            return false; // Kollisionserkennung ist deaktiviert
+        } else {
+            return super.isColliding(moveableObject);
+        }
     }
 
     die() {

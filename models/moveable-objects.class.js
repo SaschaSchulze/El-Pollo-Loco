@@ -26,7 +26,6 @@ class moveableObject extends DrawableObject {
         }
     }
 
-    // character.isColliding(chicken)
     isColliding(moveableObject) {
         return this.x + this.width > moveableObject.x &&
             this.y + this.height > moveableObject.y &&
@@ -54,7 +53,7 @@ class moveableObject extends DrawableObject {
         if (this.energy < 0) {
             this.energy = 0;
         } else {
-            this.lastHit = new Date().getTime(); // Zeitpunkt ab dem 1.1.1970 in Millisekunden
+            this.lastHit = new Date().getTime();
         }
     }
 
@@ -77,9 +76,9 @@ class moveableObject extends DrawableObject {
     }
 
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit; // Differenz in Millisekunden
-        timepassed = timepassed / 1000; // Differenz in Sekunden
-        return timepassed < 1; // Zeigt die hurt Animation für die eingegebene Zeit an
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+        return timepassed < 1;
     }
 
     isDead() {
@@ -87,12 +86,9 @@ class moveableObject extends DrawableObject {
     }
 
     playAnimation(images) {
-        // Walkanimation
-        // i = 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0,
-        // % Zeichen nennt sich Modu und begrenzt die Itteration, in dem Fall nach dem 6. Bild gehts wieder zum 1. Bild
-        let i = this.currentImage % images.length; // let i = 7 % 6; => 1, Rest 1
-        let path = images[i]; // itteriert im Array IMAGES_WALKING durch und beginnt bei 0, also dem ersten Bild
-        this.img = this.imageCache[path]; // .img aus world.class.js
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
         this.currentImage++;
     }
 
