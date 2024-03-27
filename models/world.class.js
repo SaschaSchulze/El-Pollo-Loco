@@ -99,6 +99,11 @@ class World {
                         }
                         this.bossBar.setPercentageBoss(newPercentage);
                         enemy.bossHit();
+                        enemy.bossWasHit = true;
+                    }
+
+                    if (enemy.bossWasHit) {
+                        bottle.hasCollided = true;
                     }
                 }
             });
