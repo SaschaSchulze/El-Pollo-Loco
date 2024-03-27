@@ -15,7 +15,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        
+
         this.draw();
         this.setWorld();
         this.run();
@@ -36,20 +36,20 @@ class World {
     }
 
     checkThrowObjects() {
-        if(this.keyboard.SPACE && this.character.availableBottles > 0 && !this.character.isThrowingBottle) {
+        if (this.keyboard.SPACE && this.character.availableBottles > 0 && !this.character.isThrowingBottle) {
             let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 80, this);
             this.throwableObjects.push(bottle);
             this.character.isThrowingBottle = true;
             this.character.availableBottles--;
-    
+
             let newPercentage = this.bottlesBar.percentage - 20;
-    
+
             if (newPercentage < 0) {
                 newPercentage = 0;
             }
-    
+
             this.bottlesBar.setPercentageBottle(newPercentage);
-    
+
             bottle.animateFlyingBottle();
         } else if (!this.keyboard.SPACE) {
             this.character.isThrowingBottle = false;
@@ -88,8 +88,8 @@ class World {
         this.throwableObjects.forEach((bottle) => {
             this.level.enemies.forEach((enemy) => {
                 if (enemy instanceof Endboss && bottle.isColliding(enemy)) {
-                    if (!bottle.hasCollided && !enemy.isHurt()) {
-                        enemy.die(); 
+                    if (!bottle.hasCollided && !enemy.isHurtBoss()) {
+                        enemy.die();
                         bottle.stopAnimation();
                         bottle.playSplashAnimation();
                         bottle.hasCollided = true;
@@ -98,6 +98,7 @@ class World {
                             newPercentage = 0;
                         }
                         this.bossBar.setPercentageBoss(newPercentage);
+                        enemy.bossHit();
                     }
                 }
             });
@@ -112,7 +113,7 @@ class World {
                 this.level.coins.splice(index, 1);
             }
         });
-    
+
         this.level.bottles.forEach((bottles, index) => {
             if (this.character.isCollectBottles(bottles)) {
                 this.character.collectBottles();
@@ -127,7 +128,7 @@ class World {
         });
     }
 
-    
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // löscht das canvas zum Anfang immer wieder
 
@@ -148,12 +149,12 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
-        
+
         this.ctx.translate(-this.camera_x, 0);
 
         // Draw wird immer wieder aufgerufen
         let self = this;
-        requestAnimationFrame(function() { // self ist die variable für this bzw. als Platzhalter für this eine Zeile weiter unten
+        requestAnimationFrame(function () { // self ist die variable für this bzw. als Platzhalter für this eine Zeile weiter unten
             self.draw(); // this. funktioniert innerhalb solch einer Funktion nicht, aus diesem Grund muss eine Variable erstellt werden an dieser Stelle, die hier self heißt
         });
     }
@@ -165,13 +166,13 @@ class World {
     }
 
     addToMap(moveableObject) {
-        if(moveableObject.otherDirection) {
+        if (moveableObject.otherDirection) {
             this.flipImage(moveableObject);
         }
         moveableObject.draw(this.ctx);
         moveableObject.drawFrame(this.ctx);
-        
-        if(moveableObject.otherDirection) {
+
+        if (moveableObject.otherDirection) {
             this.flipImageBack(moveableObject);
         }
     }
@@ -185,6 +186,6 @@ class World {
 
     flipImageBack(moveableObject) {
         moveableObject.x = moveableObject.x * -1;
-            this.ctx.restore();
+        this.ctx.restore();
     }
 }

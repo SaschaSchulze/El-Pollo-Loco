@@ -120,21 +120,16 @@ class Endboss extends moveableObject {
         }, 200);
     }
 
-    isHurt() {
-        console.log('Kolliosion deaktiviert');
-        let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 1000;
-        console.log('Kollision möglich');
-        return timepassed < 1;
+    bossHit() {
+        this.lastHit = Date.now();
     }
 
-    isColliding(moveableObject) {
-        console.log('isColliding');
-        if (this.isDisabled || this.isHurt()) {
-            return false;
-        } else {
-            return super.isColliding(moveableObject);
-        }
+    isHurtBoss() {
+        console.log('Kolliosion deaktiviert');
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 2000;
+        console.log('Kollision möglich');
+        return timepassed < 2;
     }
 
     die() {
