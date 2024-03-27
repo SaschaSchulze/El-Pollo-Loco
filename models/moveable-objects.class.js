@@ -41,7 +41,6 @@ class moveableObject extends DrawableObject {
     }
 
     isCollectBottles(bottles) {
-        console.log('verfügbared Flaschen', this.availableBottles);
         return this.x + this.width > bottles.x &&
             this.y + this.height > bottles.y &&
             this.x < bottles.x &&

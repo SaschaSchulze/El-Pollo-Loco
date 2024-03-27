@@ -88,7 +88,7 @@ class World {
         this.throwableObjects.forEach((bottle) => {
             this.level.enemies.forEach((enemy) => {
                 if (enemy instanceof Endboss && bottle.isColliding(enemy)) {
-                    if (!bottle.hasCollided) {
+                    if (!bottle.hasCollided && !enemy.isHurt()) {
                         enemy.die(); 
                         bottle.stopAnimation();
                         bottle.playSplashAnimation();

@@ -5,6 +5,7 @@ class Endboss extends moveableObject {
     y = 70;
     moveSpeed = 5;
     isDisabled = false;
+    lastHit = 0;
 
     IMAGES_WALKING = [
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -65,7 +66,6 @@ class Endboss extends moveableObject {
             if (!this.isDead) {
                 if (walkingCounter === 10) {
                     clearInterval(walkingInterval);
-                    console.log('animateWalkingBoss() wurde gestoppt.');
                     this.animateAngry();
                 } else {
                     this.moveLeft();
@@ -90,7 +90,6 @@ class Endboss extends moveableObject {
             if (!this.isDead) {
                 if (angryCounter === 1) {
                     clearInterval(angryInterval);
-                    console.log('animateAngry()) wurde gestoppt.');
                     this.animateAttack();
                 } else {
                     this.loadImage(this.IMAGES_ANGRY[angryIndex]);
@@ -114,7 +113,6 @@ class Endboss extends moveableObject {
                     attackCounter++;
                     if (attackCounter === 1) {
                         clearInterval(attackInterval);
-                        console.log('animateAttack() wurde gestoppt.');
                         this.animateWalkingBoss();
                     }
                 }
@@ -122,16 +120,18 @@ class Endboss extends moveableObject {
         }, 200);
     }
 
-    disableCollision() {
-        this.isDisabled = true;
-        setTimeout(() => {
-            this.isDisabled = false;
-        }, 3000); // 3000 Millisekunden = 3 Sekunden
+    isHurt() {
+        console.log('Kolliosion deaktiviert');
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+        console.log('Kollision möglich');
+        return timepassed < 1;
     }
 
     isColliding(moveableObject) {
-        if (this.isDisabled) {
-            return false; // Kollisionserkennung ist deaktiviert
+        console.log('isColliding');
+        if (this.isDisabled || this.isHurt()) {
+            return false;
         } else {
             return super.isColliding(moveableObject);
         }
