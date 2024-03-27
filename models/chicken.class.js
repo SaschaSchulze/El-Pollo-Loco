@@ -32,7 +32,7 @@ class Chicken extends moveableObject {
         }, 200);
     }
 
-    die() {
+    chickenDie() {
         this.isDead = true;
         this.loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png');
     }
@@ -72,7 +72,7 @@ class ChickenSmall extends moveableObject {
         }, 200);
     }
 
-    die() {
+    chickenDie() {
         this.isDead = true;
         this.loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_small/2_dead/dead.png');
     }

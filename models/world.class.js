@@ -66,7 +66,7 @@ class World {
                         this.statusBar.setPercentage(this.character.energy);
                     }
                 } else if (this.character.isJumpingOnEnemy(enemy)) {
-                    enemy.die();
+                    enemy.chickenDie();
                 }
             }
         });
@@ -75,10 +75,12 @@ class World {
     checkCollisionWithBottle() {
         this.throwableObjects.forEach((bottles, bottleIndex) => {
             this.level.enemies.forEach((enemy) => {
-                if (bottles.isColliding(enemy)) {
-                    enemy.die();
-                    bottles.stopAnimation();
-                    bottles.playSplashAnimation();
+                if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
+                    if (bottles.isColliding(enemy)) {
+                        enemy.chickenDie();
+                        bottles.stopAnimation();
+                        bottles.playSplashAnimation();
+                    }
                 }
             });
         });
@@ -89,7 +91,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (enemy instanceof Endboss && bottle.isColliding(enemy)) {
                     if (!bottle.hasCollided && !enemy.isHurtBoss()) {
-                        enemy.die();
+                        enemy.bossHit();
                         bottle.stopAnimation();
                         bottle.playSplashAnimation();
                         bottle.hasCollided = true;

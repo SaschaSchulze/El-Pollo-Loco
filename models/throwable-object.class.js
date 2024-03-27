@@ -77,13 +77,12 @@ class ThrowableObject extends moveableObject {
             let totalFrames = this.IMAGES_SPLASH_BOTTLES.length;
             let currentFrame = 0;
     
-            let animationInterval = setInterval(() => {
+            let animationIntervalSplash = setInterval(() => {
                 if (currentFrame < totalFrames) {
                     this.playAnimation([this.IMAGES_SPLASH_BOTTLES[currentFrame]]);
                     currentFrame++;
-                    //this.stopAnimation();
                 } else {
-                    clearInterval(animationInterval);
+                    clearInterval(animationIntervalSplash);
                     this.isAnimatingSplash = false; 
                 }
             }, 100);
