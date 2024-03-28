@@ -87,29 +87,36 @@ class World {
     }
 
     checkCollisionWithEndBoss() {
-        this.throwableObjects.forEach((bottle) => {
-            this.level.enemies.forEach((enemy) => {
+        for (let bottle of this.throwableObjects) {
+            for (let enemy of this.level.enemies) {
                 if (enemy instanceof Endboss && bottle.isColliding(enemy)) {
                     if (!bottle.hasCollided && !enemy.isHurtBoss()) {
-                        enemy.bossHit();
-                        bottle.stopAnimation();
-                        bottle.playSplashAnimation();
-                        bottle.hasCollided = true;
-                        let newPercentage = this.bossBar.percentage - 20;
-                        if (newPercentage < 0) {
-                            newPercentage = 0;
-                        }
-                        this.bossBar.setPercentageBoss(newPercentage);
-                        enemy.bossHit();
-                        enemy.bossWasHit = true;
+                        this.handleBossHit(bottle, enemy);
                     }
-
                     if (enemy.bossWasHit) {
                         bottle.hasCollided = true;
                     }
                 }
-            });
-        });
+            }
+        }
+    }
+    
+    handleBossHit(bottle, enemy) {
+        enemy.bossHit();
+        bottle.stopAnimation();
+        bottle.playSplashAnimation();
+        bottle.hasCollided = true;
+        let newPercentage = this.bossBar.percentage - 20;
+        if (newPercentage < 0) {
+            newPercentage = 0;
+        }
+        this.bossBar.setPercentageBoss(newPercentage);
+        enemy.bossHit();
+        enemy.bossWasHit = true;
+    
+        if (newPercentage <= 0) {
+            enemy.bossDie();
+        }
     }
 
     checkCollectableObjects() {

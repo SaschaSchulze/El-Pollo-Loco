@@ -98,83 +98,85 @@ class Endboss extends moveableObject {
 
     animateWalkingBoss(animationIndex, animationCounter) {
         this.animationInterval = setInterval(() => {
-            if (!this.isDead) {
-                if (animationCounter === 10) {
-                    clearInterval(this.animationInterval);
-                    this.isAnimating = false;
-                    this.currentAnimation = 'animateAngry';
-                    this.animate('animateAngry');
-                } else {
-                    this.moveLeft();
-                    this.loadImage(this.IMAGES_WALKING[animationIndex]);
-                    animationIndex = (animationIndex + 1) % this.IMAGES_WALKING.length;
-                    if (animationIndex === 0) {
-                        animationCounter++;
-                    }
+            if (this.isDead) {
+                clearInterval(this.animationInterval);
+                return;
+            }
+    
+            if (animationCounter === 10) {
+                clearInterval(this.animationInterval);
+                this.isAnimating = false;
+                this.currentAnimation = 'animateAngry';
+                this.animate('animateAngry');
+            } else {
+                this.moveLeft();
+                this.loadImage(this.IMAGES_WALKING[animationIndex]);
+                animationIndex = (animationIndex + 1) % this.IMAGES_WALKING.length;
+                if (animationIndex === 0) {
+                    animationCounter++;
                 }
             }
         }, 200);
     }
-
+    
     animateAngry(animationIndex, animationCounter) {
         this.animationInterval = setInterval(() => {
-            if (!this.isDead) {
+            if (this.isDead) {
+                clearInterval(this.animationInterval);
+                return;
+            }
+    
+            if (animationCounter === 1) {
+                clearInterval(this.animationInterval);
+                this.isAnimating = false;
+                this.currentAnimation = 'animateAttack';
+                this.animate('animateAttack');
+            } else {
+                this.loadImage(this.IMAGES_ANGRY[animationIndex]);
+                animationIndex = (animationIndex + 1) % this.IMAGES_ANGRY.length;
+                if (animationIndex === 0) {
+                    animationCounter++;
+                }
+            }
+        }, 200);
+    }
+    
+    animateAttack(animationIndex, animationCounter) {
+        this.animationInterval = setInterval(() => {
+            if (this.isDead) {
+                clearInterval(this.animationInterval);
+                return;
+            }
+    
+            this.playAnimation(this.IMAGES_ATTACK);
+            animationIndex = (animationIndex + 1) % this.IMAGES_ATTACK.length;
+            if (animationIndex === 0) {
+                animationCounter++;
                 if (animationCounter === 1) {
                     clearInterval(this.animationInterval);
                     this.isAnimating = false;
-                    this.currentAnimation = 'animateAttack';
-                    this.animate('animateAttack');
-                } else {
-                    this.loadImage(this.IMAGES_ANGRY[animationIndex]);
-                    animationIndex = (animationIndex + 1) % this.IMAGES_ANGRY.length;
-                    if (animationIndex === 0) {
-                        animationCounter++;
-                    }
-                }
-            }
-        }, 200);
-    }
-
-    animateAttack(animationIndex, animationCounter) {
-        this.animationInterval = setInterval(() => {
-            if (!this.isDead) {
-                this.playAnimation(this.IMAGES_ATTACK);
-                animationIndex = (animationIndex + 1) % this.IMAGES_ATTACK.length;
-                if (animationIndex === 0) {
-                    animationCounter++;
-                    if (animationCounter === 1) {
-                        clearInterval(this.animationInterval);
-                        this.isAnimating = false;
-                        this.currentAnimation = 'animateWalkingBoss';
-                        this.animate('animateWalkingBoss');
-                    }
+                    this.currentAnimation = 'animateWalkingBoss';
+                    this.animate('animateWalkingBoss');
                 }
             }
         }, 200);
     }
 
     animateHurt() {
-        if (!this.isHurtAnimating) {
-            this.isHurtAnimating = true;
-
-            let hurtIndex = 0;
-            let hurtCounter = 0;
-            this.hurtInterval = setInterval(() => {
-                if (!this.isDead) {
-                    this.playAnimation(this.IMAGES_HURT);
-                    hurtIndex = (hurtIndex + 1) % this.IMAGES_HURT.length;
-                    if (hurtIndex === 0) {
-                        hurtCounter++;
-                        if (hurtCounter === 3) {
-                            clearInterval(this.hurtInterval);
-                            this.isHurtAnimating = false;
-                            this.isAnimating = false;
-                            this.animate(this.animationType);
-                        }
-                    }
-                }
-            }, 200);
-        }
+        if (this.isHurtAnimating) return;
+        this.isHurtAnimating = true;
+        let hurtCounter = 0;
+        this.hurtInterval = setInterval(() => {
+            if (this.isDead || hurtCounter === 3) {
+                clearInterval(this.hurtInterval);
+                this.isHurtAnimating = false;
+                this.isAnimating = false;
+                this.animate(this.animationType);
+                return;
+            }
+            this.playAnimation(this.IMAGES_HURT);
+            hurtCounter++;
+        }, 200);
     }
 
     bossHit() {
@@ -186,22 +188,21 @@ class Endboss extends moveableObject {
 
     isHurtBoss() {
         let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 1000;
-        return timepassed < 1;
+        timepassed = timepassed / 1500;
+        return timepassed < 1.5;
     }
 
     bossDie() {
-        if (!this.isDead) {
-            this.isDead = true;
-            let deadIndex = 0;
-            let deadInterval = setInterval(() => {
-                if (deadIndex < this.IMAGES_DEAD.length) {
-                    this.loadImage(this.IMAGES_DEAD[deadIndex]);
-                    deadIndex++;
-                } else {
-                    clearInterval(deadInterval);
-                }
-            }, 150);
-        }
+        if (this.isDead) return;
+        this.isDead = true;
+        let deadIndex = 0;
+        let maxIterations = 2;
+        let deadInterval = setInterval(() => {
+            if (deadIndex < maxIterations * this.IMAGES_DEAD.length) {
+                this.loadImage(this.IMAGES_DEAD[deadIndex++ % this.IMAGES_DEAD.length]);
+            } else {
+                clearInterval(deadInterval);
+            }
+        }, 100);
     }
 }
