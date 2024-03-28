@@ -41,8 +41,8 @@ class Character extends moveableObject {
     ];
 
     world;
-    walking_sound = new Audio('audio/walking.mp3')
-    
+    walking_sound = new Audio('audio/walking.mp3');
+    jumping_sound = new Audio('audio/jumping.mp3');
 
     constructor() {
         super().loadImage('img_pollo_locco/img/2_character_pepe/2_walk/W-21.png');
@@ -96,6 +96,7 @@ class Character extends moveableObject {
 
     jump() {
         this.speedY = 30;
+        this.jumping_sound.play();
     }
 
     isJumpingOnEnemy(enemy) {

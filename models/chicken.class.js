@@ -2,6 +2,8 @@ class Chicken extends moveableObject {
     y = 400;
     height = 65;
     width = 45;
+    chicken_hit = new Audio('audio/chicken.mp3');
+
     IMAGES_WALKING = [
         'img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         'img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
@@ -33,6 +35,7 @@ class Chicken extends moveableObject {
     }
 
     chickenDie() {
+        this.chicken_hit.play();
         this.isDead = true;
         this.loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png');
     }
@@ -42,6 +45,8 @@ class ChickenSmall extends moveableObject {
     y = 410;
     height = 50;
     width = 45;
+    chicken_hit = new Audio('audio/chicken.mp3');
+    
     IMAGES_WALKING = [
         'img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
         'img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
@@ -73,6 +78,7 @@ class ChickenSmall extends moveableObject {
     }
 
     chickenDie() {
+        this.chicken_hit.play();
         this.isDead = true;
         this.loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_small/2_dead/dead.png');
     }

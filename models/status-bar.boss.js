@@ -1,4 +1,5 @@
 class BossBar extends DrawableObject {
+    
     IMAGES = [
         'img_pollo_locco/img/7_statusbars/2_statusbar_endboss/blue/blue0.png',
         'img_pollo_locco/img/7_statusbars/2_statusbar_endboss/blue/blue20.png',

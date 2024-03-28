@@ -5,10 +5,9 @@ class ThrowableObject extends moveableObject {
         this.y = y;
         this.height = 60;
         this.width = 50;
-        this.world = world; 
+        this.world = world;
         this.throw();
-        this.isAnimating = false; 
-        //this.isAnimatingSplash = false;
+        this.isAnimating = false;
     }
 
     IMAGES_FLYING_BOTTLES = [
@@ -28,20 +27,22 @@ class ThrowableObject extends moveableObject {
 
     ];
 
+    bottle_hit = new Audio('audio/glassmp3.mp3');
+
     throw() {
         if (this.world && this.world.character) {
-            if (this.world.character.otherDirection) {
-                this.speedX = -15;
-            } else {
-                this.speedX = 15;
-            }
-            
+            this.speedX = this.world.character.otherDirection ? -15 : 15;
             this.speedY = 20;
             this.applyGravity();
-
+    
             this.animationInterval = setInterval(() => {
                 this.x += this.speedX;
                 this.y -= this.speedY;
+    
+                if (this.y + this.height >= this.world.canvas.height - 30) {
+                    this.stopAnimation();
+                    this.playSplashAnimation();
+                }
             }, 25);
         }
     }
@@ -55,7 +56,7 @@ class ThrowableObject extends moveableObject {
                     this.playAnimation(this.IMAGES_FLYING_BOTTLES);
                 }
             }, 100);
-            
+
         }
     }
 
@@ -71,18 +72,17 @@ class ThrowableObject extends moveableObject {
     playSplashAnimation() {
         if (!this.isAnimatingSplash) {
             this.isAnimatingSplash = true;
+            this.bottle_hit.play();
             this.loadImages(this.IMAGES_SPLASH_BOTTLES);
     
-            let totalFrames = this.IMAGES_SPLASH_BOTTLES.length;
             let currentFrame = 0;
     
             let animationIntervalSplash = setInterval(() => {
-                if (currentFrame < totalFrames) {
-                    this.playAnimation([this.IMAGES_SPLASH_BOTTLES[currentFrame]]);
-                    currentFrame++;
+                if (currentFrame < this.IMAGES_SPLASH_BOTTLES.length) {
+                    this.playAnimation([this.IMAGES_SPLASH_BOTTLES[currentFrame++]]);
                 } else {
                     clearInterval(animationIntervalSplash);
-                    this.isAnimatingSplash = false; 
+                    this.isAnimatingSplash = false;
                 }
             }, 100);
         }
