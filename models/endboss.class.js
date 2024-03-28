@@ -66,71 +66,91 @@ class Endboss extends moveableObject {
         this.animate('animateWalkingBoss');
     }
 
+    moveLeft() {
+        this.x -= this.moveSpeed;
+    }
+
     animate(animationType) {
         if (!this.isAnimating) {
             this.isAnimating = true;
             this.animationType = animationType;
             let animationIndex = 0;
             let animationCounter = 0;
-    
-            this.animationInterval = setInterval(() => {
-                if (!this.isDead) {
-                    switch (this.animationType) {
-                        case 'animateWalkingBoss':
-                            if (animationCounter === 10) {
-                                clearInterval(this.animationInterval);
-                                this.isAnimating = false;
-                                this.currentAnimation = 'animateAngry';
-                                this.animate('animateAngry');
-                            } else {
-                                this.moveLeft();
-                                this.loadImage(this.IMAGES_WALKING[animationIndex]);
-                                animationIndex = (animationIndex + 1) % this.IMAGES_WALKING.length;
-                                if (animationIndex === 0) {
-                                    animationCounter++;
-                                }
-                            }
-                            break;
-    
-                        case 'animateAngry':
-                            if (animationCounter === 1) {
-                                clearInterval(this.animationInterval);
-                                this.isAnimating = false;
-                                this.currentAnimation = 'animateAttack';
-                                this.animate('animateAttack');
-                            } else {
-                                this.loadImage(this.IMAGES_ANGRY[animationIndex]);
-                                animationIndex = (animationIndex + 1) % this.IMAGES_ANGRY.length;
-                                if (animationIndex === 0) {
-                                    animationCounter++;
-                                }
-                            }
-                            break;
-    
-                        case 'animateAttack':
-                            this.playAnimation(this.IMAGES_ATTACK);
-                            animationIndex = (animationIndex + 1) % this.IMAGES_ATTACK.length;
-                            if (animationIndex === 0) {
-                                animationCounter++;
-                                if (animationCounter === 1) {
-                                    clearInterval(this.animationInterval);
-                                    this.isAnimating = false;
-                                    this.currentAnimation = 'animateWalkingBoss';
-                                    this.animate('animateWalkingBoss');
-                                }
-                            }
-                            break;
-    
-                        default:
-                            break;
-                    }
-                }
-            }, 200);
+
+            switch (this.animationType) {
+                case 'animateWalkingBoss':
+                    this.animateWalkingBoss(animationIndex, animationCounter);
+                    break;
+
+                case 'animateAngry':
+                    this.animateAngry(animationIndex, animationCounter);
+                    break;
+
+                case 'animateAttack':
+                    this.animateAttack(animationIndex, animationCounter);
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 
-    moveLeft() {
-        this.x -= this.moveSpeed;
+    animateWalkingBoss(animationIndex, animationCounter) {
+        this.animationInterval = setInterval(() => {
+            if (!this.isDead) {
+                if (animationCounter === 10) {
+                    clearInterval(this.animationInterval);
+                    this.isAnimating = false;
+                    this.currentAnimation = 'animateAngry';
+                    this.animate('animateAngry');
+                } else {
+                    this.moveLeft();
+                    this.loadImage(this.IMAGES_WALKING[animationIndex]);
+                    animationIndex = (animationIndex + 1) % this.IMAGES_WALKING.length;
+                    if (animationIndex === 0) {
+                        animationCounter++;
+                    }
+                }
+            }
+        }, 200);
+    }
+
+    animateAngry(animationIndex, animationCounter) {
+        this.animationInterval = setInterval(() => {
+            if (!this.isDead) {
+                if (animationCounter === 1) {
+                    clearInterval(this.animationInterval);
+                    this.isAnimating = false;
+                    this.currentAnimation = 'animateAttack';
+                    this.animate('animateAttack');
+                } else {
+                    this.loadImage(this.IMAGES_ANGRY[animationIndex]);
+                    animationIndex = (animationIndex + 1) % this.IMAGES_ANGRY.length;
+                    if (animationIndex === 0) {
+                        animationCounter++;
+                    }
+                }
+            }
+        }, 200);
+    }
+
+    animateAttack(animationIndex, animationCounter) {
+        this.animationInterval = setInterval(() => {
+            if (!this.isDead) {
+                this.playAnimation(this.IMAGES_ATTACK);
+                animationIndex = (animationIndex + 1) % this.IMAGES_ATTACK.length;
+                if (animationIndex === 0) {
+                    animationCounter++;
+                    if (animationCounter === 1) {
+                        clearInterval(this.animationInterval);
+                        this.isAnimating = false;
+                        this.currentAnimation = 'animateWalkingBoss';
+                        this.animate('animateWalkingBoss');
+                    }
+                }
+            }
+        }, 200);
     }
 
     animateHurt() {
@@ -158,9 +178,7 @@ class Endboss extends moveableObject {
     }
 
     bossHit() {
-        this.lastHit = Date.now();
-        let interruptedAnimation = this.animationType;
-        
+        this.lastHit = Date.now();        
         clearInterval(this.animationInterval);
 
         this.animateHurt();

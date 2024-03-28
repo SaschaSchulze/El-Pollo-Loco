@@ -70,7 +70,6 @@ class ThrowableObject extends moveableObject {
 
     playSplashAnimation() {
         if (!this.isAnimatingSplash) {
-            console.log('start');
             this.isAnimatingSplash = true;
             this.loadImages(this.IMAGES_SPLASH_BOTTLES);
     
