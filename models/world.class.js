@@ -12,7 +12,6 @@ class World {
     throwableObjects = [];
     chicken_hit = new Audio('audio/chicken.mp3');
     throwing_bottle = new Audio('audio/throw.mp3');
-    game_music = new Audio('audio/game_music.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -22,7 +21,6 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        //this.game_music.play();
     }
 
     setWorld() {

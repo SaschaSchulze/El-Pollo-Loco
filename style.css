@@ -1,20 +1,61 @@
-<<<<<<< HEAD
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-image: url("img_pollo_locco/ai-generated-8607619_1920.png");
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
 }
 
-canvas {
-    background-color: black;
-=======
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#canvas-container {
+  position: relative;
 }
 
-canvas {
-    background-color: black;
->>>>>>> 9f9170d514bb2a99489dcde6ef692e3cd8bec04b
+#canvas {
+  border: 1px solid black;
+}
+
+.game-symbols {
+  display: flex;
+  gap: 4px;
+}
+
+.game-symbols img {
+  width: 30px;
+}
+
+.legend-container {
+  padding: 14px;
+  width: 700px;
+  border-radius: 18px;
+  border: solid;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.move-left,
+.move-right,
+.jump,
+.throw {
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.description {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 25px;
+}
+
+.letter {
+  background: aliceblue;
+  border: double;
+  font-size: 20px;
+  padding: 10px;
 }
