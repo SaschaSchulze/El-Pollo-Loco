@@ -32,11 +32,28 @@
 
     <section>
       <div class="game-symbols">
-        <img id="sound-icon" src="img_pollo_locco/speaker_on.svg" alt="Sound Icon" onclick="toggleMusic()"/>
-        <img src="img_pollo_locco/fullscreen.svg" alt="Fullscreen" onclick="showFullscreen()"/>
+        <img
+          id="sound-icon"
+          src="img_pollo_locco/speaker_on.svg"
+          alt="Sound Icon"
+          onclick="toggleMusic()"
+        />
+        <img
+          src="img_pollo_locco/fullscreen.svg"
+          alt="Fullscreen"
+          onclick="showFullscreen()"
+        />
       </div>
 
-      <canvas id="canvas" width="720" height="480"></canvas>
+      <div class="container">
+        <canvas id="canvas" width="720" height="480"></canvas>
+        <div id="gameOverScreenContainer" class="game-over-container">
+          <div class="restart-home-container">
+            <div onclick="restartGame()" class="restart-button">RESTART</div>
+            <div id="home" class="restart-button">HOME</div>
+          </div>
+        </div>
+      </div>
       <div class="legend-container">
         <div class="move-left">
           <span class="description"> Move left </span>

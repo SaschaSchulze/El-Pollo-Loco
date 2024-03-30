@@ -81,7 +81,11 @@ class moveableObject extends DrawableObject {
     }
 
     isDead() {
-        return this.energy == 0;
+        if (this.energy <= 0 && this.world.statusBar.percentage === 0) {
+            showGameOverScreen();
+            return true;
+        }
+        return false;
     }
 
     playAnimation(images) {

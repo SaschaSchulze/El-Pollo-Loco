@@ -14,7 +14,7 @@ body {
 }
 
 #canvas {
-  border: 1px solid black;
+  border-radius: 10px;
 }
 
 .game-symbols {
@@ -58,4 +58,42 @@ body {
   border: double;
   font-size: 20px;
   padding: 10px;
+}
+
+.container {
+    position: relative;
+    width: 720px;
+    height: 480px;
+}
+
+#gameOverScreenContainer {
+    position: absolute;
+    background-image: url('img_pollo_locco/img/9_intro_outro_screens/game_over/oh no you lost!.png');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    z-index: 2;
+    display: none;
+    justify-content: center;
+    align-items: end;
+}
+
+.restart-home-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 350px;
+}
+
+.restart-button {
+    background: #7fcd2c;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
 }

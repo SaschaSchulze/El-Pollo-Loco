@@ -1,9 +1,7 @@
 let game_music = new Audio('audio/game_music.mp3');
 let musicMuted = false;
 
-// Event-Handler für das Laden des Audioobjekts
 game_music.addEventListener('canplaythrough', function () {
-    // Musik abspielen und Lautsprechersymbol aktualisieren, wenn das Audioobjekt geladen ist
     game_music.play();
     updateSoundIcon();
 });
@@ -27,15 +25,14 @@ function updateSoundIcon() {
     }
 }
 
-// Musik abspielen und Lautsprechersymbol aktualisieren beim Laden der Seite
 window.onload = function () {
     updateSoundIcon();
 };
 
 function showFullscreen() {
-    const canvas = document.getElementById('canvas');
-    const gameSymbols = document.querySelector('.game-symbols');
-    const docElm = document.documentElement;
+    let canvas = document.getElementById('canvas');
+    let gameSymbols = document.querySelector('.game-symbols');
+    let docElm = document.documentElement;
 
     if (docElm.requestFullscreen) {
         canvas.requestFullscreen();
@@ -59,7 +56,15 @@ function exitFullscreen() {
         document.msExitFullscreen();
     }
 
-    // Zeige die Symbole nach dem Verlassen des Vollbildmodus wieder an
-    const gameSymbols = document.querySelector('.game-symbols');
+    let gameSymbols = document.querySelector('.game-symbols');
     gameSymbols.style.display = 'block';
+}
+
+function showGameOverScreen() {
+    let gameOverScreen = document.getElementById('gameOverScreenContainer');
+    gameOverScreen.style.display = 'block';
+}
+
+function restartGame() {
+    location.reload();
 }
