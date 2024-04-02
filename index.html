@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-
+    <link rel="stylesheet" href="style.css">
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/moveable-objects.class.js"></script>
     <script src="./models/chicken.class.js"></script>
@@ -26,52 +25,48 @@
     <script src="./levels/level1.js"></script>
     <script src="./js/game.js"></script>
     <script src="./script.js"></script>
-  </head>
-  <body onload="init()">
+</head>
+<body>
     <h1>El pollo loco</h1>
 
     <section>
-      <div class="game-symbols">
-        <img
-          id="sound-icon"
-          src="img_pollo_locco/speaker_on.svg"
-          alt="Sound Icon"
-          onclick="toggleMusic()"
-        />
-        <img
-          src="img_pollo_locco/fullscreen.svg"
-          alt="Fullscreen"
-          onclick="showFullscreen()"
-        />
-      </div>
+        <div class="game-symbols">
+            <img id="sound-icon" src="img_pollo_locco/speaker_on.svg" alt="Sound Icon" onclick="toggleMusic()">
+            <img src="img_pollo_locco/fullscreen.svg" alt="Fullscreen" onclick="showFullscreen()">
+        </div>
 
-      <div class="container">
-        <canvas id="canvas" width="720" height="480"></canvas>
-        <div id="gameOverScreenContainer" class="game-over-container">
-          <div class="restart-home-container">
-            <div onclick="restartGame()" class="restart-button">RESTART</div>
-            <div id="home" class="restart-button">HOME</div>
-          </div>
+        <div class="container">
+            <div id="startScreenContainer">
+                <div class="start-game-container">
+                    <div onclick="startGame()" class="restart-button">START</div>
+                </div>
+            </div>
+            <canvas id="canvas" width="720" height="480"></canvas>
+            <div id="gameOverScreenContainer" class="game-over-container">
+                <div class="restart-home-container">
+                    <div onclick="restartGame()" class="restart-button">RESTART</div>
+                    <div id="home" class="restart-button">HOME</div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="legend-container">
-        <div class="move-left">
-          <span class="description"> Move left </span>
-          <span class="letter"> A </span>
+        <div class="legend-container">
+            <div class="move-left">
+                <span class="description"> Move left </span>
+                <span class="letter"> A </span>
+            </div>
+            <div class="move-right">
+                <span class="description"> Move right </span>
+                <span class="letter"> D </span>
+            </div>
+            <div class="jump">
+                <span class="description"> Jump </span>
+                <span class="letter"> W </span>
+            </div>
+            <div class="throw">
+                <span class="description"> Throw </span>
+                <span class="letter"> Space </span>
+            </div>
         </div>
-        <div class="move-right">
-          <span class="description"> Move right </span>
-          <span class="letter"> D </span>
-        </div>
-        <div class="jump">
-          <span class="description"> Jump </span>
-          <span class="letter"> W </span>
-        </div>
-        <div class="throw">
-          <span class="description"> Throw </span>
-          <span class="letter"> Space </span>
-        </div>
-      </div>
     </section>
-  </body>
+</body>
 </html>

@@ -65,6 +65,37 @@ function showGameOverScreen() {
     gameOverScreen.style.display = 'block';
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    showStartScreen();
+});
+
+function showStartScreen() {
+    let startScreen = document.getElementById('startScreenContainer');
+    startScreen.style.backgroundImage = "url('img_pollo_locco/img/9_intro_outro_screens/start/startscreen_1.png')";
+    startScreen.style.display = 'block';
+
+    let canvas = document.getElementById('canvas');
+    canvas.style.pointerEvents = 'none';
+}
+
+function startGame() {
+    hideStartScreen();
+    init();
+}
+
+function hideStartScreen() {
+    let startScreen = document.getElementById('startScreenContainer');
+    startScreen.style.display = 'none';
+}
+
+function hideGameOverScreen() {
+    let gameOverScreen = document.getElementById('gameOverScreenContainer');
+    gameOverScreen.style.display = 'none';
+}
+
 function restartGame() {
+    hideGameOverScreen();
+    startGame();
     location.reload();
+    hideStartScreen();
 }
