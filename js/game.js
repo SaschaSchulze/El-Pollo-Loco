@@ -6,9 +6,10 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     if (world) {
-        world.startGame();        
+        world.startGame();
+        console.log("Initialisiert");
     }
-    console.log("Initialisiert");
+    
 }
 
 window.addEventListener("keydown", (e) => { // (e) steht für Event, kann auch anders genannt werden

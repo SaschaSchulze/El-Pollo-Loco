@@ -9,7 +9,6 @@ class World {
     coinsBar = new CoinsBar();
     bottlesBar = new BottlesBar();
     bossBar = new BossBar();
-    moveableObjectInstance = new moveableObject();
     throwableObjects = [];
     chicken_hit = new Audio('audio/chicken.mp3');
     throwing_bottle = new Audio('audio/throw.mp3');
@@ -25,7 +24,7 @@ class World {
     }
 
     startGame() {
-        this.resetEnergies();
+        this.resetEnergyBoss();
         this.resetLevel();
         this.clearRunAndBossInterval();
         this.run();
@@ -51,7 +50,7 @@ class World {
         this.level.enemies.push(new Endboss());
     }
 
-    resetEnergies() {
+    resetEnergyBoss() {
         this.level.enemies.forEach((enemy) => {
             if (enemy instanceof Endboss) {
                 enemy.bossBar.reset();
