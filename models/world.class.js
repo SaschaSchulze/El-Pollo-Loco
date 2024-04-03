@@ -18,10 +18,22 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.characters = [];
 
         this.draw();
         this.setWorld();
         this.run();
+    }
+
+    addCharacter(character) {
+        this.characters.push(character);
+    }
+
+    removeCharacter(character) {
+        const index = this.characters.indexOf(character);
+        if (index !== -1) {
+            this.characters.splice(index, 1);
+        }
     }
 
     setWorld() {

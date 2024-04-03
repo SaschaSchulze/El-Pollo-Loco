@@ -80,7 +80,8 @@ class moveableObject extends DrawableObject {
         return timepassed < 1;
     }
 
-    isDead() {
+    checkIsDead() {
+        console.log('tot')
         if (this.energy <= 0 && this.world.statusBar.percentage === 0) {
             showGameOverScreen();
             return true;

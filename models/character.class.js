@@ -114,10 +114,10 @@ class Character extends moveableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            const now = Date.now();
-            const timeSinceLastMove = now - this.lastMoveTimestamp;
+            let now = Date.now();
+            let timeSinceLastMove = now - this.lastMoveTimestamp;
     
-            if (this.isDead()) {
+            if (this.checkIsDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -151,7 +151,12 @@ class Character extends moveableObject {
     }
 
     reset() {
-        this.x = 0;
+        this.world.removeCharacter(this);
+    
+        let newCharacter = new Character();
+        newCharacter.world = this.world;
+        this.world.addCharacter(newCharacter);
+    
         this.isDead = false;
         this.lastHit = 0;
     }
