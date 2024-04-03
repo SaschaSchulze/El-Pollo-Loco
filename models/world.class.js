@@ -26,7 +26,7 @@ class World {
     startGame() {
         this.resetEnergyBoss();
         this.resetLevel();
-        this.clearRunAndBossInterval();
+        this.clearRunInterval();
         this.run();
     }
 
@@ -44,7 +44,7 @@ class World {
         for (let i = 0; i < 3; i++) {
             this.level.enemies.push(new Chicken());
         }
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 4; i++) {
             this.level.enemies.push(new ChickenSmall());
         }
         this.level.enemies.push(new Endboss());
@@ -72,9 +72,8 @@ class World {
         }, 50);
     }
 
-    clearRunAndBossInterval() {
+    clearRunInterval() {
         clearInterval(this.runInterval);
-        //clearInterval(this.checkDistanceToEndboss);
       }
 
     checkThrowObjects() {
