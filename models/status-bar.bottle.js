@@ -41,10 +41,4 @@ class BottlesBar extends DrawableObject {
             return 5;
         }
     }
-
-    //reset() {
-    //    this.percentage = 0;
-    //    let path = this.IMAGES[this.resolveImageIndex()];
-    //    this.img = this.imageCache[path];
-    //}
 }

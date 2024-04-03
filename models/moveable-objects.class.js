@@ -83,7 +83,6 @@ class moveableObject extends DrawableObject {
 
     checkIsDead() {
         if (this.energy <= 0 && this.world.statusBar.percentage === 0 && !this.isGameOver) {
-            console.log('showGameOverScreen');
             showGameOverScreen();
             this.isGameOver = true;
             return true;
@@ -109,16 +108,4 @@ class moveableObject extends DrawableObject {
     jump() {
         this.speedY = 30; // Sprunghöhe
     }
-
-    //reset() {
-    //    this.speed = 0.15;
-    //    this.otherDirection = false;
-    //    this.speedY = 0;
-    //    this.acceleration = 2.5;
-    //    this.energy = 100;
-    //    this.coins = 0;
-    //    this.bottles = 0;
-    //    this.availableBottles = 0;
-    //    this.lastHit = 0;
-    //}
 }

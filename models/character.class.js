@@ -149,16 +149,4 @@ class Character extends moveableObject {
             (this.x <= moveableObject.x + moveableObject.width && this.x >= moveableObject.x)
         );
     }
-
-    //reset() {
-    //    console.log('reset character');
-    //    this.world.removeCharacter(this);
-    //    
-    //    let newCharacter = new Character();
-    //    newCharacter.world = this.world;
-    //    this.world.addCharacter(newCharacter);
-    //
-    //    this.isDead = false;
-    //    this.lastHit = 0;
-    //}
 }

@@ -65,7 +65,7 @@ function showGameOverScreen() {
     gameOverScreen.style.display = 'block';
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     showStartScreen();
 });
 
@@ -81,7 +81,7 @@ function showStartScreen() {
 function startGame() {
     hideStartScreen();
     createLevel1();
- 
+
     init();
 }
 
@@ -93,12 +93,4 @@ function hideStartScreen() {
 function hideGameOverScreen() {
     let gameOverScreen = document.getElementById('gameOverScreenContainer');
     gameOverScreen.style.display = 'none';
-}
-
-function restartGame() {
-    hideGameOverScreen();
-    world = null;
-    //world.reset();
-
-    startGame();
 }

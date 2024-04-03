@@ -18,32 +18,53 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        //this.characters = [];
 
         this.draw();
         this.setWorld();
         this.run();
     }
 
-    //addCharacter(character) {
-    //    console.log('hinzu')
-    //    this.characters.push(character);
-    //}
+    startGame() {
+        this.resetEnergies();
+        this.resetLevel();
+        this.clearRunAndBossInterval();
+        this.run();
+    }
 
-    //removeCharacter(character) {
-    //    console.log('entfernen')
-    //    const index = this.characters.indexOf(character);
-    //    if (index !== -1) {
-    //        this.characters.splice(index, 1);
-    //    }
-    //}
+    resetLevel() {
+        this.level.bottles = [];
+        this.level.coins = [];
+        this.level.enemies = [];
+
+        for (let i = 0; i < 5; i++) {
+            this.level.bottles.push(new Bottles());
+        }
+        for (let i = 0; i < 5; i++) {
+            this.level.coins.push(new Coins());
+        }
+        for (let i = 0; i < 3; i++) {
+            this.level.enemies.push(new Chicken());
+        }
+        for (let i = 0; i < 3; i++) {
+            this.level.enemies.push(new ChickenSmall());
+        }
+        this.level.enemies.push(new Endboss());
+    }
+
+    resetEnergies() {
+        this.level.enemies.forEach((enemy) => {
+            if (enemy instanceof Endboss) {
+                enemy.bossBar.reset();
+            }
+        });
+    }
 
     setWorld() {
         this.character.world = this;
     }
 
     run() {
-        setInterval(() => {
+        this.runInterval = setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkCollectableObjects();
@@ -51,6 +72,11 @@ class World {
             this.checkCollisionWithEndBoss();
         }, 50);
     }
+
+    clearRunAndBossInterval() {
+        clearInterval(this.runInterval);
+        //clearInterval(this.checkDistanceToEndboss);
+      }
 
     checkThrowObjects() {
         if (this.keyboard.SPACE && this.character.availableBottles > 0 && !this.character.isThrowingBottle) {
@@ -119,7 +145,7 @@ class World {
             }
         }
     }
-    
+
     handleBossHit(bottle, enemy) {
         this.chicken_hit.play();
         enemy.bossHit();
@@ -133,7 +159,7 @@ class World {
         this.bossBar.setPercentageBoss(newPercentage);
         enemy.bossHit();
         enemy.bossWasHit = true;
-    
+
         if (newPercentage <= 0) {
             enemy.bossDie();
         }
@@ -222,35 +248,4 @@ class World {
         moveableObject.x = moveableObject.x * -1;
         this.ctx.restore();
     }
-
-    //reset() {
-    //    this.camera_x = 0;
-    //    this.throwableObjects = [];
-    //    this.character.reset();
-    //    this.statusBar.setPercentage(100);
-    //    this.coinsBar.setPercentageCoin(0);
-    //    this.bottlesBar.setPercentageBottle(0);
-    //    this.bossBar.setPercentageBoss(100);
-    //    this.level = level1;
-    //
-    //    this.level.enemies.forEach(enemy => {
-    //        if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
-    //            enemy.x = 200 + Math.random() * 2000;
-    //            enemy.isDead = false;
-    //        }
-    //    });
-    //
-    //    this.level.enemies.forEach(enemy => {
-    //        if (enemy instanceof Endboss) {
-    //            enemy.x = 2500;
-    //        }
-    //    });
-
-    //    this.removeCharacter(this.character);
-    //
-    //    let newCharacter = new Character();
-    //    this.addCharacter(newCharacter);
-    //
-    //    this.draw();
-    //}
 }
