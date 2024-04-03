@@ -150,4 +150,9 @@ class Character extends moveableObject {
         );
     }
 
+    reset() {
+        this.x = 0;
+        this.isDead = false;
+        this.lastHit = 0;
+    }
 }

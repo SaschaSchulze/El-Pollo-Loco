@@ -95,7 +95,13 @@ function hideGameOverScreen() {
 
 function restartGame() {
     hideGameOverScreen();
+
+    world.character.reset();
+    world.statusBar.reset();
+    world.coinsBar.reset();
+    world.bottlesBar.reset();
+    world.bossBar.reset();
+
+
     startGame();
-    location.reload();
-    hideStartScreen();
 }

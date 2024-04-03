@@ -9,6 +9,7 @@ class World {
     coinsBar = new CoinsBar();
     bottlesBar = new BottlesBar();
     bossBar = new BossBar();
+    moveableObjectInstance = new moveableObject();
     throwableObjects = [];
     chicken_hit = new Audio('audio/chicken.mp3');
     throwing_bottle = new Audio('audio/throw.mp3');
@@ -206,5 +207,24 @@ class World {
     flipImageBack(moveableObject) {
         moveableObject.x = moveableObject.x * -1;
         this.ctx.restore();
+    }
+
+    reset() {
+        this.camera_x = 0;
+        this.throwableObjects = [];
+        this.character.reset();
+        this.statusBar.setPercentage(100);
+        this.coinsBar.setPercentageCoin(0);
+        this.bottlesBar.setPercentageBottle(0);
+        this.bossBar.setPercentageBoss(100);
+        this.level = level1;
+
+        this.level.enemies.forEach(enemy => {
+            if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
+                enemy.reset();
+            }
+        });
+
+        this.draw();
     }
 }

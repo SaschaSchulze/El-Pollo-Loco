@@ -31,4 +31,8 @@ class Coins extends moveableObject {
     collect() {
         this.collected = true;
     }
+
+    reset() {
+        super.reset();
+    }
 }
