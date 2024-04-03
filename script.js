@@ -80,6 +80,8 @@ function showStartScreen() {
 
 function startGame() {
     hideStartScreen();
+    createLevel1();
+ 
     init();
 }
 
@@ -95,8 +97,8 @@ function hideGameOverScreen() {
 
 function restartGame() {
     hideGameOverScreen();
-
-    world.reset();
+    world = null;
+    //world.reset();
 
     startGame();
 }

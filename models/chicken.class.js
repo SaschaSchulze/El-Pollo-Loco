@@ -40,11 +40,11 @@ class Chicken extends moveableObject {
         this.loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png');
     }
 
-    reset() {
-        super.reset();
-        this.isDead = false;
-        this.x = 200 + Math.random() * 2000;
-    }
+    //reset() {
+    //    super.reset();
+    //    this.isDead = false;
+    //    this.x = 200 + Math.random() * 2000;
+    //}
 }
 
 class ChickenSmall extends moveableObject {
@@ -89,9 +89,9 @@ class ChickenSmall extends moveableObject {
         this.loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_small/2_dead/dead.png');
     }
 
-    reset() {
-        super.reset();
-        this.isDead = false;
-        this.x = 200 + Math.random() * 2000;
-    }
+    //reset() {
+    //    super.reset();
+    //    this.isDead = false;
+    //    this.x = 200 + Math.random() * 2000;
+    //}
 }

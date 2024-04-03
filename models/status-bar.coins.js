@@ -42,9 +42,9 @@ class CoinsBar extends DrawableObject {
         }
     }
 
-    reset() {
-        this.percentage = 0;
-        let path = this.IMAGES[this.resolveImageIndex()];
-        this.img = this.imageCache[path];
-    }
+    //reset() {
+    //    this.percentage = 0;
+    //    let path = this.IMAGES[this.resolveImageIndex()];
+    //    this.img = this.imageCache[path];
+    //}
 }

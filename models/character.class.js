@@ -150,14 +150,15 @@ class Character extends moveableObject {
         );
     }
 
-    reset() {
-        this.world.removeCharacter(this);
-    
-        let newCharacter = new Character();
-        newCharacter.world = this.world;
-        this.world.addCharacter(newCharacter);
-    
-        this.isDead = false;
-        this.lastHit = 0;
-    }
+    //reset() {
+    //    console.log('reset character');
+    //    this.world.removeCharacter(this);
+    //    
+    //    let newCharacter = new Character();
+    //    newCharacter.world = this.world;
+    //    this.world.addCharacter(newCharacter);
+    //
+    //    this.isDead = false;
+    //    this.lastHit = 0;
+    //}
 }

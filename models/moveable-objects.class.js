@@ -8,6 +8,7 @@ class moveableObject extends DrawableObject {
     bottles = 0;
     availableBottles = 0;
     lastHit = 0;
+    isGameOver = false;
 
     applyGravity() {
         setInterval(() => {
@@ -81,9 +82,10 @@ class moveableObject extends DrawableObject {
     }
 
     checkIsDead() {
-        console.log('tot')
-        if (this.energy <= 0 && this.world.statusBar.percentage === 0) {
+        if (this.energy <= 0 && this.world.statusBar.percentage === 0 && !this.isGameOver) {
+            console.log('showGameOverScreen');
             showGameOverScreen();
+            this.isGameOver = true;
             return true;
         }
         return false;
@@ -108,15 +110,15 @@ class moveableObject extends DrawableObject {
         this.speedY = 30; // Sprunghöhe
     }
 
-    reset() {
-        this.speed = 0.15;
-        this.otherDirection = false;
-        this.speedY = 0;
-        this.acceleration = 2.5;
-        this.energy = 100;
-        this.coins = 0;
-        this.bottles = 0;
-        this.availableBottles = 0;
-        this.lastHit = 0;
-    }
+    //reset() {
+    //    this.speed = 0.15;
+    //    this.otherDirection = false;
+    //    this.speedY = 0;
+    //    this.acceleration = 2.5;
+    //    this.energy = 100;
+    //    this.coins = 0;
+    //    this.bottles = 0;
+    //    this.availableBottles = 0;
+    //    this.lastHit = 0;
+    //}
 }

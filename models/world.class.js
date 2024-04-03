@@ -18,23 +18,25 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.characters = [];
+        //this.characters = [];
 
         this.draw();
         this.setWorld();
         this.run();
     }
 
-    addCharacter(character) {
-        this.characters.push(character);
-    }
+    //addCharacter(character) {
+    //    console.log('hinzu')
+    //    this.characters.push(character);
+    //}
 
-    removeCharacter(character) {
-        const index = this.characters.indexOf(character);
-        if (index !== -1) {
-            this.characters.splice(index, 1);
-        }
-    }
+    //removeCharacter(character) {
+    //    console.log('entfernen')
+    //    const index = this.characters.indexOf(character);
+    //    if (index !== -1) {
+    //        this.characters.splice(index, 1);
+    //    }
+    //}
 
     setWorld() {
         this.character.world = this;
@@ -221,29 +223,34 @@ class World {
         this.ctx.restore();
     }
 
-    reset() {
-        this.camera_x = 0;
-        this.throwableObjects = [];
-        this.character.reset();
-        this.statusBar.setPercentage(100);
-        this.coinsBar.setPercentageCoin(0);
-        this.bottlesBar.setPercentageBottle(0);
-        this.bossBar.setPercentageBoss(100);
-        this.level = level1;
+    //reset() {
+    //    this.camera_x = 0;
+    //    this.throwableObjects = [];
+    //    this.character.reset();
+    //    this.statusBar.setPercentage(100);
+    //    this.coinsBar.setPercentageCoin(0);
+    //    this.bottlesBar.setPercentageBottle(0);
+    //    this.bossBar.setPercentageBoss(100);
+    //    this.level = level1;
+    //
+    //    this.level.enemies.forEach(enemy => {
+    //        if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
+    //            enemy.x = 200 + Math.random() * 2000;
+    //            enemy.isDead = false;
+    //        }
+    //    });
+    //
+    //    this.level.enemies.forEach(enemy => {
+    //        if (enemy instanceof Endboss) {
+    //            enemy.x = 2500;
+    //        }
+    //    });
 
-        this.level.enemies.forEach(enemy => {
-            if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
-                enemy.x = 200 + Math.random() * 2000;
-                enemy.isDead = false;
-            }
-        });
-
-        this.level.enemies.forEach(enemy => {
-            if (enemy instanceof Endboss) {
-                enemy.x = 2500;
-            }
-        });
-
-        this.draw();
-    }
+    //    this.removeCharacter(this.character);
+    //
+    //    let newCharacter = new Character();
+    //    this.addCharacter(newCharacter);
+    //
+    //    this.draw();
+    //}
 }

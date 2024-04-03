@@ -208,16 +208,16 @@ class Endboss extends moveableObject {
         }, 100);
     }
 
-    reset() {
-        super.reset();
-        this.currentAnimation = '';
-        this.isWalkingAnimating = false;
-        this.isAngryAnimating = false;
-        this.isAttackAnimating = false;
-        this.isHurtAnimating = false;
-        this.isDead = false;
-        this.lastHit = 0;
-        this.x = 2500;
-        this.animate('animateWalkingBoss');
-    }
+    //reset() {
+    //    super.reset();
+    //    this.currentAnimation = '';
+    //    this.isWalkingAnimating = false;
+    //    this.isAngryAnimating = false;
+    //    this.isAttackAnimating = false;
+    //    this.isHurtAnimating = false;
+    //    this.isDead = false;
+    //    this.lastHit = 0;
+    //    this.x = 2500;
+    //    this.animate('animateWalkingBoss');
+    //}
 }
