@@ -221,7 +221,14 @@ class World {
 
         this.level.enemies.forEach(enemy => {
             if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
-                enemy.reset();
+                enemy.x = 200 + Math.random() * 2000;
+                enemy.isDead = false;
+            }
+        });
+
+        this.level.enemies.forEach(enemy => {
+            if (enemy instanceof Endboss) {
+                enemy.x = 2500;
             }
         });
 

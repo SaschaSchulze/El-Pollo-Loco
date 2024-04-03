@@ -42,6 +42,8 @@ class Chicken extends moveableObject {
 
     reset() {
         super.reset();
+        this.isDead = false;
+        this.x = 200 + Math.random() * 2000;
     }
 }
 
@@ -89,5 +91,7 @@ class ChickenSmall extends moveableObject {
 
     reset() {
         super.reset();
+        this.isDead = false;
+        this.x = 200 + Math.random() * 2000;
     }
 }
