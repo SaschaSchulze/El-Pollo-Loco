@@ -149,4 +149,16 @@ class Character extends moveableObject {
             (this.x <= moveableObject.x + moveableObject.width && this.x >= moveableObject.x)
         );
     }
+
+    reset() {
+        this.energy = 100; // Energie zurücksetzen
+        this.coins = 0; // Münzen zurücksetzen
+        this.bottles = 0; // Flaschen zurücksetzen
+        this.availableBottles = 0; // Verfügbare Flaschen zurücksetzen
+        this.lastHit = 0; // Letzten Treffer zurücksetzen
+        this.isGameOver = false; // Spiel-Überstatus zurücksetzen
+        this.x = 0; // Position X zurücksetzen
+        this.y = 80; // Position Y zurücksetzen
+        // Andere Eigenschaften zurücksetzen, z. B. Animation usw.
+    }
 }

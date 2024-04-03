@@ -26,6 +26,7 @@ class World {
     startGame() {
         this.resetEnergyBoss();
         this.resetLevel();
+        this.character.reset(); 
         this.clearRunInterval();
         this.run();
     }
@@ -48,6 +49,8 @@ class World {
             this.level.enemies.push(new ChickenSmall());
         }
         this.level.enemies.push(new Endboss());
+        this.character.resetEnergy();
+        this.isGameOver = false;
     }
 
     resetEnergyBoss() {
@@ -74,7 +77,7 @@ class World {
 
     clearRunInterval() {
         clearInterval(this.runInterval);
-      }
+    }
 
     checkThrowObjects() {
         if (this.keyboard.SPACE && this.character.availableBottles > 0 && !this.character.isThrowingBottle) {
@@ -112,6 +115,9 @@ class World {
                 }
             }
         });
+        if (this.character.isDead) {
+            this.checkIsDead();
+        }
     }
 
     checkCollisionWithBottle() {

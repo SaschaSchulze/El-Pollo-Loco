@@ -49,12 +49,15 @@ class moveableObject extends DrawableObject {
     }
 
     hit() {
+        console.log('Treffer');
         this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
+        console.log('Energie', this.energy);
+        console.log('Game Over', this.isGameOver);
     }
 
     hitCoin() {
@@ -107,5 +110,9 @@ class moveableObject extends DrawableObject {
 
     jump() {
         this.speedY = 30; // Sprunghöhe
+    }
+
+    resetEnergy() {
+        this.energy = 100;
     }
 }
