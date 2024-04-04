@@ -4,12 +4,12 @@ let keyboard = new Keyboard();
 
 function init() {
     canvas = document.getElementById('canvas');
+    level = createLevel1();
     world = new World(canvas, keyboard);
     if (world) {
         world.startGame();
         console.log("Initialisiert");
-    }
-    
+    }  
 }
 
 window.addEventListener("keydown", (e) => { // (e) steht für Event, kann auch anders genannt werden

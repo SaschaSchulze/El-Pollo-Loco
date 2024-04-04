@@ -89,7 +89,7 @@ class Character extends moveableObject {
         this.walkingInterval = setInterval(() => {
             if (!this.isDead) {
                 this.walking_sound.pause();
-                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                if (this.world.keyboard.RIGHT && this.x < this.world.level1.level_end_x) {
                     this.moveRight();
                     this.otherDirection = false;
                     this.walking_sound.play();
@@ -165,9 +165,9 @@ class Character extends moveableObject {
 
     removeCharacter() {
         if (this.world) {
-            let index = this.world.level.enemies.indexOf(this);
+            let index = this.world.level1.enemies.indexOf(this);
             if (index !== -1) {
-                this.world.level.enemies.splice(index, 1);
+                this.world.level1.enemies.splice(index, 1);
             }
         }
     }
@@ -188,14 +188,14 @@ class Character extends moveableObject {
         );
     }
 
-    //reset() {
-    //    this.energy = 100;
-    //    this.coins = 0;
-    //    this.bottles = 0;
-    //    this.availableBottles = 0;
-    //    this.lastHit = 0;
-    //    this.isGameOver = false;
-    //    this.x = 0;
-    //    this.y = 80;
-    //}
+    reset() {
+        this.energy = 100;
+        this.coins = 0;
+        this.bottles = 0;
+        this.availableBottles = 0;
+        this.lastHit = 0;
+        this.isGameOver = false;
+        this.x = 0;
+        this.y = 80;
+    }
 }

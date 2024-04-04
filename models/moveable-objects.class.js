@@ -84,8 +84,6 @@ class moveableObject extends DrawableObject {
         return timepassed < 1;
     }
 
-    
-
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];

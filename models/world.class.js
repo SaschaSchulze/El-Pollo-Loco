@@ -1,6 +1,6 @@
 class World {
     character = new Character();
-    level = level1;
+    level1 = level;
     canvas;
     ctx;
     keyboard;
@@ -26,35 +26,35 @@ class World {
     startGame() {
         this.resetEnergyBoss();
         this.resetLevel();
-        //this.character.reset(); 
+        this.character.reset(); 
         this.clearRunInterval();
         this.run();
     }
 
     resetLevel() {
-        this.level.bottles = [];
-        this.level.coins = [];
-        this.level.enemies = [];
+        this.level1.bottles = [];
+        this.level1.coins = [];
+        this.level1.enemies = [];
 
         for (let i = 0; i < 5; i++) {
-            this.level.bottles.push(new Bottles());
+            this.level1.bottles.push(new Bottles());
         }
         for (let i = 0; i < 5; i++) {
-            this.level.coins.push(new Coins());
+            this.level1.coins.push(new Coins());
         }
         for (let i = 0; i < 3; i++) {
-            this.level.enemies.push(new Chicken());
+            this.level1.enemies.push(new Chicken());
         }
         for (let i = 0; i < 4; i++) {
-            this.level.enemies.push(new ChickenSmall());
+            this.level1.enemies.push(new ChickenSmall());
         }
-        this.level.enemies.push(new Endboss());
+        this.level1.enemies.push(new Endboss());
         this.character.resetEnergy();
         this.isGameOver = false;
     }
 
     resetEnergyBoss() {
-        this.level.enemies.forEach((enemy) => {
+        this.level1.enemies.forEach((enemy) => {
             if (enemy instanceof Endboss) {
                 enemy.bossBar.reset();
             }
@@ -102,7 +102,7 @@ class World {
     }
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy) => {
+        this.level1.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 if (enemy.isDead && this.character.isJumpingOnEnemy(enemy)) {
                 } else if (!enemy.isDead && !this.character.isJumpingOnEnemy(enemy)) {
@@ -122,7 +122,7 @@ class World {
 
     checkCollisionWithBottle() {
         this.throwableObjects.forEach((bottles, bottleIndex) => {
-            this.level.enemies.forEach((enemy) => {
+            this.level1.enemies.forEach((enemy) => {
                 if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
                     if (bottles.isColliding(enemy)) {
                         enemy.chickenDie();
@@ -137,7 +137,7 @@ class World {
 
     checkCollisionWithEndBoss() {
         for (let bottle of this.throwableObjects) {
-            for (let enemy of this.level.enemies) {
+            for (let enemy of this.level1.enemies) {
                 if (enemy instanceof Endboss && bottle.isColliding(enemy)) {
                     if (!bottle.hasCollided && !enemy.isHurtBoss()) {
                         this.handleBossHit(bottle, enemy);
@@ -170,15 +170,15 @@ class World {
     }
 
     checkCollectableObjects() {
-        this.level.coins.forEach((coins, index) => {
+        this.level1.coins.forEach((coins, index) => {
             if (this.character.isCollectCoins(coins)) {
                 this.character.hitCoin();
                 this.coinsBar.setPercentageCoin(this.coinsBar.percentage + 20);
-                this.level.coins.splice(index, 1);
+                this.level1.coins.splice(index, 1);
             }
         });
 
-        this.level.bottles.forEach((bottles, index) => {
+        this.level1.bottles.forEach((bottles, index) => {
             if (this.character.isCollectBottles(bottles)) {
                 this.character.collectBottles();
                 this.character.hitBottle();
@@ -187,7 +187,7 @@ class World {
                     newPercentage = 100;
                 }
                 this.bottlesBar.setPercentageBottle(newPercentage);
-                this.level.bottles.splice(index, 1);
+                this.level1.bottles.splice(index, 1);
             }
         });
     }
@@ -197,7 +197,7 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // löscht das canvas zum Anfang immer wieder
 
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level1.backgroundObjects);
 
         this.ctx.translate(-this.camera_x, 0); // Zurück
         // ----------------Space for foxed objects --------------------
@@ -208,11 +208,11 @@ class World {
         this.ctx.translate(this.camera_x, 0); // Vorwärts
 
         this.addToMap(this.character);
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level1.clouds);
+        this.addObjectsToMap(this.level1.enemies);
         this.addObjectsToMap(this.throwableObjects);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level1.coins);
+        this.addObjectsToMap(this.level1.bottles);
 
         this.ctx.translate(-this.camera_x, 0);
 

@@ -1,5 +1,5 @@
 function createLevel1() {
-    let level = new Level(
+    level = new Level(
         [
             new Chicken(),
             new ChickenSmall(),
@@ -55,5 +55,3 @@ function createLevel1() {
 
     return level;
 }
-
-let level1 = createLevel1();
