@@ -84,14 +84,7 @@ class moveableObject extends DrawableObject {
         return timepassed < 1;
     }
 
-    checkIsDead() {
-        if (this.energy <= 0 && this.world.statusBar.percentage === 0 && !this.isGameOver) {
-            showGameOverScreen();
-            this.isGameOver = true;
-            return true;
-        }
-        return false;
-    }
+    
 
     playAnimation(images) {
         let i = this.currentImage % images.length;

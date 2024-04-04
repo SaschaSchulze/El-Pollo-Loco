@@ -80,6 +80,7 @@ function showStartScreen() {
 
 function startGame() {
     hideStartScreen();
+    hideGameOverScreen();
     createLevel1();
 
     init();

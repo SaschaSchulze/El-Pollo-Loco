@@ -26,7 +26,7 @@ class World {
     startGame() {
         this.resetEnergyBoss();
         this.resetLevel();
-        this.character.reset(); 
+        //this.character.reset(); 
         this.clearRunInterval();
         this.run();
     }
@@ -116,7 +116,7 @@ class World {
             }
         });
         if (this.character.isDead) {
-            this.checkIsDead();
+            this.character.checkIsDead();
         }
     }
 
