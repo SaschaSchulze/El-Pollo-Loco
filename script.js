@@ -31,7 +31,12 @@ window.onload = function () {
 
 function showFullscreen() {
     let fullscreen = document.getElementById('fullscreen');
-    enterFullscreen(fullscreen)
+    let fullscreenIcon = document.querySelector('.game-symbols img[alt="Fullscreen"]');
+    fullscreenIcon.src = "img_pollo_locco/fullscreen-exit.svg";
+    fullscreenIcon.alt = "Exit Fullscreen";
+    fullscreenIcon.onclick = exitFullscreen;
+
+    enterFullscreen(fullscreen);
 }
 
 function enterFullscreen(element) {
@@ -47,6 +52,11 @@ function enterFullscreen(element) {
 }
 
 function exitFullscreen() {
+    let fullscreenIcon = document.querySelector('.game-symbols img[alt="Exit Fullscreen"]');
+    fullscreenIcon.src = "img_pollo_locco/fullscreen.svg";
+    fullscreenIcon.alt = "Fullscreen";
+    fullscreenIcon.onclick = showFullscreen;
+
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) {
