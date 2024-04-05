@@ -49,15 +49,15 @@ class moveableObject extends DrawableObject {
     }
 
     hit() {
-        console.log('Treffer');
+        //console.log('Treffer');
         this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
-        console.log('Energie', this.energy);
-        console.log('Game Over', this.isGameOver);
+        //console.log('Energie', this.energy);
+        //console.log('Game Over', this.isGameOver);
     }
 
     hitCoin() {

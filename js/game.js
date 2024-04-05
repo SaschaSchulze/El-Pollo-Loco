@@ -8,7 +8,7 @@ function init() {
     world = new World(canvas, keyboard);
     if (world) {
         world.startGame();
-        console.log("Initialisiert");
+        //console.log("Initialisiert");
     }  
 }
 
