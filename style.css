@@ -1,6 +1,8 @@
 body {
   background-image: url("img_pollo_locco/ai-generated-8607619_1920.png");
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
