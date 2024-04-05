@@ -100,16 +100,19 @@ body {
   background-image: url("img_pollo_locco/img/9_intro_outro_screens/game_over/oh no you lost!.png");
 }
 
+.restart-home-container,
+.start-game-container {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .restart-home-container {
   display: flex;
   justify-content: space-around;
-  margin-top: 350px;
-}
-
-.start-game-container {
-  margin-top: 350px;
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .restart-button {
