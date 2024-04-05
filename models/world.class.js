@@ -104,20 +104,19 @@ class World {
 
     checkCollisions() {
         if (!this.character || this.character.isDead) {
-            return; // Stop the method if the character is dead or does not exist
+            return;
         }
     
         this.level1.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 if (enemy.isDead && this.character.isJumpingOnEnemy(enemy)) {
-                    // handle collision logic here
+                } else if (!enemy.isDead && this.character.isJumpingOnEnemy(enemy)) {
+                    enemy.chickenDie();
                 } else if (!enemy.isDead && !this.character.isJumpingOnEnemy(enemy)) {
                     if (this.character.isCollidingFromSide(enemy)) {
                         this.character.hit();
                         this.statusBar.setPercentage(this.character.energy);
                     }
-                } else if (this.character.isJumpingOnEnemy(enemy)) {
-                    enemy.chickenDie();
                 }
             }
         });
