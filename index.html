@@ -30,11 +30,6 @@
     <h1>El pollo loco</h1>
 
     <section>
-        <div class="game-symbols">
-            <img id="sound-icon" src="img_pollo_locco/speaker_on.svg" alt="Sound Icon" onclick="toggleMusic()">
-            <img src="img_pollo_locco/fullscreen.svg" alt="Fullscreen" onclick="showFullscreen()">
-        </div>
-
         <div id="fullscreen" class="container">
             <div id="startScreenContainer">
                 <div class="start-game-container">
@@ -43,6 +38,10 @@
             </div>
             <div class="canvas-container">
                 <canvas id="canvas" width="720" height="480"></canvas>
+            </div>
+            <div class="game-symbols">
+                <img id="sound-icon" src="img_pollo_locco/speaker_on.svg" alt="Sound Icon" onclick="toggleMusic()">
+                <img src="img_pollo_locco/fullscreen.svg" alt="Fullscreen" onclick="showFullscreen()">
             </div>
             <div id="gameOverScreenContainer" class="game-over-container">
                 <div class="restart-home-container">

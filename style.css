@@ -25,6 +25,10 @@ body {
 }
 
 .game-symbols {
+  position: absolute !important;
+  top: 5px;
+  right: 10px;
+  z-index: 99;
   display: flex;
   gap: 4px;
 }
