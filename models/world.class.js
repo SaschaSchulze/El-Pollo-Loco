@@ -73,7 +73,8 @@ class World {
             this.checkCollectableObjects();
             this.checkCollisionWithBottle();
             this.checkCollisionWithEndBoss();
-        }, 50);
+            this.character.checkIsDead();
+        }, 20);
     }
 
     clearRunInterval() {
@@ -106,24 +107,16 @@ class World {
         if (!this.character || this.character.isDead) {
             return;
         }
-    
         this.level1.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                if (enemy.isDead && this.character.isJumpingOnEnemy(enemy)) {
-                } else if (!enemy.isDead && this.character.isJumpingOnEnemy(enemy)) {
+            if (!enemy.isDead && this.character.isColliding(enemy)) {
+                if(this.character.speedY > 0) {
                     enemy.chickenDie();
-                } else if (!enemy.isDead && !this.character.isJumpingOnEnemy(enemy)) {
-                    if (this.character.isCollidingFromSide(enemy)) {
-                        this.character.hit();
-                        this.statusBar.setPercentage(this.character.energy);
-                    }
+                } else {
+                    this.character.hit();
+                    this.statusBar.setPercentage(this.character.energy);
                 }
             }
         });
-    
-        if (this.character.isDead) {
-            this.character.checkIsDead();
-        }
     }
 
     checkCollisionWithBottle() {

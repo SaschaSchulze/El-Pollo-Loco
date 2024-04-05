@@ -174,8 +174,8 @@ class Character extends moveableObject {
         this.jumping_sound.play();
     }
 
-    isJumpingOnEnemy(enemy) {
-        return this.speedY > 0 && this.isColliding(enemy) && this.y < enemy.y && !enemy.isDead;
+    isJumpingOnEnemy() {
+        return this.speedY > 0;
     }
 
     isCollidingFromSide(moveableObject) {
