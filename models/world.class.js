@@ -35,6 +35,9 @@ class World {
         this.level1.bottles = [];
         this.level1.coins = [];
         this.level1.enemies = [];
+        this.level1.enemies.push(new Endboss());
+        this.level1.enemies[this.level1.enemies.length - 1].world = this;
+        this.isGameOver = false;
 
         for (let i = 0; i < 5; i++) {
             this.level1.bottles.push(new Bottles());
@@ -48,7 +51,6 @@ class World {
         for (let i = 0; i < 4; i++) {
             this.level1.enemies.push(new ChickenSmall());
         }
-        this.level1.enemies.push(new Endboss());
         this.isGameOver = false;
     }
 

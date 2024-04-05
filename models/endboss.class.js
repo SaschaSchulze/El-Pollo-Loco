@@ -205,6 +205,8 @@ class Endboss extends moveableObject {
                 this.loadImage(this.IMAGES_DEAD[deadIndex++ % this.IMAGES_DEAD.length]);
             } else {
                 clearInterval(deadInterval);
+                this.world.character.stopIntervals();
+                gameOverScreen();
             }
         }, 100);
     }

@@ -43,11 +43,17 @@
                 <img id="sound-icon" src="img_pollo_locco/speaker_on.svg" alt="Sound Icon" onclick="toggleMusic()">
                 <img src="img_pollo_locco/fullscreen.svg" alt="Fullscreen" onclick="showFullscreen()">
             </div>
-            <div id="gameOverScreenContainer" class="game-over-container">
+            <div id="gameOverScreen" class="game-over-container">
                 <div class="restart-home-container">
-                    <div onclick="startGame()" class="restart-button">RESTART</div>
-                    <div id="home" class="restart-button">HOME</div>
+                    <button onclick="startGame()" class="restart-button">RESTART</button>
+                    <button onclick="homeScreen()" id="home" class="restart-button">HOME</button>
                 </div>
+            </div>
+            <div id="lostContainer" class="game-over-container">
+                <div class="restart-home-container">
+                    <button onclick="startGame()" class="restart-button">RESTART</button>
+                    <button onclick="homeScreen()" id="home" class="restart-button">HOME</button>
+                </div>>
             </div>
         </div>
         <div class="legend-container">

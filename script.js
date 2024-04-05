@@ -58,11 +58,23 @@ function exitFullscreen() {
     }
 }
 
-function showGameOverScreen() {
-    let gameOverScreen = document.getElementById('gameOverScreenContainer');
+function homeScreen() {
+    showStartScreen();
+    hideGameOverScreen();
+    hideLostScreen();
+    stopGame();
+}
+
+function showLostScreen() {
+    let gameOverScreen = document.getElementById('lostContainer');
     gameOverScreen.style.display = 'block';
 }
 
+function gameOverScreen() {
+    let gameOverScreen = document.getElementById('gameOverScreen');
+    gameOverScreen.style.display = 'block';
+}
+ 
 document.addEventListener("DOMContentLoaded", function () {
     showStartScreen();
 });
@@ -79,6 +91,7 @@ function showStartScreen() {
 function startGame() {
     hideStartScreen();
     hideGameOverScreen();
+    hideLostScreen();
     createLevel1();
     init();
 }
@@ -89,6 +102,11 @@ function hideStartScreen() {
 }
 
 function hideGameOverScreen() {
-    let gameOverScreen = document.getElementById('gameOverScreenContainer');
+    let gameOverScreen = document.getElementById('gameOverScreen');
+    gameOverScreen.style.display = 'none';
+}
+
+function hideLostScreen() {
+    let gameOverScreen = document.getElementById('lostContainer');
     gameOverScreen.style.display = 'none';
 }

@@ -145,7 +145,7 @@ class Character extends moveableObject {
     checkIsDead() {
         //console.log("Checking if dead...");
         if (this.energy <= 0 && this.world.statusBar.percentage === 0 && !this.isGameOver) {
-            showGameOverScreen();
+            showLostScreen();
             this.isGameOver = true;
             this.handleCharacterDeath();
             return true;
