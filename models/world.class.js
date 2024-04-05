@@ -80,31 +80,36 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.SPACE && this.character.availableBottles > 0 && !this.character.isThrowingBottle) {
+        if (this.character && this.keyboard.SPACE && this.character.availableBottles > 0 && !this.character.isThrowingBottle) {
             let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 80, this);
             this.throwableObjects.push(bottle);
             this.character.isThrowingBottle = true;
             this.throwing_bottle.play();
             this.character.availableBottles--;
-
+    
             let newPercentage = this.bottlesBar.percentage - 20;
-
+    
             if (newPercentage < 0) {
                 newPercentage = 0;
             }
-
+    
             this.bottlesBar.setPercentageBottle(newPercentage);
-
+    
             bottle.animateFlyingBottle();
-        } else if (!this.keyboard.SPACE) {
+        } else if (this.character && !this.keyboard.SPACE) {
             this.character.isThrowingBottle = false;
         }
     }
 
     checkCollisions() {
+        if (!this.character || this.character.isDead) {
+            return; // Stop the method if the character is dead or does not exist
+        }
+    
         this.level1.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 if (enemy.isDead && this.character.isJumpingOnEnemy(enemy)) {
+                    // handle collision logic here
                 } else if (!enemy.isDead && !this.character.isJumpingOnEnemy(enemy)) {
                     if (this.character.isCollidingFromSide(enemy)) {
                         this.character.hit();
@@ -115,6 +120,7 @@ class World {
                 }
             }
         });
+    
         if (this.character.isDead) {
             this.character.checkIsDead();
         }
@@ -170,16 +176,20 @@ class World {
     }
 
     checkCollectableObjects() {
+        if (!this.character || this.character.isDead) {
+            return;
+        }
+    
         this.level1.coins.forEach((coins, index) => {
-            if (this.character.isCollectCoins(coins)) {
+            if (this.character && this.character.isCollectCoins(coins)) {
                 this.character.hitCoin();
                 this.coinsBar.setPercentageCoin(this.coinsBar.percentage + 20);
                 this.level1.coins.splice(index, 1);
             }
         });
-
+    
         this.level1.bottles.forEach((bottles, index) => {
-            if (this.character.isCollectBottles(bottles)) {
+            if (this.character && this.character.isCollectBottles(bottles)) {
                 this.character.collectBottles();
                 this.character.hitBottle();
                 let newPercentage = this.bottlesBar.percentage + 20;
@@ -230,14 +240,26 @@ class World {
     }
 
     addToMap(moveableObject) {
-        if (moveableObject.otherDirection) {
-            this.flipImage(moveableObject);
-        }
-        moveableObject.draw(this.ctx);
-        moveableObject.drawFrame(this.ctx);
-
-        if (moveableObject.otherDirection) {
-            this.flipImageBack(moveableObject);
+        if (moveableObject && moveableObject.draw) {
+            if (moveableObject instanceof Character && !moveableObject.isDead) {
+                if (moveableObject.otherDirection) {
+                    this.flipImage(moveableObject);
+                }
+                moveableObject.draw(this.ctx);
+                moveableObject.drawFrame(this.ctx);
+                if (moveableObject.otherDirection) {
+                    this.flipImageBack(moveableObject);
+                }
+            } else if (!(moveableObject instanceof Character)) {
+                if (moveableObject.otherDirection) {
+                    this.flipImage(moveableObject);
+                }
+                moveableObject.draw(this.ctx);
+                moveableObject.drawFrame(this.ctx);
+                if (moveableObject.otherDirection) {
+                    this.flipImageBack(moveableObject);
+                }
+            }
         }
     }
 

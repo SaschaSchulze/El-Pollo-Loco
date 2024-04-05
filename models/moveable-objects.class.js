@@ -92,6 +92,7 @@ class moveableObject extends DrawableObject {
     }
 
     moveRight() {
+        if (this.isDead) return;
         this.x += this.speed;
     }
 

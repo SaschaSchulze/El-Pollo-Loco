@@ -154,8 +154,9 @@ class Character extends moveableObject {
     }
 
     handleCharacterDeath() {
-        this.removeCharacter();
+        this.isDead = true;
         this.stopIntervals();
+        this.removeCharacter(); 
     }
 
     stopIntervals() {
@@ -164,12 +165,7 @@ class Character extends moveableObject {
     }
 
     removeCharacter() {
-        if (this.world) {
-            let index = this.world.level1.enemies.indexOf(this);
-            if (index !== -1) {
-                this.world.level1.enemies.splice(index, 1);
-            }
-        }
+        this.world.character = null;
     }
 
     jump() {
