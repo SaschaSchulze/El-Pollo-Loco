@@ -49,7 +49,6 @@ class World {
             this.level1.enemies.push(new ChickenSmall());
         }
         this.level1.enemies.push(new Endboss());
-        this.character.resetEnergy();
         this.isGameOver = false;
     }
 
