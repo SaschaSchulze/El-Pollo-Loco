@@ -35,13 +35,15 @@
             <img src="img_pollo_locco/fullscreen.svg" alt="Fullscreen" onclick="showFullscreen()">
         </div>
 
-        <div class="container">
+        <div id="fullscreen" class="container">
             <div id="startScreenContainer">
                 <div class="start-game-container">
                     <div onclick="startGame()" class="restart-button">START</div>
                 </div>
             </div>
-            <canvas id="canvas" width="720" height="480"></canvas>
+            <div class="canvas-container">
+                <canvas id="canvas" width="720" height="480"></canvas>
+            </div>
             <div id="gameOverScreenContainer" class="game-over-container">
                 <div class="restart-home-container">
                     <div onclick="startGame()" class="restart-button">RESTART</div>

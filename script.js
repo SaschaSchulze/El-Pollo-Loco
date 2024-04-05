@@ -30,34 +30,32 @@ window.onload = function () {
 };
 
 function showFullscreen() {
-    let canvas = document.getElementById('canvas');
-    let gameSymbols = document.querySelector('.game-symbols');
-    let docElm = document.documentElement;
+    let fullscreen = document.getElementById('fullscreen');
+    enterFullscreen(fullscreen)
+}
 
-    if (docElm.requestFullscreen) {
-        canvas.requestFullscreen();
-    } else if (docElm.mozRequestFullScreen) { /* Firefox */
-        canvas.mozRequestFullScreen();
-    } else if (docElm.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-        canvas.webkitRequestFullscreen();
-    } else if (docElm.msRequestFullscreen) { /* IE/Edge */
-        canvas.msRequestFullscreen();
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
     }
 }
 
 function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { /* Firefox */
+    } else if (document.mozCancelFullScreen) {
         document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+    } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE/Edge */
+    } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
     }
-
-    let gameSymbols = document.querySelector('.game-symbols');
-    gameSymbols.style.display = 'block';
 }
 
 function showGameOverScreen() {
