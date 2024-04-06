@@ -10,9 +10,12 @@ class World {
     bottlesBar = new BottlesBar();
     bossBar = new BossBar();
     throwableObjects = [];
-    chicken_hit = new Audio('audio/chicken.mp3');
-    throwing_bottle = new Audio('audio/throw.mp3');
 
+    AUDIO = {
+        chicken_hit: new Audio('audio/chicken.mp3'),
+        throwing_bottle: new Audio('audio/throw.mp3'),
+    };
+    
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -58,7 +61,8 @@ class World {
     }
 
     checkThrowObjects() {
-        let { character, keyboard, bottlesBar, throwing_bottle, throwableObjects } = this;
+        let { character, keyboard, bottlesBar, throwableObjects } = this;
+        let throwing_bottle = this.AUDIO.throwing_bottle
 
         if (character && keyboard.SPACE && character.availableBottles > 0 && !character.isThrowingBottle) {
             let newPercentage = Math.max(bottlesBar.percentage - 20, 0);
@@ -98,7 +102,7 @@ class World {
                 if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
                     if (bottles.isColliding(enemy)) {
                         enemy.chickenDie();
-                        this.chicken_hit.play();
+                        this.AUDIO.chicken_hit.play();
                         bottles.stopAnimation();
                         bottles.playSplashAnimation();
                     }
@@ -123,7 +127,7 @@ class World {
     }
 
     handleBossHit(bottle, enemy) {
-        this.chicken_hit.play();
+        this.AUDIO.chicken_hit.play();
         enemy.bossHit();
         bottle.stopAnimation();
         bottle.playSplashAnimation();

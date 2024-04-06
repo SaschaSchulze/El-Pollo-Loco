@@ -4,8 +4,11 @@ class Character extends moveableObject {
     width = 120;
     y = 80;
     speed = 10;
-    walking_sound = new Audio('audio/walking.mp3');
-    jumping_sound = new Audio('audio/jumping.mp3');
+
+    AUDIO = {
+        walking_sound: new Audio('audio/walking.mp3'),
+        jumping_sound: new Audio('audio/jumping.mp3')
+    };
 
     offset = {
         top: 90,
@@ -118,18 +121,18 @@ class Character extends moveableObject {
     }
     
     handleMovement() {
-        this.walking_sound.pause();
+        this.AUDIO.walking_sound.pause();
         if (this.world.keyboard.RIGHT && this.x < this.world.level1.level_end_x) {
             this.moveRight();
             this.otherDirection = false;
-            this.walking_sound.play();
+            this.AUDIO.walking_sound.play();
             this.lastMoveTimestamp = Date.now();
         }
     
         if (this.world.keyboard.LEFT && this.x > 0) {
             this.moveLeft();
             this.otherDirection = true;
-            this.walking_sound.play();
+            this.AUDIO.walking_sound.play();
             this.lastMoveTimestamp = Date.now();
         }
     
@@ -188,7 +191,7 @@ class Character extends moveableObject {
 
     jump() {
         this.speedY = 30;
-        this.jumping_sound.play();
+        this.AUDIO.jumping_sound.play();
     }
 
     isJumpingOnEnemy() {

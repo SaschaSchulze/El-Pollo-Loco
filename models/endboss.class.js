@@ -6,7 +6,11 @@ class Endboss extends moveableObject {
     moveSpeed = 5;
     isDisabled = false;
     lastHit = 0;
-    boss_hit = new Audio('audio/boss_hit.mp3');
+
+    AUDIO = {
+        boss_hit: new Audio('audio/boss_hit.mp3'),
+    }
+    
 
     IMAGES_WALKING = [
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -197,7 +201,7 @@ class Endboss extends moveableObject {
     bossDie() {
         if (this.isDead) return;
         this.isDead = true;
-        this.boss_hit.play();
+        this.AUDIO.boss_hit.play();
         let deadIndex = 0;
         let maxIterations = 2;
         let deadInterval = setInterval(() => {
