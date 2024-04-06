@@ -62,13 +62,13 @@ class moveableObject extends DrawableObject {
 
     hit() {
         if (this.hitTimeout) return;
-        this.energy -= 5;
+        this.energy -= 15;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.hitTimeout = setTimeout(() => {
                 this.hitTimeout = null;
-            }, 300);
+            }, 200);
         }
         this.lastHit = new Date().getTime();
     }

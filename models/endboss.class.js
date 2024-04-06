@@ -190,8 +190,8 @@ class Endboss extends moveableObject {
 
     isHurtBoss() {
         let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 1500;
-        return timepassed < 1.5;
+        timepassed = timepassed / 300;
+        return timepassed < 0.3;
     }
 
     bossDie() {
@@ -205,7 +205,9 @@ class Endboss extends moveableObject {
                 this.loadImage(this.IMAGES_DEAD[deadIndex++ % this.IMAGES_DEAD.length]);
             } else {
                 clearInterval(deadInterval);
-                this.world.character.stopIntervals();
+                if (this.world && this.world.character) {
+                    this.world.character.stopIntervals();
+                }
                 gameOverScreen();
             }
         }, 100);
