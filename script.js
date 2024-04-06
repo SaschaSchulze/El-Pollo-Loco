@@ -83,10 +83,6 @@ function gameOverScreen() {
     let gameOverScreen = document.getElementById('gameOverScreen');
     gameOverScreen.style.display = 'block';
 }
- 
-document.addEventListener("DOMContentLoaded", function () {
-    showStartScreen();
-});
 
 function showStartScreen() {
     let startScreen = document.getElementById('startScreenContainer');
