@@ -232,27 +232,13 @@ class World {
         });
     }
 
-    addToMap(moveableObject) {
-        if (moveableObject && moveableObject.draw) {
-            if (moveableObject instanceof Character && !moveableObject.isDead) {
-                if (moveableObject.otherDirection) {
-                    this.flipImage(moveableObject);
-                }
-                moveableObject.draw(this.ctx);
-                moveableObject.drawFrame(this.ctx);
-                if (moveableObject.otherDirection) {
-                    this.flipImageBack(moveableObject);
-                }
-            } else if (!(moveableObject instanceof Character)) {
-                if (moveableObject.otherDirection) {
-                    this.flipImage(moveableObject);
-                }
-                moveableObject.draw(this.ctx);
-                moveableObject.drawFrame(this.ctx);
-                if (moveableObject.otherDirection) {
-                    this.flipImageBack(moveableObject);
-                }
-            }
+    addToMap(mo) {
+        if (mo.otherDirection) {
+            this.flipImage(mo);
+        }
+        mo.draw(this.ctx);
+        if (mo.otherDirection) {
+            this.flipImageBack(mo);
         }
     }
 
