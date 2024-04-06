@@ -15,7 +15,7 @@ class World {
         chicken_hit: new Audio('audio/chicken.mp3'),
         throwing_bottle: new Audio('audio/throw.mp3'),
     };
-    
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -47,11 +47,12 @@ class World {
 
     run() {
         this.runInterval = setInterval(() => {
-            this.checkCollisions();
+            this.checkEnemyCollisions();
+            this.checkEndbossCollision();
             this.checkThrowObjects();
             this.checkCollectableObjects();
-            this.checkCollisionWithBottle();
-            this.checkCollisionWithEndBoss();
+            this.checkCollisionWithBottleEnemy();
+            this.checkCollisionWithBottleEndBoss();
             //this.character.checkIsDead();
         }, 20);
     }
@@ -79,11 +80,11 @@ class World {
         }
     }
 
-    checkCollisions() {
+    checkEnemyCollisions() {
         if (!this.character || this.character.isDead) {
             return;
         }
-    
+
         this.level1.enemies.forEach((enemy) => {
             if ((enemy instanceof Chicken || enemy instanceof ChickenSmall) && !enemy.isDead && this.character.isColliding(enemy)) {
                 if (this.character.speedY < 0 && this.character.isAboveGround()) {
@@ -92,14 +93,24 @@ class World {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
                 }
-            } else if (enemy instanceof Endboss && !enemy.isDead && this.character.isColliding(enemy)) {
+            }
+        });
+    }
+
+    checkEndbossCollision() {
+        if (!this.character || this.character.isDead) {
+            return;
+        }
+
+        this.level1.enemies.forEach((enemy) => {
+            if (enemy instanceof Endboss && !enemy.isDead && this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
         });
     }
 
-    checkCollisionWithBottle() {
+    checkCollisionWithBottleEnemy() {
         this.throwableObjects.forEach((bottles, bottleIndex) => {
             this.level1.enemies.forEach((enemy) => {
                 if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
@@ -114,7 +125,7 @@ class World {
         });
     }
 
-    checkCollisionWithEndBoss() {
+    checkCollisionWithBottleEndBoss() {
         for (let bottle of this.throwableObjects) {
             for (let enemy of this.level1.enemies) {
                 if (enemy instanceof Endboss && bottle.isColliding(enemy)) {

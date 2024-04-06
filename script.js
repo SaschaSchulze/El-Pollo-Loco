@@ -72,7 +72,6 @@ function homeScreen() {
     showStartScreen();
     hideGameOverScreen();
     hideLostScreen();
-    stopGame();
 }
 
 function showLostScreen() {
