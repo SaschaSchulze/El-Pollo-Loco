@@ -102,6 +102,7 @@ function startGame() {
     hideStartScreen();
     hideGameOverScreen();
     hideLostScreen();
+    world = null;
     createLevel1();
     init();
 }

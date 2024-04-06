@@ -1,10 +1,10 @@
 class World {
-    character = new Character();
     level1 = level;
     canvas;
     ctx;
     keyboard;
     camera_x = 0;
+    character = new Character();
     statusBar = new StatusBar();
     coinsBar = new CoinsBar();
     bottlesBar = new BottlesBar();
@@ -25,33 +25,9 @@ class World {
 
     startGame() {
         this.resetEnergyBoss();
-        this.resetLevel();
         this.character.reset(); 
         this.clearRunInterval();
         this.run();
-    }
-
-    resetLevel() {
-        this.level1.bottles = [];
-        this.level1.coins = [];
-        this.level1.enemies = [];
-        this.level1.enemies.push(new Endboss());
-        this.level1.enemies[this.level1.enemies.length - 1].world = this;
-        this.isGameOver = false;
-
-        for (let i = 0; i < 5; i++) {
-            this.level1.bottles.push(new Bottles());
-        }
-        for (let i = 0; i < 5; i++) {
-            this.level1.coins.push(new Coins());
-        }
-        for (let i = 0; i < 3; i++) {
-            this.level1.enemies.push(new Chicken());
-        }
-        for (let i = 0; i < 4; i++) {
-            this.level1.enemies.push(new ChickenSmall());
-        }
-        this.isGameOver = false;
     }
 
     resetEnergyBoss() {
