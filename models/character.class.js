@@ -1,9 +1,11 @@
 class Character extends moveableObject {
-
+    world;
     height = 220;
     width = 120;
     y = 80;
     speed = 10;
+    walking_sound = new Audio('audio/walking.mp3');
+    jumping_sound = new Audio('audio/jumping.mp3');
 
     offset = {
         top: 90,
@@ -74,10 +76,6 @@ class Character extends moveableObject {
         'img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-19.png',
         'img_pollo_locco/img/2_character_pepe/1_idle/long_idle/I-20.png',
     ];
-
-    world;
-    walking_sound = new Audio('audio/walking.mp3');
-    jumping_sound = new Audio('audio/jumping.mp3');
 
     constructor() {
         super().loadImage('img_pollo_locco/img/2_character_pepe/2_walk/W-21.png');
@@ -151,7 +149,6 @@ class Character extends moveableObject {
     }
 
     checkIsDead() {
-        //console.log("Checking if dead...");
         if (this.energy <= 0 && this.world.statusBar.percentage === 0 && !this.isGameOver) {
             showLostScreen();
             this.isGameOver = true;

@@ -83,9 +83,10 @@ class World {
         if (!this.character || this.character.isDead) {
             return;
         }
+    
         this.level1.enemies.forEach((enemy) => {
             if (!enemy.isDead && this.character.isColliding(enemy)) {
-                if(this.character.speedY < 0 && this.character.isAboveGround()) {
+                if (this.character.speedY < 0 && this.character.isAboveGround()) {
                     enemy.chickenDie();
                 } else {
                     this.character.hit();
@@ -204,16 +205,20 @@ class World {
 
     addObjectsToMap(objects) {
         objects.forEach((o) => {
-            this.addToMap(o);
+            if (o) {
+                this.addToMap(o);
+            }
         });
     }
 
     addToMap(moveableObject) {
-        if (moveableObject.otherDirection) {
+        if (moveableObject && moveableObject.otherDirection) {
             this.flipImage(moveableObject);
         }
-        moveableObject.draw(this.ctx);
-        if (moveableObject.otherDirection) {
+        if (moveableObject) {
+            moveableObject.draw(this.ctx);
+        }
+        if (moveableObject && moveableObject.otherDirection) {
             this.flipImageBack(moveableObject);
         }
     }

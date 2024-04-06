@@ -61,12 +61,16 @@ class moveableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 5;
+        if (this.hitTimeout) return;
+        this.energy -= 3;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
-            this.lastHit = new Date().getTime();
+            this.hitTimeout = setTimeout(() => {
+                this.hitTimeout = null;
+            }, 300);
         }
+        this.lastHit = new Date().getTime();
     }
 
     hitCoin() {
