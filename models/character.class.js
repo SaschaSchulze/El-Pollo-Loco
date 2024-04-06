@@ -94,58 +94,71 @@ class Character extends moveableObject {
     startWalkingInterval() {
         this.walkingInterval = setInterval(() => {
             if (!this.isDead) {
-                this.walking_sound.pause();
-                if (this.world.keyboard.RIGHT && this.x < this.world.level1.level_end_x) {
-                    this.moveRight();
-                    this.otherDirection = false;
-                    this.walking_sound.play();
-                    this.lastMoveTimestamp = Date.now();
-                }
-
-                if (this.world.keyboard.LEFT && this.x > 0) {
-                    this.moveLeft();
-                    this.otherDirection = true;
-                    this.walking_sound.play();
-                    this.lastMoveTimestamp = Date.now();
-                }
-
-                if (this.world.keyboard.UP && !this.isAboveGround()) {
-                    this.jump();
-                    this.lastMoveTimestamp = Date.now();
-                }
-
-                if (this.world.keyboard.SPACE) {
-                    this.lastMoveTimestamp = Date.now();
-                }
-
-                this.world.camera_x = -this.x + 100;
+                this.handleMovement();
+                this.handleCamera();
             }
         }, 1000 / 60);
     }
-
+    
     startAnimationInterval() {
         this.animationInterval = setInterval(() => {
-            let now = Date.now();
-            let timeSinceLastMove = now - this.lastMoveTimestamp;
-
             if (this.checkIsDead()) {
                 this.handleCharacterDeath();
                 return;
             }
-
+    
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGES_WALKING);
-                this.lastMoveTimestamp = Date.now();
-            } else if (timeSinceLastMove > 3000) {
-                this.playAnimation(this.IMAGES_LONG_IDLE);
             } else {
-                this.playAnimation(this.IMAGES_IDLE);
+                this.handleAnimation();
             }
         }, 150);
+    }
+    
+    handleMovement() {
+        this.walking_sound.pause();
+        if (this.world.keyboard.RIGHT && this.x < this.world.level1.level_end_x) {
+            this.moveRight();
+            this.otherDirection = false;
+            this.walking_sound.play();
+            this.lastMoveTimestamp = Date.now();
+        }
+    
+        if (this.world.keyboard.LEFT && this.x > 0) {
+            this.moveLeft();
+            this.otherDirection = true;
+            this.walking_sound.play();
+            this.lastMoveTimestamp = Date.now();
+        }
+    
+        if (this.world.keyboard.UP && !this.isAboveGround()) {
+            this.jump();
+            this.lastMoveTimestamp = Date.now();
+        }
+    
+        if (this.world.keyboard.SPACE) {
+            this.lastMoveTimestamp = Date.now();
+        }
+    }
+    
+    handleCamera() {
+        this.world.camera_x = -this.x + 100;
+    }
+    
+    handleAnimation() {
+        let now = Date.now();
+        let timeSinceLastMove = now - this.lastMoveTimestamp;
+    
+        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            this.playAnimation(this.IMAGES_WALKING);
+            this.lastMoveTimestamp = Date.now();
+        } else if (timeSinceLastMove > 3000) {
+            this.playAnimation(this.IMAGES_LONG_IDLE);
+        } else {
+            this.playAnimation(this.IMAGES_IDLE);
+        }
     }
 
     checkIsDead() {
@@ -189,7 +202,7 @@ class Character extends moveableObject {
         );
     }
 
-    reset() {
+    /*reset() {
         this.energy = 100;
         this.coins = 0;
         this.bottles = 0;
@@ -198,5 +211,5 @@ class Character extends moveableObject {
         this.isGameOver = false;
         this.x = 0;
         this.y = 80;
-    }
+    }*/
 }

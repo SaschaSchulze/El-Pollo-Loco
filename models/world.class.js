@@ -25,7 +25,7 @@ class World {
 
     startGame() {
         this.resetEnergyBoss();
-        this.character.reset(); 
+        //this.character.reset(); 
         this.clearRunInterval();
         this.run();
     }
