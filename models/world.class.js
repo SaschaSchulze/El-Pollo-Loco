@@ -52,7 +52,7 @@ class World {
             this.checkCollectableObjects();
             this.checkCollisionWithBottle();
             this.checkCollisionWithEndBoss();
-            this.character.checkIsDead();
+            //this.character.checkIsDead();
         }, 20);
     }
 
@@ -83,9 +83,9 @@ class World {
         if (!this.character || this.character.isDead) {
             return;
         }
-
+    
         this.level1.enemies.forEach((enemy) => {
-            if (!enemy.isDead && this.character.isColliding(enemy)) {
+            if ((enemy instanceof Endboss || enemy instanceof Chicken || enemy instanceof ChickenSmall) && !enemy.isDead && this.character.isColliding(enemy)) {
                 if (this.character.speedY < 0 && this.character.isAboveGround()) {
                     enemy.chickenDie();
                 } else {
