@@ -35,10 +35,22 @@ class moveableObject extends DrawableObject {
     }
 
     isCollectCoins(coins) {
-        return this.x + this.width > coins.x &&
-            this.y + this.height > coins.y &&
-            this.x < coins.x &&
-            this.y < coins.y + coins.height
+        let coinsX = coins.x + coins.offset.left;
+        let coinsY = coins.y + coins.offset.top;
+        let coinsWidth = coins.width - coins.offset.left - coins.offset.right;
+        let coinsHeight = coins.height - coins.offset.top - coins.offset.bottom;
+    
+        let sideCollision = this.x + this.width > coinsX &&
+            this.x < coinsX + coinsWidth &&
+            this.y + this.height > coinsY &&
+            this.y < coinsY + coinsHeight;
+    
+        let bottomCollision = this.y + this.height >= coinsY &&
+            this.y + this.height <= coinsY + coinsHeight &&
+            this.x + this.width / 2 >= coinsX &&
+            this.x + this.width / 2 <= coinsX + coinsWidth;
+    
+        return sideCollision || bottomCollision;
     }
 
     isCollectBottles(bottles) {
@@ -49,15 +61,12 @@ class moveableObject extends DrawableObject {
     }
 
     hit() {
-        //console.log('Treffer');
         this.energy -= 5;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
-        //console.log('Energie', this.energy);
-        //console.log('Game Over', this.isGameOver);
     }
 
     hitCoin() {
