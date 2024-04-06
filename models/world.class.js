@@ -232,13 +232,13 @@ class World {
         });
     }
 
-    addToMap(mo) {
-        if (mo.otherDirection) {
-            this.flipImage(mo);
+    addToMap(moveableObject) {
+        if (moveableObject.otherDirection) {
+            this.flipImage(moveableObject);
         }
-        mo.draw(this.ctx);
-        if (mo.otherDirection) {
-            this.flipImageBack(mo);
+        moveableObject.draw(this.ctx);
+        if (moveableObject.otherDirection) {
+            this.flipImageBack(moveableObject);
         }
     }
 
