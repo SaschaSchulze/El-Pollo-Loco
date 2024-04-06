@@ -85,13 +85,16 @@ class World {
         }
     
         this.level1.enemies.forEach((enemy) => {
-            if ((enemy instanceof Endboss || enemy instanceof Chicken || enemy instanceof ChickenSmall) && !enemy.isDead && this.character.isColliding(enemy)) {
+            if ((enemy instanceof Chicken || enemy instanceof ChickenSmall) && !enemy.isDead && this.character.isColliding(enemy)) {
                 if (this.character.speedY < 0 && this.character.isAboveGround()) {
                     enemy.chickenDie();
                 } else {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
                 }
+            } else if (enemy instanceof Endboss && !enemy.isDead && this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
             }
         });
     }
