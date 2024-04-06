@@ -109,7 +109,7 @@ class World {
         }
         this.level1.enemies.forEach((enemy) => {
             if (!enemy.isDead && this.character.isColliding(enemy)) {
-                if(this.character.speedY > 0) {
+                if(this.character.speedY < 0 && this.character.isAboveGround()) {
                     enemy.chickenDie();
                 } else {
                     this.character.hit();
