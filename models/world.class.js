@@ -58,24 +58,20 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.character && this.keyboard.SPACE && this.character.availableBottles > 0 && !this.character.isThrowingBottle) {
-            let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 80, this);
-            this.throwableObjects.push(bottle);
-            this.character.isThrowingBottle = true;
-            this.throwing_bottle.play();
-            this.character.availableBottles--;
-    
-            let newPercentage = this.bottlesBar.percentage - 20;
-    
-            if (newPercentage < 0) {
-                newPercentage = 0;
-            }
-    
-            this.bottlesBar.setPercentageBottle(newPercentage);
-    
+        let { character, keyboard, bottlesBar, throwing_bottle, throwableObjects } = this;
+
+        if (character && keyboard.SPACE && character.availableBottles > 0 && !character.isThrowingBottle) {
+            let newPercentage = Math.max(bottlesBar.percentage - 20, 0);
+            bottlesBar.setPercentageBottle(newPercentage);
+
+            let bottle = new ThrowableObject(character.x + 60, character.y + 80, this);
+            throwableObjects.push(bottle);
+            character.isThrowingBottle = true;
+            throwing_bottle.play();
+            character.availableBottles--;
             bottle.animateFlyingBottle();
-        } else if (this.character && !this.keyboard.SPACE) {
-            this.character.isThrowingBottle = false;
+        } else if (character && !keyboard.SPACE) {
+            character.isThrowingBottle = false;
         }
     }
 
@@ -83,7 +79,7 @@ class World {
         if (!this.character || this.character.isDead) {
             return;
         }
-    
+
         this.level1.enemies.forEach((enemy) => {
             if (!enemy.isDead && this.character.isColliding(enemy)) {
                 if (this.character.speedY < 0 && this.character.isAboveGround()) {
@@ -149,7 +145,7 @@ class World {
         if (!this.character || this.character.isDead) {
             return;
         }
-    
+
         this.level1.coins.forEach((coins, index) => {
             if (this.character && this.character.isCollectCoins(coins)) {
                 this.character.hitCoin();
@@ -157,7 +153,7 @@ class World {
                 this.level1.coins.splice(index, 1);
             }
         });
-    
+
         this.level1.bottles.forEach((bottles, index) => {
             if (this.character && this.character.isCollectBottles(bottles)) {
                 this.character.collectBottles();
