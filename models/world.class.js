@@ -14,6 +14,7 @@ class World {
     AUDIO = {
         chicken_hit: new Audio('audio/chicken.mp3'),
         throwing_bottle: new Audio('audio/throw.mp3'),
+        coin_collect: new Audio('audio/collectCoin.mp3'),
     };
 
     constructor(canvas, keyboard) {
@@ -167,6 +168,7 @@ class World {
         this.level1.coins.forEach((coins, index) => {
             if (this.character && this.character.isCollectCoins(coins)) {
                 this.character.hitCoin();
+                this.AUDIO.coin_collect.play();
                 this.coinsBar.setPercentageCoin(this.coinsBar.percentage + 20);
                 this.level1.coins.splice(index, 1);
             }

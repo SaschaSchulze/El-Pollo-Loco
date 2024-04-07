@@ -1,4 +1,5 @@
 let game_music = new Audio('audio/game_music.mp3');
+let win_music = new Audio('audio/win.mp3');
 let musicMuted = false;
 
 game_music.addEventListener('canplaythrough', function () {
@@ -43,18 +44,18 @@ document.addEventListener('DOMContentLoaded', function () {
 function handleMobileKeyPressEvents() {
     let rightButton = document.getElementById('right-btn');
     let leftButton = document.getElementById('left-btn');
-    let jumpButtonLeft = document.getElementById('jump-btn-left');
+    //let jumpButtonLeft = document.getElementById('jump-btn-left');
     let jumpButtonRight = document.getElementById('jump-btn-right');
-    let throwButtonLeft = document.getElementById('throw-btn-left');
+    //let throwButtonLeft = document.getElementById('throw-btn-left');
     let throwButtonRight = document.getElementById('throw-btn-right');
 
-    jumpButtonLeft.addEventListener('touchstart', (e) => {
+    /*jumpButtonLeft.addEventListener('touchstart', (e) => {
         keyboard.UP = true;
     });
 
     throwButtonLeft.addEventListener('touchstart', (e) => {
         keyboard.SPACE = true;
-    });
+    });*/
 
     throwButtonRight.addEventListener('touchstart', (e) => {
         keyboard.SPACE = true;
@@ -76,18 +77,18 @@ function handleMobileKeyPressEvents() {
 function handleMobileKeyPressEventsEnd() {
     let rightButton = document.getElementById('right-btn');
     let leftButton = document.getElementById('left-btn');
-    let jumpButtonLeft = document.getElementById('jump-btn-left');
+    //let jumpButtonLeft = document.getElementById('jump-btn-left');
     let jumpButtonRight = document.getElementById('jump-btn-right');
-    let throwButtonLeft = document.getElementById('throw-btn-left');
+    //let throwButtonLeft = document.getElementById('throw-btn-left');
     let throwButtonRight = document.getElementById('throw-btn-right');
 
-    jumpButtonLeft.addEventListener('touchend', (e) => {
+    /*jumpButtonLeft.addEventListener('touchend', (e) => {
         keyboard.UP = false;
     });
 
     throwButtonLeft.addEventListener('touchend', (e) => {
         keyboard.SPACE = false;
-    });
+    });*/
 
     throwButtonRight.addEventListener('touchend', (e) => {
         keyboard.SPACE = false;
@@ -159,6 +160,7 @@ function showLostScreen() {
 function gameOverScreen() {
     let gameOverScreen = document.getElementById('gameOverScreen');
     gameOverScreen.style.display = 'block';
+    win_music.play();
 }
 
 function showStartScreen() {
