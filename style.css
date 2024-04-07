@@ -128,3 +128,82 @@ body {
   font-size: 24px;
   font-weight: 700;
 }
+
+@media only screen and (max-width: 932px) {
+  body {
+    background-image: none;
+  }
+
+  h1 {
+    display: none;
+  }
+
+  .container {
+    position: relative;
+    width: 100vw;
+    max-width: 932px;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .legend-container {
+    display: none;
+  }
+
+  .move-left,
+  .move-right,
+  .jump,
+  .throw {
+    flex-direction: row;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+
+  .letter {
+    font-size: 16px;
+  }
+
+  .mobile-controls-left {
+    z-index: 2;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex; /* Flexbox verwenden */
+    align-items: center; /* Vertikal zentrieren */
+  }
+
+  .mobile-controls-right {
+    z-index: 2;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex; /* Flexbox verwenden */
+    align-items: center; /* Vertikal zentrieren */
+  }
+
+  .control-btn {
+    background-color: #ccc;
+    padding: 10px;
+    margin-right: 10px; /* Abstand zwischen den Buttons */
+    /*user-select: none;
+  }
+
+  /*.control-btn {
+    z-index: 2;
+    position: absolute;
+    bottom: 20px;
+    background-color: #ccc;
+    padding: 10px;
+    user-select: none;
+  }*/
+
+  #left-btn {
+    left: 20px;
+  }
+
+  #right-btn {
+    right: 20px;
+  }
+}

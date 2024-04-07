@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>EL-POLLO-LOCO</title>
-    <link rel="icon" type="image/x-icon" href="img_pollo_locco/img/2_character_pepe/2_walk/W-21.png">
-    <link rel="stylesheet" href="style.css">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="img_pollo_locco/img/2_character_pepe/2_walk/W-21.png"
+    />
+    <link rel="stylesheet" href="style.css" />
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/moveable-objects.class.js"></script>
     <script src="./models/chicken.class.js"></script>
@@ -26,56 +34,99 @@
     <script src="./levels/level1.js"></script>
     <script src="./js/game.js"></script>
     <script src="./script.js"></script>
-</head>
+  </head>
 
-<body onload="showStartScreen()">
+  <body onload="showStartScreen()">
     <h1>El Pollo Loco</h1>
 
     <section>
-        <div id="fullscreen" class="container">
-            <div id="startScreenContainer">
-                <div class="start-game-container">
-                    <div onclick="startGame()" class="restart-button">START</div>
-                </div>
-            </div>
-            <div class="canvas-container">
-                <canvas id="canvas" width="720" height="480"></canvas>
-            </div>
-            <div class="game-symbols">
-                <img id="sound-icon" src="img_pollo_locco/speaker_on.svg" alt="Sound Icon" onclick="toggleMusic()">
-                <img src="img_pollo_locco/fullscreen.svg" alt="Fullscreen" onclick="showFullscreen()">
-            </div>
-            <div id="gameOverScreen" class="game-over-container">
-                <div class="restart-home-container">
-                    <button onclick="startGame()" class="restart-button">RESTART</button>
-                    <button onclick="homeScreen()" id="home" class="restart-button">HOME</button>
-                </div>
-            </div>
-            <div id="lostContainer" class="game-over-container">
-                <div class="restart-home-container">
-                    <button onclick="startGame()" class="restart-button">RESTART</button>
-                    <button onclick="homeScreen()" id="home" class="restart-button">HOME</button>
-                </div>
-            </div>
+      <div id="fullscreen" class="container">
+        <div id="startScreenContainer">
+          <div class="start-game-container">
+            <div onclick="startGame()" class="restart-button">START</div>
+          </div>
         </div>
-        <div class="legend-container">
-            <div class="move-left">
-                <span class="description"> Move left </span>
-                <span class="letter"> A </span>
-            </div>
-            <div class="move-right">
-                <span class="description"> Move right </span>
-                <span class="letter"> D </span>
-            </div>
-            <div class="jump">
-                <span class="description"> Jump </span>
-                <span class="letter"> W </span>
-            </div>
-            <div class="throw">
-                <span class="description"> Throw </span>
-                <span class="letter"> Space </span>
-            </div>
+        <div class="canvas-container">
+          <canvas id="canvas" width="720" height="480"></canvas>
         </div>
+        <div class="game-symbols">
+          <img
+            id="sound-icon"
+            src="img_pollo_locco/speaker_on.svg"
+            alt="Sound Icon"
+            onclick="toggleMusic()"
+          />
+          <img
+            src="img_pollo_locco/fullscreen.svg"
+            alt="Fullscreen"
+            onclick="showFullscreen()"
+          />
+        </div>
+        <div id="gameOverScreen" class="game-over-container">
+            <div class="restart-home-container">
+              <button
+                ontouchstart="startGame()"
+                onclick="startGame()"
+                class="restart-button"
+                ontouchstart="startGame()"
+                onclick="startGame()"
+              >
+                RESTART
+              </button>
+              <button onclick="homeScreen()" id="home" class="restart-button">
+                HOME
+              </button>
+            </div>
+          </div>
+          <div id="lostContainer" class="game-over-container">
+            <div class="restart-home-container">
+              <button
+                ontouchstart="startGame()"
+                onclick="startGame()"
+                class="restart-button"
+                ontouchstart="startGame()"
+                onclick="startGame()"
+              >
+                RESTART
+              </button>
+              <button onclick="homeScreen()" id="home" class="restart-button">
+                HOME
+              </button>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-controls">
+        <div class="mobile-controls-left">
+            <div id="throw-btn-left" class="control-btn">Throw</div>
+            <div id="jump-btn-left" class="control-btn">Jump</div>
+            <div id="left-btn" class="control-btn">Left</div>
+        </div>
+        <div class="mobile-controls-right">
+            <div id="throw-btn-right" class="control-btn">Throw</div>
+            <div id="jump-btn-right" class="control-btn">Jump</div>
+            <div id="right-btn" class="control-btn">Right</div>
+        </div>
+      </div>
+      <div class="legend-container">
+        <div class="move-left">
+          <span class="description"> Move left </span>
+          <span class="letter"> A </span>
+        </div>
+        <div class="move-right">
+          <span class="description"> Move right </span>
+          <span class="letter"> D </span>
+        </div>
+        <div class="jump">
+          <span class="description"> Jump </span>
+          <span class="letter"> W </span>
+        </div>
+        <div class="throw">
+          <span class="description"> Throw </span>
+          <span class="letter"> Space </span>
+        </div>
+      </div>
     </section>
-</body>
+  </body>
 </html>

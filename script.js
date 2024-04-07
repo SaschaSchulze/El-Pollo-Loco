@@ -29,6 +29,83 @@ window.onload = function () {
     updateSoundIcon();
 };
 
+/*window.onload = function () {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        showFullscreen();
+    }
+};*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    handleMobileKeyPressEvents();
+    handleMobileKeyPressEventsEnd();
+});
+
+function handleMobileKeyPressEvents() {
+    let rightButton = document.getElementById('right-btn');
+    let leftButton = document.getElementById('left-btn');
+    let jumpButtonLeft = document.getElementById('jump-btn-left');
+    let jumpButtonRight = document.getElementById('jump-btn-right');
+    let throwButtonLeft = document.getElementById('throw-btn-left');
+    let throwButtonRight = document.getElementById('throw-btn-right');
+
+    jumpButtonLeft.addEventListener('touchstart', (e) => {
+        keyboard.UP = true;
+    });
+
+    throwButtonLeft.addEventListener('touchstart', (e) => {
+        keyboard.SPACE = true;
+    });
+
+    throwButtonRight.addEventListener('touchstart', (e) => {
+        keyboard.SPACE = true;
+    });
+
+    jumpButtonRight.addEventListener('touchstart', (e) => {
+        keyboard.UP = true;
+    });
+
+    leftButton.addEventListener('touchstart', (e) => {
+        keyboard.LEFT = true;
+    });
+
+    rightButton.addEventListener('touchstart', (e) => {
+        keyboard.RIGHT = true;
+    });
+}
+
+function handleMobileKeyPressEventsEnd() {
+    let rightButton = document.getElementById('right-btn');
+    let leftButton = document.getElementById('left-btn');
+    let jumpButtonLeft = document.getElementById('jump-btn-left');
+    let jumpButtonRight = document.getElementById('jump-btn-right');
+    let throwButtonLeft = document.getElementById('throw-btn-left');
+    let throwButtonRight = document.getElementById('throw-btn-right');
+
+    jumpButtonLeft.addEventListener('touchend', (e) => {
+        keyboard.UP = false;
+    });
+
+    throwButtonLeft.addEventListener('touchend', (e) => {
+        keyboard.SPACE = false;
+    });
+
+    throwButtonRight.addEventListener('touchend', (e) => {
+        keyboard.SPACE = false;
+    });
+
+    jumpButtonRight.addEventListener('touchend', (e) => {
+        keyboard.UP = false;
+    });
+
+    rightButton.addEventListener('touchend', (e) => {
+        keyboard.RIGHT = false;
+    });
+
+    leftButton.addEventListener('touchend', (e) => {
+        keyboard.LEFT = false;
+    });
+}
+
 function showFullscreen() {
     let fullscreen = document.getElementById('fullscreen');
     let fullscreenIcon = document.querySelector('.game-symbols img[alt="Fullscreen"]');
