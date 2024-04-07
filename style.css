@@ -170,8 +170,8 @@ body {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    display: flex; /* Flexbox verwenden */
-    align-items: center; /* Vertikal zentrieren */
+    display: flex;
+    align-items: center;
   }
 
   .mobile-controls-right {
@@ -179,25 +179,16 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    display: flex; /* Flexbox verwenden */
-    align-items: center; /* Vertikal zentrieren */
+    display: flex;
+    align-items: center;
   }
 
   .control-btn {
     background-color: #ccc;
     padding: 10px;
-    margin-right: 10px; /* Abstand zwischen den Buttons */
-    /*user-select: none;
-  }
-
-  /*.control-btn {
-    z-index: 2;
-    position: absolute;
-    bottom: 20px;
-    background-color: #ccc;
-    padding: 10px;
+    margin-right: 10px;
     user-select: none;
-  }*/
+  }
 
   #left-btn {
     left: 20px;
