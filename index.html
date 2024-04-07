@@ -40,27 +40,19 @@
     <h1>El Pollo Loco</h1>
 
     <section>
-      <div id="fullscreen" class="container">
-        <div id="startScreenContainer">
-          <div class="start-game-container">
-            <div onclick="startGame()" class="restart-button">START</div>
-          </div>
-        </div>
-        <div class="canvas-container">
-          <canvas id="canvas" width="720" height="480"></canvas>
-        </div>
-        <div class="game-symbols">
-          <img
-            id="sound-icon"
-            src="img_pollo_locco/speaker_on.svg"
-            alt="Sound Icon"
-            onclick="toggleMusic()"
-          />
-          <img
-            src="img_pollo_locco/fullscreen.svg"
-            alt="Fullscreen"
-            onclick="showFullscreen()"
-          />
+        <div id="fullscreen" class="container">
+            <div id="startScreenContainer">
+                <div class="start-game-container">
+                    <div onclick="startGame()" class="restart-button">START</div>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="canvas" width="720" height="480"></canvas>
+            </div>
+            <div class="game-symbols">
+                <img id="sound-icon" src="img_pollo_locco/speaker_on.svg" alt="Sound Icon" onclick="toggleMusic()" />
+                <img class="fullscreen-icon" src="img_pollo_locco/fullscreen.svg" alt="Fullscreen" onclick="showFullscreen()" />
+            </div>
         </div>
         <div id="gameOverScreen" class="game-over-container">
             <div class="restart-home-container">
@@ -99,14 +91,14 @@
       </div>
       <div class="mobile-controls">
         <div class="mobile-controls-left">
-            <button id="throw-btn-left" class="control-btn">Throw</button>
-            <button id="jump-btn-left" class="control-btn">Jump</button>
-            <button id="left-btn" class="control-btn">Left</button>
+            <img id="throw-btn-left" src="img_pollo_locco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png" class="control-btn-bottle"></img>
+            <img id="jump-btn-left" src="img_pollo_locco/arrow-left.png" class="control-btn rotate-90"></img>
+            <img id="left-btn" src="img_pollo_locco/arrow-left.png" class="control-btn"></img>
         </div>
         <div class="mobile-controls-right">
-            <button id="throw-btn-right" class="control-btn">Throw</button>
-            <button id="jump-btn-right" class="control-btn">Jump</button>
-            <button id="right-btn" class="control-btn">Right</button>
+            <img id="throw-btn-right" src="img_pollo_locco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png" class="control-btn-bottle"></img>
+            <img id="jump-btn-right" src="img_pollo_locco/arrow-left.png" class="control-btn rotate-90"></img>
+            <img id="right-btn" src="img_pollo_locco/arrow-left.png" class="control-btn rotate-180"></img>
         </div>
       </div>
       <div class="legend-container">
