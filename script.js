@@ -2,6 +2,36 @@ let game_music = new Audio('audio/game_music.mp3');
 let win_music = new Audio('audio/win.mp3');
 let musicMuted = false;
 
+function toggleControlls() {
+    var legendContainer = document.querySelector('.legend-container');
+    
+    if (legendContainer.style.display === 'none' || legendContainer.style.display === '') {
+        var overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+
+        overlay.addEventListener('click', function(event) {
+            var controllContainer = document.querySelector('.controll-container');
+            if (!controllContainer.contains(event.target)) {
+                legendContainer.style.display = 'none';
+                overlay.remove();
+            }
+        });
+
+        document.body.appendChild(overlay);
+        
+        legendContainer.style.display = 'block';
+
+        var closeButton = document.querySelector('.close');
+        closeButton.addEventListener('click', function() {
+            legendContainer.style.display = 'none';
+            overlay.remove();
+        });
+    } else {
+        legendContainer.style.display = 'none';
+        document.querySelector('.overlay').remove();
+    }
+}
+
 game_music.addEventListener('canplaythrough', function () {
     game_music.play();
     updateSoundIcon();

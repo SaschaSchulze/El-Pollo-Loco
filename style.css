@@ -1,4 +1,13 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Wellfleet';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/wellfleet-v22-latin-regular.woff2') format('woff2');
+}
+
 body {
+  font-family: 'Wellfleet';
   background-image: url("img_pollo_locco/ai-generated-8607619_1920.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -32,44 +41,92 @@ body {
   right: 10px;
   z-index: 99;
   display: flex;
-  gap: 4px;
+  gap: 6px;
 }
 
 .game-symbols img {
   width: 30px;
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 2;
+  display: none;
+}
+
+.close {
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  right: 10px;
+  position: absolute;
+  top: 10px;
+}
+
 .legend-container {
-  padding: 14px;
-  width: 700px;
-  border-radius: 18px;
-  border: solid;
-  margin-top: 30px;
-  display: flex;
-  justify-content: space-between;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  height: 480px;
+  width: 720px;
+  background-color: rgba(0, 0, 0, 0.4);
   gap: 20px;
+}
+
+.controll-container {
+  height: 70%;
+  width: 50%;
+  position: absolute;
+  padding: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 18px;
+  background-color: darkkhaki;
+}
+
+.move-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .move-left,
 .move-right,
 .jump,
 .throw {
-  gap: 10px;
+  height: 100%;
   display: flex;
-  justify-content: center;
+  gap: 50px;
+  margin-left: 70px;
   align-items: center;
-  flex-direction: column;
+}
+
+.over-description {
+  width: 110px;
 }
 
 .description {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 25px;
+  color: #ffd500;
+  text-shadow: 2px 2px black;
+  font-size: 24px !important;
 }
 
 .letter {
-  background: aliceblue;
+  color: white;
+  background: black;
   border: double;
-  font-size: 20px;
+  font-size: 18px;
   padding: 10px;
 }
 
@@ -121,7 +178,7 @@ body {
 }
 
 .restart-button {
-  background: #877315;
+  background: darkkhaki;
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;

@@ -50,8 +50,54 @@
                 <canvas id="canvas" width="720" height="480"></canvas>
             </div>
             <div class="game-symbols">
-                <img id="sound-icon" src="img_pollo_locco/speaker_on.svg" alt="Sound Icon" onclick="toggleMusic()" />
-                <img class="fullscreen-icon" src="img_pollo_locco/fullscreen.svg" alt="Fullscreen" onclick="showFullscreen()" />
+              <img id="controlls-icon" src="img_pollo_locco/game-controller.png" onclick="toggleControlls()" />
+              <img id="sound-icon" src="img_pollo_locco/speaker_on.svg" alt="Sound Icon" onclick="toggleMusic()" />
+              <img class="fullscreen-icon" src="img_pollo_locco/fullscreen.svg" alt="Fullscreen" onclick="showFullscreen()" />
+            </div>
+            <div class="overlay"></div>
+            <div id="legend-container" class="legend-container" style="display: none;">
+              <div id="controll-container" class="controll-container">
+                <div class="close">X</div>
+                <div class="move-container">
+
+                    <div class="move-left">
+                      <div class="over-description">
+                        <span class="description"> Move left </span>
+                      </div>
+                      <div>
+                        <span class="letter"> A </span>
+                      </div>
+                    </div>
+
+                  <div class="move-right">
+                    <div class="over-description">
+                      <span class="description"> Move right </span>
+                    </div>
+                    <div>
+                      <span class="letter"> D </span>
+                    </div>
+                  </div>
+                  
+                  <div class="jump">
+                    <div class="over-description">
+                      <span class="description"> Jump </span>
+                    </div>
+                    <div>
+                      <span class="letter"> W </span>
+                    </div>
+                  </div>
+                  
+                  <div class="throw">
+                    <div class="over-description">
+                      <span class="description"> Throw </span>
+                    </div>
+                    <div>
+                      <span class="letter"> SPACE </span>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
             </div>
         
           <div id="gameOverScreen" class="game-over-container">
@@ -99,24 +145,6 @@
             <img id="throw-btn-right" src="img_pollo_locco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png" class="control-btn-bottle"></img>
             <img id="jump-btn-right" src="img_pollo_locco/arrow-left.png" class="control-btn rotate-90"></img>
             
-        </div>
-      </div>
-      <div class="legend-container">
-        <div class="move-left">
-          <span class="description"> Move left </span>
-          <span class="letter"> A </span>
-        </div>
-        <div class="move-right">
-          <span class="description"> Move right </span>
-          <span class="letter"> D </span>
-        </div>
-        <div class="jump">
-          <span class="description"> Jump </span>
-          <span class="letter"> W </span>
-        </div>
-        <div class="throw">
-          <span class="description"> Throw </span>
-          <span class="letter"> Space </span>
         </div>
       </div>
     </section>
