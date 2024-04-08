@@ -1,5 +1,6 @@
 let game_music = new Audio('audio/game_music.mp3');
 let win_music = new Audio('audio/win.mp3');
+let lose_music = new Audio('audio/gameLose.mp3');
 let musicMuted = false;
 
 function toggleControlls() {
@@ -185,12 +186,21 @@ function homeScreen() {
 function showLostScreen() {
     let gameOverScreen = document.getElementById('lostContainer');
     gameOverScreen.style.display = 'block';
+    game_music.pause();
+    lose_music.play();
+    win_music.addEventListener('ended', function() {
+        game_music.play();
+    });
 }
 
 function gameOverScreen() {
     let gameOverScreen = document.getElementById('gameOverScreen');
     gameOverScreen.style.display = 'block';
+    game_music.pause();
     win_music.play();
+    win_music.addEventListener('ended', function() {
+        game_music.play();
+    });
 }
 
 function showStartScreen() {

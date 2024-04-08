@@ -7,7 +7,8 @@ class Character extends moveableObject {
 
     AUDIO = {
         walking_sound: new Audio('audio/walking.mp3'),
-        jumping_sound: new Audio('audio/jumping.mp3')
+        jumping_sound: new Audio('audio/jumping.mp3'),
+        hurt_sound: new Audio('audio/pepeHurt.mp3')
     };
 
     offset = {
@@ -111,6 +112,7 @@ class Character extends moveableObject {
             }
     
             if (this.isHurt()) {
+                this.AUDIO.hurt_sound.play();
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
