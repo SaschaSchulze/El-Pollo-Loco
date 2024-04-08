@@ -4,14 +4,14 @@ let lose_music = new Audio('audio/gameLose.mp3');
 let musicMuted = false;
 
 function toggleControlls() {
-    var legendContainer = document.querySelector('.legend-container');
-    
+    let legendContainer = document.querySelector('.legend-container');
+
     if (legendContainer.style.display === 'none' || legendContainer.style.display === '') {
-        var overlay = document.createElement('div');
+        let overlay = document.createElement('div');
         overlay.classList.add('overlay');
 
-        overlay.addEventListener('click', function(event) {
-            var controllContainer = document.querySelector('.controll-container');
+        overlay.addEventListener('click', function (event) {
+            let controllContainer = document.querySelector('.controll-container');
             if (!controllContainer.contains(event.target)) {
                 legendContainer.style.display = 'none';
                 overlay.remove();
@@ -19,11 +19,11 @@ function toggleControlls() {
         });
 
         document.body.appendChild(overlay);
-        
+
         legendContainer.style.display = 'block';
 
-        var closeButton = document.querySelector('.close');
-        closeButton.addEventListener('click', function() {
+        let closeButton = document.querySelector('.close');
+        closeButton.addEventListener('click', function () {
             legendContainer.style.display = 'none';
             overlay.remove();
         });
@@ -188,7 +188,7 @@ function showLostScreen() {
     gameOverScreen.style.display = 'block';
     game_music.pause();
     lose_music.play();
-    win_music.addEventListener('ended', function() {
+    win_music.addEventListener('ended', function () {
         game_music.play();
     });
 }
@@ -198,7 +198,7 @@ function gameOverScreen() {
     gameOverScreen.style.display = 'block';
     game_music.pause();
     win_music.play();
-    win_music.addEventListener('ended', function() {
+    win_music.addEventListener('ended', function () {
         game_music.play();
     });
 }
