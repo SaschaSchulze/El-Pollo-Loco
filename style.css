@@ -6,6 +6,11 @@
   src: url("./fonts/wellfleet-v22-latin-regular.woff2") format("woff2");
 }
 
+h1 {
+  font-size: 60px;
+  color: #FFB100;
+}
+
 body {
   font-family: "Wellfleet";
   background-image: url("img_pollo_locco/ai-generated-8607619_1920.png");
@@ -92,7 +97,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background-color: white;
+  background-color: #29c386;
   border: 2px solid black;
   text-align: justify;
 }
@@ -115,7 +120,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
-  height: 480px;
+  height: 486px;
   width: 720px;
   background-color: rgba(0, 0, 0, 0.4);
   gap: 20px;
