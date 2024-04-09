@@ -36,32 +36,84 @@ function closeDescriptionOnClickOutside(event) {
  */
 function toggleControlls() {
     let legendContainer = document.querySelector('.legend-container');
+    let overlay = document.querySelector('.overlay');
+
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        document.body.appendChild(overlay);
+    }
 
     if (legendContainer.style.display === 'none' || legendContainer.style.display === '') {
-        let overlay = document.createElement('div');
-        overlay.classList.add('overlay');
+        overlay.addEventListener('click', closeControlsOnClickOutside);
+        overlay.style.display = 'block';
 
-        overlay.addEventListener('click', function (event) {
-            let controllContainer = document.querySelector('.controll-container');
-            if (!controllContainer.contains(event.target)) {
-                legendContainer.style.display = 'none';
-                overlay.remove();
-            }
-        });
-
-        document.body.appendChild(overlay);
+        if (isFullscreen()) {
+            adjustLegendContainerForFullscreen();
+        } else {
+            adjustLegendContainerForNormalScreen();
+        }
 
         legendContainer.style.display = 'block';
 
         let closeButton = document.querySelector('.close');
-        closeButton.addEventListener('click', function () {
-            legendContainer.style.display = 'none';
-            overlay.remove();
-        });
+        closeButton.addEventListener('click', closeControls);
     } else {
-        legendContainer.style.display = 'none';
-        document.querySelector('.overlay').remove();
+        closeControls();
     }
+}
+
+/**
+ * Adjusts the position and size of the legend container for fullscreen mode.
+ */
+function adjustLegendContainerForFullscreen() {
+    let legendContainer = document.querySelector('.legend-container');
+    legendContainer.style.position = 'fixed';
+    legendContainer.style.top = '50%';
+    legendContainer.style.left = '50%';
+    legendContainer.style.height = '100%';
+    legendContainer.style.width = '100%';
+    legendContainer.style.transform = 'translate(-50%, -50%)';
+}
+
+/**
+ * Adjusts the position of the legend container for normal screen mode.
+ */
+function adjustLegendContainerForNormalScreen() {
+    let legendContainer = document.querySelector('.legend-container');
+    legendContainer.style.position = 'absolute';
+    legendContainer.style.top = '50%';
+    legendContainer.style.left = '50%';
+    legendContainer.style.transform = 'translate(-50%, -50%)';
+}
+
+/**
+ * Closes the controls legend.
+ */
+function closeControls() {
+    let legendContainer = document.querySelector('.legend-container');
+    let overlay = document.querySelector('.overlay');
+    legendContainer.style.display = 'none';
+    overlay.style.display = 'none';
+    overlay.removeEventListener('click', closeControlsOnClickOutside);
+}
+
+/**
+ * Closes the controls legend if a click occurs outside the legend.
+ */
+function closeControlsOnClickOutside(event) {
+    let legendContainer = document.querySelector('.legend-container');
+    if (!legendContainer.contains(event.target)) {
+        closeControls();
+    }
+}
+
+/**
+ * Checks if the document is currently in fullscreen mode.
+ * @returns {boolean} True if fullscreen mode is active, otherwise false.
+ */
+function isFullscreen() {
+    return !!(document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
 }
 
 /**
