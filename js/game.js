@@ -2,6 +2,9 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+/**
+ * Initializes the game.
+ */
 function init() {
     canvas = document.getElementById('canvas');
     level = createLevel1();
@@ -12,6 +15,11 @@ function init() {
     }  
 }
 
+/**
+ * Event listener for keydown events.
+ * Updates the keyboard state according to the pressed keys.
+ * @param {KeyboardEvent} e - The keyboard event.
+ */
 window.addEventListener("keydown", (e) => { // (e) steht für Event, kann auch anders genannt werden
     if(e.keyCode == 32) {
         keyboard.SPACE = true;
@@ -34,6 +42,11 @@ window.addEventListener("keydown", (e) => { // (e) steht für Event, kann auch a
     }
 });
 
+/**
+ * Event listener for keyup events.
+ * Updates the keyboard state according to the released keys.
+ * @param {KeyboardEvent} e - The keyboard event.
+ */
 window.addEventListener("keyup", (e) => { // (e) steht für Event, kann auch anders genannt werden
     if(e.keyCode == 32) {
         keyboard.SPACE = false;

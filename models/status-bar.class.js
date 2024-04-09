@@ -21,12 +21,20 @@ class StatusBar extends DrawableObject {
         this.setPercentage(100);
     }
 
+    /**
+     * Sets the percentage of the status bar and updates the displayed image accordingly.
+     * @param {number} percentage - The new percentage of the status bar.
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * Resolves the index of the image in the IMAGES array based on the current percentage of the status bar.
+     * @returns {number} - The index of the image in the IMAGES array.
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5; // 5 Gibt die Stelle im Array IMAGES an, also das letzte Bild

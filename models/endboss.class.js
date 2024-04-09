@@ -10,7 +10,7 @@ class Endboss extends moveableObject {
     AUDIO = {
         boss_hit: new Audio('audio/boss_hit.mp3'),
     }
-    
+
 
     IMAGES_WALKING = [
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -72,10 +72,17 @@ class Endboss extends moveableObject {
         this.animate('animateWalkingBoss');
     }
 
+    /**
+    * Moves the object to the left by the specified move speed.
+    */
     moveLeft() {
         this.x -= this.moveSpeed;
     }
 
+    /**
+    * Initiates animation based on the provided animation type.
+    * @param {string} animationType - The type of animation to perform.
+    */
     animate(animationType) {
         if (!this.isAnimating) {
             this.isAnimating = true;
@@ -102,13 +109,18 @@ class Endboss extends moveableObject {
         }
     }
 
+    /**
+    * Animates the boss character walking.
+    * @param {number} animationIndex - Index of the current animation frame.
+    * @param {number} animationCounter - Counter for animation iterations.
+    */
     animateWalkingBoss(animationIndex, animationCounter) {
         this.animationInterval = setInterval(() => {
             if (this.isDead) {
                 clearInterval(this.animationInterval);
                 return;
             }
-    
+
             if (animationCounter === 10) {
                 clearInterval(this.animationInterval);
                 this.isAnimating = false;
@@ -124,14 +136,19 @@ class Endboss extends moveableObject {
             }
         }, 200);
     }
-    
+
+    /**
+    * Animates the boss character being angry.
+    * @param {number} animationIndex - Index of the current animation frame.
+    * @param {number} animationCounter - Counter for animation iterations.
+    */
     animateAngry(animationIndex, animationCounter) {
         this.animationInterval = setInterval(() => {
             if (this.isDead) {
                 clearInterval(this.animationInterval);
                 return;
             }
-    
+
             if (animationCounter === 1) {
                 clearInterval(this.animationInterval);
                 this.isAnimating = false;
@@ -146,14 +163,19 @@ class Endboss extends moveableObject {
             }
         }, 200);
     }
-    
+
+    /**
+    * Animates the boss character attacking.
+    * @param {number} animationIndex - Index of the current animation frame.
+    * @param {number} animationCounter - Counter for animation iterations.
+    */
     animateAttack(animationIndex, animationCounter) {
         this.animationInterval = setInterval(() => {
             if (this.isDead) {
                 clearInterval(this.animationInterval);
                 return;
             }
-    
+
             this.playAnimation(this.IMAGES_ATTACK);
             animationIndex = (animationIndex + 1) % this.IMAGES_ATTACK.length;
             if (animationIndex === 0) {
@@ -168,6 +190,9 @@ class Endboss extends moveableObject {
         }, 200);
     }
 
+    /**
+    * Animates the boss character being hurt.
+    */
     animateHurt() {
         if (this.isHurtAnimating) return;
         this.isHurtAnimating = true;
@@ -185,19 +210,29 @@ class Endboss extends moveableObject {
         }, 200);
     }
 
+    /**
+    * Initiates the boss character's hit reaction.
+    */
     bossHit() {
-        this.lastHit = Date.now();        
+        this.lastHit = Date.now();
         clearInterval(this.animationInterval);
 
         this.animateHurt();
     }
 
+    /**
+    * Checks if the boss character is currently in a hurt state.
+    * @returns {boolean} - True if the boss character is hurt; otherwise, false.
+    */
     isHurtBoss() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 300;
         return timepassed < 0.3;
     }
 
+    /**
+    * Initiates the boss character's death animation.
+    */
     bossDie() {
         if (this.isDead) return;
         this.isDead = true;

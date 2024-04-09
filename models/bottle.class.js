@@ -26,6 +26,9 @@ class Bottles extends moveableObject {
         this.animateBottles();
     }
 
+    /**
+    * Generates a random position for the object while ensuring it is at least a minimum distance away from other positions.
+    */
     generateRandomPosition() {
         let isPositionValid = false;
         let minDistance = 100;
@@ -44,12 +47,18 @@ class Bottles extends moveableObject {
         this.generatedPositions.push({x: this.x, y: this.y});
     }
 
+    /**
+    * Initiates the animation for the object.
+    */
     animateBottles() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_BOTTLES);
         }, 800);
     }
 
+    /**
+    * Marks the object as collected.
+    */
     collect() {
         this.collected = true;
     }

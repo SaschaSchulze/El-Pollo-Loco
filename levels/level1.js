@@ -1,3 +1,6 @@
+/**
+ * Initializes the level.
+ */
 function createLevel1() {
     level = new Level(
         [

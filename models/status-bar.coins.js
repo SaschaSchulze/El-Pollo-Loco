@@ -20,12 +20,20 @@ class CoinsBar extends DrawableObject {
         this.setPercentageCoin(0);
     }
 
+    /**
+     * Sets the percentage of the coins bar and updates the displayed image accordingly.
+     * @param {number} percentage - The new percentage of the coins bar.
+     */
     setPercentageCoin(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * Resolves the index of the image in the IMAGES array based on the current percentage of the coins bar.
+     * @returns {number} - The index of the image in the IMAGES array.
+     */
     resolveImageIndex() {
         if (this.percentage < 20) {
             return 0; // 5 gibt die Stelle im Array IMAGES an, also das letzte Bild

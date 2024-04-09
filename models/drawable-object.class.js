@@ -7,19 +7,26 @@ class DrawableObject {
     height = 150;
     width = 100;
 
-    // loadImage('img/test.png');
+    /**
+     * Loads an image from the given path.
+     * @param {string} path - The path to the image.
+     */
     loadImage(path) {
         this.img = new Image(); // das gleiche wie: this.img = document.getElementById('image') <img id="image">
         this.img.src = path;
     }
 
+    /**
+     * Draws the drawable object on the canvas context.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
-
+/*
     drawFrame(ctx) {
-        if (this instanceof Character /*|| this instanceof Chicken || this instanceof ChickenSmall*/  || this instanceof Coins /*|| this instanceof Bottles || this instanceof Endboss*/) { // Überprüfen, ob wir ein Character oder ein Chicken sind, sonst wird Funktion nicht ausgeführt
-            ctx.beginPath();
+        if (this instanceof Character /*|| this instanceof Chicken || this instanceof ChickenSmall  || this instanceof Coins /*|| this instanceof Bottles || this instanceof Endboss) {
+        /*    ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'red';
             ctx.rect(this.x + this.offset.left, this.y + this.offset.top,
@@ -27,12 +34,12 @@ class DrawableObject {
                 this.height - this.offset.bottom);
             ctx.stroke();
         }
-    }
+    }*/
 
     /**
-    * 
-    * @param {Array} array - ['img/image1.png', 'img/img2.png', ...] 
-    */
+     * Loads multiple images into the image cache.
+     * @param {string[]} array - Array of image paths.
+     */
     loadImages(array) { 
         array.forEach((path) => {
             let img = new Image();

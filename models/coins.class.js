@@ -22,17 +22,26 @@ class Coins extends moveableObject {
         this.animateCoins();
     }
 
+    /**
+     * Generates a random position for the Coins object.
+     */
     generateRandomPosition() {
         this.x = 200 + Math.random() * 2100;
         this.y = 100 + Math.random() * 100;
     }
 
+    /**
+     * Initiates animation for the Coins object.
+     */
     animateCoins() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COINS);
         }, 1000/3);
     }
 
+    /**
+     * Marks the Coins object as collected.
+     */
     collect() {
         this.collected = true;
     }

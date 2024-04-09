@@ -20,6 +20,9 @@ class Chicken extends moveableObject {
         this.animate();
     }
 
+    /**
+     * Initiates animations for the Chicken, including movement and jumping.
+     */
     animate() {
         setInterval(() => {
             if (!this.isDead) {
@@ -36,6 +39,9 @@ class Chicken extends moveableObject {
         this.randomJump();
     }
 
+    /**
+     * Performs a random jump action for the Chicken.
+     */
     randomJump() {
         let jumpChance = 0.8; // Die Wahrscheinlichkeit für einen Sprung pro Durchlauf
         let minJumpDelay = 1000; // Mindestverzögerung zwischen Sprüngen in Millisekunden
@@ -77,6 +83,9 @@ class Chicken extends moveableObject {
         scheduleNextJump();
     }
 
+    /**
+     * Handles actions when the Chicken is hit and dies.
+     */
     chickenDie() {
         this.chicken_hit.play();
         this.isDead = true;
@@ -106,6 +115,9 @@ class ChickenSmall extends moveableObject {
         this.animate();
     }
 
+    /**
+     * Initiates animations for the Small Chicken, including movement and jumping.
+     */
     animate() {
         setInterval(() => {
             if (!this.isDead) {
@@ -122,6 +134,9 @@ class ChickenSmall extends moveableObject {
         this.randomJump();
     }
 
+    /**
+     * Performs a random jump action for the Small Chicken.
+     */
     randomJump() {
         let jumpChance = 0.4; // Die Wahrscheinlichkeit für einen Sprung pro Durchlauf
         let minJumpDelay = 1000; // Mindestverzögerung zwischen Sprüngen in Millisekunden
@@ -163,6 +178,9 @@ class ChickenSmall extends moveableObject {
         scheduleNextJump();
     }
 
+    /**
+     * Handles actions when the Small Chicken is hit and dies.
+     */
     chickenDie() {
         this.chicken_hit.play();
         this.isDead = true;

@@ -95,6 +95,9 @@ class Character extends moveableObject {
         this.lastMoveTimestamp = Date.now();
     }
 
+    /**
+    * Starts the interval for character walking animation.
+    */
     startWalkingInterval() {
         this.walkingInterval = setInterval(() => {
             if (!this.isDead) {
@@ -103,14 +106,17 @@ class Character extends moveableObject {
             }
         }, 1000 / 60);
     }
-    
+
+    /**
+    * Starts the interval for character animation.
+    */
     startAnimationInterval() {
         this.animationInterval = setInterval(() => {
             if (this.checkIsDead()) {
                 this.handleCharacterDeath();
                 return;
             }
-    
+
             if (this.isHurt()) {
                 this.AUDIO.hurt_sound.play();
                 this.playAnimation(this.IMAGES_HURT);
@@ -121,7 +127,10 @@ class Character extends moveableObject {
             }
         }, 150);
     }
-    
+
+    /**
+    * Handles character movement based on keyboard input.
+    */
     handleMovement() {
         this.AUDIO.walking_sound.pause();
         if (this.world.keyboard.RIGHT && this.x < this.world.level1.level_end_x) {
@@ -130,32 +139,38 @@ class Character extends moveableObject {
             this.AUDIO.walking_sound.play();
             this.lastMoveTimestamp = Date.now();
         }
-    
+
         if (this.world.keyboard.LEFT && this.x > 0) {
             this.moveLeft();
             this.otherDirection = true;
             this.AUDIO.walking_sound.play();
             this.lastMoveTimestamp = Date.now();
         }
-    
+
         if (this.world.keyboard.UP && !this.isAboveGround()) {
             this.jump();
             this.lastMoveTimestamp = Date.now();
         }
-    
+
         if (this.world.keyboard.SPACE) {
             this.lastMoveTimestamp = Date.now();
         }
     }
-    
+
+    /**
+    * Handles camera movement to follow the character.
+    */
     handleCamera() {
         this.world.camera_x = -this.x + 100;
     }
-    
+
+    /**
+    * Handles character animation based on movement and idle state.
+    */
     handleAnimation() {
         let now = Date.now();
         let timeSinceLastMove = now - this.lastMoveTimestamp;
-    
+
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             this.playAnimation(this.IMAGES_WALKING);
             this.lastMoveTimestamp = Date.now();
@@ -166,6 +181,10 @@ class Character extends moveableObject {
         }
     }
 
+    /**
+    * Checks if the character is dead and handles the game over scenario.
+    * @returns {boolean} - True if the character is dead, false otherwise.
+    */
     checkIsDead() {
         if (this.energy <= 0 && this.world.statusBar.percentage === 0 && !this.isGameOver) {
             showLostScreen();
@@ -176,30 +195,51 @@ class Character extends moveableObject {
         return false;
     }
 
+    /**
+    * Handles character death by stopping intervals and removing the character from the world.
+    */
     handleCharacterDeath() {
         this.isDead = true;
         this.stopIntervals();
-        this.removeCharacter(); 
+        this.removeCharacter();
     }
 
+    /**
+    * Stops the walking and animation intervals.
+    */
     stopIntervals() {
         clearInterval(this.walkingInterval);
         clearInterval(this.animationInterval);
     }
 
+    /**
+    * Removes the character from the world.
+    */
     removeCharacter() {
         this.world.character = null;
     }
 
+    /**
+    * Initiates a jump action for the character.
+    */
     jump() {
         this.speedY = 30;
         this.AUDIO.jumping_sound.play();
     }
 
+    /**
+    * Checks if the character is jumping on an enemy.
+    * @returns {boolean} - True if the character is jumping on an enemy, false otherwise.
+    */
     isJumpingOnEnemy() {
         return this.speedY > 0;
     }
 
+    /**
+    * Checks if the character is colliding with a moveable object from the side.
+    * @param {object} moveableObject - The moveable object to check collision with.
+    * @returns {boolean} - True if the character is colliding with the moveable object from the side, false otherwise.
+    */
     isCollidingFromSide(moveableObject) {
         return (
             (this.x + this.width >= moveableObject.x && this.x + this.width <= moveableObject.x + moveableObject.width) ||

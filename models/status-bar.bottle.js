@@ -20,12 +20,20 @@ class BottlesBar extends DrawableObject {
         this.setPercentageBottle(0);
     }
 
+    /**
+     * Sets the percentage of the bottles status and updates the displayed image accordingly.
+     * @param {number} percentage - The new percentage of the bottles status.
+     */
     setPercentageBottle(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * Resolves the index of the image in the IMAGES array based on the current percentage of the bottles status.
+     * @returns {number} - The index of the image in the IMAGES array.
+     */
     resolveImageIndex() {
         if (this.percentage < 20) {
             return 0;

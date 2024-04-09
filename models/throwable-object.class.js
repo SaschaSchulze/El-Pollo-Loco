@@ -1,14 +1,4 @@
 class ThrowableObject extends moveableObject {
-    constructor(x, y, world) {
-        super().loadImage('img_pollo_locco/img/6_salsa_bottle/salsa_bottle.png');
-        this.x = x;
-        this.y = y;
-        this.height = 60;
-        this.width = 50;
-        this.world = world;
-        this.throw();
-        this.isAnimating = false;
-    }
 
     IMAGES_FLYING_BOTTLES = [
         'img_pollo_locco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -27,8 +17,25 @@ class ThrowableObject extends moveableObject {
 
     ];
 
-    bottle_hit = new Audio('audio/glassmp3.mp3');
+    AUDIO = {
+        bottle_hit: new Audio('audio/glassmp3.mp3')
+    }
 
+    constructor(x, y, world) {
+        super().loadImage('img_pollo_locco/img/6_salsa_bottle/salsa_bottle.png');
+        this.x = x;
+        this.y = y;
+        this.height = 60;
+        this.width = 50;
+        this.world = world;
+        this.throw();
+        this.isAnimating = false;
+    }
+
+    /**
+     * Throws the throwable object.
+     * It sets the initial speed and applies gravity to the object.
+     */
     throw() {
         if (this.world && this.world.character) {
             this.speedX = this.world.character.otherDirection ? -15 : 15;
@@ -47,6 +54,10 @@ class ThrowableObject extends moveableObject {
         }
     }
 
+    /**
+     * Animates the flying bottle.
+     * It loads the flying bottle images and plays the animation.
+     */
     animateFlyingBottle() {
         if (!this.isAnimating && this.IMAGES_FLYING_BOTTLES && this.IMAGES_FLYING_BOTTLES.length > 0) {
             this.isAnimating = true;
@@ -60,6 +71,10 @@ class ThrowableObject extends moveableObject {
         }
     }
 
+    /**
+     * Stops the animation of the throwable object.
+     * It clears the animation interval and adjusts the object's position.
+     */
     stopAnimation() {
         this.isAnimating = false;
         clearInterval(this.animationInterval);
@@ -69,10 +84,14 @@ class ThrowableObject extends moveableObject {
         this.y = Math.round(this.y);
     }
 
+    /**
+     * Plays the splash animation of the throwable object.
+     * It plays the splash sound, loads the splash images, and animates them.
+     */
     playSplashAnimation() {
         if (!this.isAnimatingSplash) {
             this.isAnimatingSplash = true;
-            this.bottle_hit.play();
+            this.AUDIO.bottle_hit.play();
             this.loadImages(this.IMAGES_SPLASH_BOTTLES);
     
             let currentFrame = 0;

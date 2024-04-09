@@ -3,6 +3,9 @@ let win_music = new Audio('audio/win.mp3');
 let lose_music = new Audio('audio/gameLose.mp3');
 let musicMuted = false;
 
+/**
+ * Toggles the display of the controls legend.
+ */
 function toggleControlls() {
     let legendContainer = document.querySelector('.legend-container');
 
@@ -33,11 +36,17 @@ function toggleControlls() {
     }
 }
 
+/**
+ * Handles the canplaythrough event for the game music.
+ */
 game_music.addEventListener('canplaythrough', function () {
     game_music.play();
     updateSoundIcon();
 });
 
+/**
+ * Toggles the game music on/off.
+ */
 function toggleMusic() {
     if (musicMuted) {
         game_music.play();
@@ -48,6 +57,9 @@ function toggleMusic() {
     updateSoundIcon();
 }
 
+/**
+ * Updates the sound icon based on the current music state.
+ */
 function updateSoundIcon() {
     let soundIcon = document.getElementById('sound-icon');
     if (musicMuted) {
@@ -57,6 +69,9 @@ function updateSoundIcon() {
     }
 }
 
+/**
+ * Executes actions when the window loads.
+ */
 window.onload = function () {
     updateSoundIcon();
 };
@@ -67,11 +82,17 @@ window.onload = function () {
     }
 };*/
 
+/**
+ * Handles touch events for mobile devices.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     handleMobileKeyPressEvents();
     handleMobileKeyPressEventsEnd();
 });
 
+/**
+ * Handles touchstart events for mobile devices.
+ */
 function handleMobileKeyPressEvents() {
     let rightButton = document.getElementById('right-btn');
     let leftButton = document.getElementById('left-btn');
@@ -105,6 +126,9 @@ function handleMobileKeyPressEvents() {
     });
 }
 
+/**
+ * Handles touchend events for mobile devices.
+ */
 function handleMobileKeyPressEventsEnd() {
     let rightButton = document.getElementById('right-btn');
     let leftButton = document.getElementById('left-btn');
@@ -138,6 +162,9 @@ function handleMobileKeyPressEventsEnd() {
     });
 }
 
+/**
+ * Displays the game in fullscreen mode.
+ */
 function showFullscreen() {
     let fullscreen = document.getElementById('fullscreen');
     let fullscreenIcon = document.querySelector('.game-symbols img[alt="Fullscreen"]');
@@ -148,6 +175,10 @@ function showFullscreen() {
     enterFullscreen(fullscreen);
 }
 
+/**
+ * Requests to enter fullscreen mode.
+ * @param {HTMLElement} element - The element to display in fullscreen mode.
+ */
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -160,6 +191,9 @@ function enterFullscreen(element) {
     }
 }
 
+/**
+ * Exits fullscreen mode and updates the fullscreen icon.
+ */
 function exitFullscreen() {
     let fullscreenIcon = document.querySelector('.game-symbols img[alt="Exit Fullscreen"]');
     fullscreenIcon.src = "img_pollo_locco/fullscreen.svg";
@@ -177,12 +211,18 @@ function exitFullscreen() {
     }
 }
 
+/**
+ * Navigates to the home screen, hiding other screens.
+ */
 function homeScreen() {
     showStartScreen();
     hideGameOverScreen();
     hideLostScreen();
 }
 
+/**
+ * Displays the lost screen and plays the corresponding sound.
+ */
 function showLostScreen() {
     let gameOverScreen = document.getElementById('lostContainer');
     gameOverScreen.style.display = 'block';
@@ -193,6 +233,9 @@ function showLostScreen() {
     });
 }
 
+/**
+ * Displays the game over screen and plays the corresponding sound.
+ */
 function gameOverScreen() {
     let gameOverScreen = document.getElementById('gameOverScreen');
     gameOverScreen.style.display = 'block';
@@ -203,6 +246,9 @@ function gameOverScreen() {
     });
 }
 
+/**
+ * Displays the start screen and sets up initial configurations.
+ */
 function showStartScreen() {
     let startScreen = document.getElementById('startScreenContainer');
     startScreen.style.backgroundImage = "url('img_pollo_locco/img/9_intro_outro_screens/start/startscreen_1.png')";
@@ -212,6 +258,9 @@ function showStartScreen() {
     canvas.style.pointerEvents = 'none';
 }
 
+/**
+ * Starts the game by initializing the level and game components.
+ */
 function startGame() {
     hideStartScreen();
     hideGameOverScreen();
@@ -221,16 +270,25 @@ function startGame() {
     init();
 }
 
+/**
+ * Hides the start screen.
+ */
 function hideStartScreen() {
     let startScreen = document.getElementById('startScreenContainer');
     startScreen.style.display = 'none';
 }
 
+/**
+ * Hides the game over screen.
+ */
 function hideGameOverScreen() {
     let gameOverScreen = document.getElementById('gameOverScreen');
     gameOverScreen.style.display = 'none';
 }
 
+/**
+ * Hides the lost screen.
+ */
 function hideLostScreen() {
     let gameOverScreen = document.getElementById('lostContainer');
     gameOverScreen.style.display = 'none';
