@@ -37,15 +37,21 @@ body {
 
 .game-symbols {
   position: absolute !important;
+  cursor: pointer;
   top: 5px;
   right: 10px;
   z-index: 99;
   display: flex;
-  gap: 6px;
+  gap: 11px;
 }
 
 .game-symbols img {
   width: 30px;
+}
+
+.game-symbols img:hover {
+  filter: invert(90%) sepia(96%) saturate(6682%) hue-rotate(360deg) brightness(86%) contrast(99%);
+  transform: scale(1.1);
 }
 
 .overlay {
@@ -128,6 +134,7 @@ body {
   border: double;
   font-size: 18px;
   padding: 10px;
+  transition: color 0.3s ease;
 }
 
 .container {
@@ -184,6 +191,14 @@ body {
   cursor: pointer;
   font-size: 24px;
   font-weight: 700;
+}
+
+.restart-button:hover {
+  background-color: #ffd500;
+  color: #ffffff;
+  border-color: #ffd500;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
 }
 
 .overlay-rotate {
