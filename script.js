@@ -4,6 +4,34 @@ let lose_music = new Audio('audio/gameLose.mp3');
 let musicMuted = false;
 
 /**
+ * Toggles the visibility of the description window.
+ * If the window is hidden, it will be displayed; otherwise, it will be hidden.
+ * Additionally, it adds or removes an event listener to close the description window when clicked outside.
+ */
+function toggleDescription() {
+    let descriptionWindow = document.getElementById("description-window");
+    if (descriptionWindow.style.display === "none") {
+        descriptionWindow.style.display = "block";
+        document.addEventListener("mousedown", closeDescriptionOnClickOutside);
+    } else {
+        descriptionWindow.style.display = "none";
+        document.removeEventListener("mousedown", closeDescriptionOnClickOutside);
+    }
+}
+
+/**
+ * Closes the description window if the click event occurs outside of the window.
+ * @param {MouseEvent} event - The mouse event object.
+ */
+function closeDescriptionOnClickOutside(event) {
+    let descriptionWindow = document.getElementById("description-window");
+    if (!descriptionWindow.contains(event.target)) {
+        descriptionWindow.style.display = "none";
+        document.removeEventListener("mousedown", closeDescriptionOnClickOutside);
+    }
+}
+
+/**
  * Toggles the display of the controls legend.
  */
 function toggleControlls() {
@@ -171,7 +199,6 @@ function showFullscreen() {
     fullscreenIcon.src = "img_pollo_locco/fullscreen-exit.svg";
     fullscreenIcon.alt = "Exit Fullscreen";
     fullscreenIcon.onclick = exitFullscreen;
-
     enterFullscreen(fullscreen);
 }
 
