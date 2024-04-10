@@ -36,7 +36,7 @@ class CoinsBar extends DrawableObject {
      */
     resolveImageIndex() {
         if (this.percentage < 20) {
-            return 0; // 5 gibt die Stelle im Array IMAGES an, also das letzte Bild
+            return 0;
         } else if (this.percentage < 40) {
             return 1;
         } else if (this.percentage < 60) {
@@ -49,10 +49,4 @@ class CoinsBar extends DrawableObject {
             return 5;
         }
     }
-
-    //reset() {
-    //    this.percentage = 0;
-    //    let path = this.IMAGES[this.resolveImageIndex()];
-    //    this.img = this.imageCache[path];
-    //}
 }

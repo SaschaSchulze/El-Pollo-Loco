@@ -246,15 +246,4 @@ class Character extends moveableObject {
             (this.x <= moveableObject.x + moveableObject.width && this.x >= moveableObject.x)
         );
     }
-
-    /*reset() {
-        this.energy = 100;
-        this.coins = 0;
-        this.bottles = 0;
-        this.availableBottles = 0;
-        this.lastHit = 0;
-        this.isGameOver = false;
-        this.x = 0;
-        this.y = 80;
-    }*/
 }

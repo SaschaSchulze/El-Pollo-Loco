@@ -37,7 +37,7 @@ class BossBar extends DrawableObject {
      */
     resolveImageIndex() {
         if (this.percentage == 100) {
-            return 5; // 5 Gibt die Stelle im Array IMAGES an, also das letzte Bild
+            return 5;
         } else if (this.percentage > 79) {
             return 4;
         } else if (this.percentage > 59) {

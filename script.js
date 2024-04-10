@@ -156,12 +156,6 @@ window.onload = function () {
     updateSoundIcon();
 };
 
-/*window.onload = function () {
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        showFullscreen();
-    }
-};*/
-
 /**
  * Handles touch events for mobile devices.
  */
@@ -176,18 +170,8 @@ document.addEventListener('DOMContentLoaded', function () {
 function handleMobileKeyPressEvents() {
     let rightButton = document.getElementById('right-btn');
     let leftButton = document.getElementById('left-btn');
-    //let jumpButtonLeft = document.getElementById('jump-btn-left');
     let jumpButtonRight = document.getElementById('jump-btn-right');
-    //let throwButtonLeft = document.getElementById('throw-btn-left');
     let throwButtonRight = document.getElementById('throw-btn-right');
-
-    /*jumpButtonLeft.addEventListener('touchstart', (e) => {
-        keyboard.UP = true;
-    });
-
-    throwButtonLeft.addEventListener('touchstart', (e) => {
-        keyboard.SPACE = true;
-    });*/
 
     throwButtonRight.addEventListener('touchstart', (e) => {
         keyboard.SPACE = true;
@@ -212,18 +196,8 @@ function handleMobileKeyPressEvents() {
 function handleMobileKeyPressEventsEnd() {
     let rightButton = document.getElementById('right-btn');
     let leftButton = document.getElementById('left-btn');
-    //let jumpButtonLeft = document.getElementById('jump-btn-left');
     let jumpButtonRight = document.getElementById('jump-btn-right');
-    //let throwButtonLeft = document.getElementById('throw-btn-left');
     let throwButtonRight = document.getElementById('throw-btn-right');
-
-    /*jumpButtonLeft.addEventListener('touchend', (e) => {
-        keyboard.UP = false;
-    });
-
-    throwButtonLeft.addEventListener('touchend', (e) => {
-        keyboard.SPACE = false;
-    });*/
 
     throwButtonRight.addEventListener('touchend', (e) => {
         keyboard.SPACE = false;

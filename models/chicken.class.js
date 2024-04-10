@@ -14,8 +14,8 @@ class Chicken extends moveableObject {
         super().loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
 
-        this.x = 200 + Math.random() * 2000; // Zahl zwischen 200 und 2200
-        this.speed = 0.15 + Math.random() * 0.25; // Math.random generiert eine zufällige Zahl
+        this.x = 200 + Math.random() * 2000;
+        this.speed = 0.15 + Math.random() * 0.25;
         this.isDead = false;
         this.animate();
     }
@@ -28,7 +28,7 @@ class Chicken extends moveableObject {
             if (!this.isDead) {
                 this.moveLeft();
             }
-        }, 1000 / 60); // 60x pro Sekunde werden 0.2px abgezogen
+        }, 1000 / 60);
 
         setInterval(() => {
             if (!this.isDead) {
@@ -43,9 +43,9 @@ class Chicken extends moveableObject {
      * Performs a random jump action for the Chicken.
      */
     randomJump() {
-        let jumpChance = 0.8; // Die Wahrscheinlichkeit für einen Sprung pro Durchlauf
-        let minJumpDelay = 1000; // Mindestverzögerung zwischen Sprüngen in Millisekunden
-        let maxJumpDelay = 5000; // Maximale Verzögerung zwischen Sprüngen in Millisekunden
+        let jumpChance = 0.8;
+        let minJumpDelay = 1000;
+        let maxJumpDelay = 5000;
     
         let jump = () => {
             let originalY = this.y;
@@ -109,8 +109,8 @@ class ChickenSmall extends moveableObject {
         super().loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
 
-        this.x = 200 + Math.random() * 2000; // Zahl zwischen 200 und 2200
-        this.speed = 0.15 + Math.random() * 0.25; // Math.random generiert eine zufällige Zahl
+        this.x = 200 + Math.random() * 2000;
+        this.speed = 0.15 + Math.random() * 0.25;
         this.isDead = false;
         this.animate();
     }
@@ -123,7 +123,7 @@ class ChickenSmall extends moveableObject {
             if (!this.isDead) {
                 this.moveLeft();
             }
-        }, 1000 / 60); // 60x pro Sekunde werden 0.2px abgezogen
+        }, 1000 / 60);
 
         setInterval(() => {
             if (!this.isDead) {
@@ -138,9 +138,9 @@ class ChickenSmall extends moveableObject {
      * Performs a random jump action for the Small Chicken.
      */
     randomJump() {
-        let jumpChance = 0.4; // Die Wahrscheinlichkeit für einen Sprung pro Durchlauf
-        let minJumpDelay = 1000; // Mindestverzögerung zwischen Sprüngen in Millisekunden
-        let maxJumpDelay = 6000; // Maximale Verzögerung zwischen Sprüngen in Millisekunden
+        let jumpChance = 0.4;
+        let minJumpDelay = 1000;
+        let maxJumpDelay = 6000;
     
         let jump = () => {
             let originalY = this.y;

@@ -33,7 +33,6 @@ class World {
      */
     startGame() {
         this.resetEnergyBoss();
-        //this.character.reset(); 
         this.clearRunInterval();
         this.run();
     }
@@ -71,7 +70,6 @@ class World {
             this.checkCollectableBottles();
             this.checkCollisionWithBottleEnemy();
             this.checkCollisionWithBottleEndBoss();
-            //this.character.checkIsDead();
         }, 20);
     }
 
@@ -263,18 +261,17 @@ class World {
      * and draws the game objects.
      */
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // löscht das canvas zum Anfang immer wieder
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level1.backgroundObjects);
 
-        this.ctx.translate(-this.camera_x, 0); // Zurück
-        // ----------------Space for foxed objects --------------------
+        this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bottlesBar);
         this.addToMap(this.bossBar);
-        this.ctx.translate(this.camera_x, 0); // Vorwärts
+        this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level1.clouds);
@@ -285,10 +282,9 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
 
-        // Draw wird immer wieder aufgerufen
         let self = this;
-        requestAnimationFrame(function () { // self ist die variable für this bzw. als Platzhalter für this eine Zeile weiter unten
-            self.draw(); // this. funktioniert innerhalb solch einer Funktion nicht, aus diesem Grund muss eine Variable erstellt werden an dieser Stelle, die hier self heißt
+        requestAnimationFrame(function () { 
+            self.draw();
         });
     }
 
@@ -331,7 +327,7 @@ class World {
     flipImage(moveableObject) {
         this.ctx.save();
         this.ctx.translate(moveableObject.width, 0);
-        this.ctx.scale(-1, 1); // -1 verschiebt das Bild um -1 beim drehen. 1 verschiebt das Bild wieder 1 um rechts, damit es auf der selben Stelle ist wie vor dem drehen
+        this.ctx.scale(-1, 1);
         moveableObject.x = moveableObject.x * -1;
     }
 
