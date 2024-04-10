@@ -272,7 +272,11 @@ function showLostScreen() {
 }
 
 /**
- * Displays the game over screen and plays the corresponding sound.
+ * Displays the game over screen and handles character cleanup.
+ * 
+ * @function gameOverScreen
+ * @global
+ * @returns {void}
  */
 function gameOverScreen() {
     let gameOverScreen = document.getElementById('gameOverScreen');
@@ -282,6 +286,10 @@ function gameOverScreen() {
     win_music.addEventListener('ended', function () {
         game_music.play();
     });
+    if (world && world.character && world.character.stopIntervals && world.character.removeCharacter) {
+        world.character.stopIntervals();
+        world.character.removeCharacter();
+    }
 }
 
 /**
