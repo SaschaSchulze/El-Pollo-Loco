@@ -11,7 +11,6 @@ class Endboss extends moveableObject {
         boss_hit: new Audio('audio/boss_hit.mp3'),
     }
 
-
     IMAGES_WALKING = [
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G1.png',
         'img_pollo_locco/img/4_enemie_boss_chicken/1_walk/G2.png',
@@ -67,11 +66,11 @@ class Endboss extends moveableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 4500;
+        this.x = 4800;
         this.isDead = false;
         setTimeout(() => {
             this.animate('animateWalkingBoss');
-        }, 4000);
+        }, 5000);
     }
 
     /**
@@ -136,7 +135,7 @@ class Endboss extends moveableObject {
                     animationCounter++;
                 }
             }
-        }, 200);
+        }, 120);
     }
 
     /**
@@ -228,8 +227,8 @@ class Endboss extends moveableObject {
     */
     isHurtBoss() {
         let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 300;
-        return timepassed < 0.3;
+        timepassed = timepassed / 600;
+        return timepassed < 0.6;
     }
 
     /**
