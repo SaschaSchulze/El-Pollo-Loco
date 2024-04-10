@@ -313,6 +313,7 @@ function startGame() {
     world = null;
     createLevel1();
     init();
+    game_music.play();
 }
 
 /**
