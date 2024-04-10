@@ -121,6 +121,7 @@ class World {
             if ((enemy instanceof Chicken || enemy instanceof ChickenSmall) && !enemy.isDead && this.character.isColliding(enemy)) {
                 if (this.character.speedY < 0 && this.character.isAboveGround()) {
                     enemy.chickenDie();
+                    this.AUDIO.chicken_hit.play();
                 } else {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);

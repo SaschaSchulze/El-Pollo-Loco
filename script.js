@@ -1,8 +1,3 @@
-let game_music = new Audio('audio/game_music.mp3');
-let win_music = new Audio('audio/win.mp3');
-let lose_music = new Audio('audio/gameLose.mp3');
-let musicMuted = false;
-
 /**
  * Toggles the visibility of the description window.
  * If the window is hidden, it will be displayed; otherwise, it will be hidden.
@@ -114,164 +109,6 @@ function closeControlsOnClickOutside(event) {
  */
 function isFullscreen() {
     return !!(document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
-}
-
-/**
- * Stummschaltet alle Audioobjekte der Character-Klasse.
- */
-Character.prototype.muteSounds = function() {
-    if (this.AUDIO) {
-        for (let key in this.AUDIO) {
-            if (this.AUDIO.hasOwnProperty(key)) {
-                this.AUDIO[key].muted = true;
-            }
-        }
-    }
-};
-
-/**
- * Stummschaltet alle Audioobjekte der Endboss-Klasse.
- */
-Endboss.prototype.muteSounds = function() {
-    if (this.AUDIO) {
-        for (let key in this.AUDIO) {
-            if (this.AUDIO.hasOwnProperty(key)) {
-                this.AUDIO[key].muted = true;
-            }
-        }
-    }
-};
-
-ThrowableObject.prototype.muteSounds = function() {
-    if (this.AUDIO) {
-        for (let key in this.AUDIO) {
-            if (this.AUDIO.hasOwnProperty(key)) {
-                this.AUDIO[key].muted = true;
-            }
-        }
-    }
-};
-
-World.prototype.muteSounds = function() {
-    // Stummschalten der Audioobjekte in der World-Instanz
-    if (this.AUDIO) {
-        for (let key in this.AUDIO) {
-            if (this.AUDIO.hasOwnProperty(key)) {
-                this.AUDIO[key].muted = true;
-            }
-        }
-    }
-
-    // Stummschalten der Audioobjekte in throwableObjectsBottle, wenn vorhanden
-    if (this.throwableObjectsBottle && this.throwableObjectsBottle.muteSounds && typeof this.throwableObjectsBottle.muteSounds === 'function') {
-        this.throwableObjectsBottle.muteSounds();
-    }
-
-    // Stummschalten der Audioobjekte des Charakters, wenn vorhanden
-    if (this.character && this.character.muteSounds && typeof this.character.muteSounds === 'function') {
-        this.character.muteSounds();
-    }
-
-    // Stummschalten der Audioobjekte der Feinde auf Level 1
-    if (this.level1 && this.level1.enemies) {
-        this.level1.enemies.forEach(enemy => {
-            if (enemy instanceof Chicken || enemy instanceof ChickenSmall || enemy instanceof Endboss) {
-                if (enemy && enemy.muteSounds && typeof enemy.muteSounds === 'function') {
-                    enemy.muteSounds();
-                }
-            }
-        });
-    }
-
-    // Stummschalten der Audioobjekte in throwableObjects
-    this.throwableObjects.forEach(object => {
-        if (object && object.muteSounds && typeof object.muteSounds === 'function') {
-            object.muteSounds();
-        }
-    });
-};
-
-/**
- * Toggles the game music on/off and mutes/unmutes all character, endboss, and world sounds.
- */
-function toggleMusic() {
-    if (musicMuted) {
-        if (world) {
-            if (world.character && world.character.muteSounds && typeof world.character.muteSounds === 'function') {
-                world.character.muteSounds();
-            }
-            if (world.level1 && world.level1.enemies) {
-                world.level1.enemies.forEach(enemy => {
-                    if (enemy && enemy.muteSounds && typeof enemy.muteSounds === 'function') {
-                        enemy.muteSounds();
-                    }
-                });
-            }
-            if (world && world.muteSounds && typeof world.muteSounds === 'function') {
-                world.muteSounds();
-            }
-            if (world.level1 && world.level1.throwableObjects) {
-                world.level1.throwableObjects.forEach(object => {
-                    if (object && object.muteSounds && typeof object.muteSounds === 'function') {
-                        object.muteSounds();
-                    }
-                });
-            }
-        }
-        game_music.pause();
-    } else {
-        if (world && world.character && world.character.AUDIO) {
-            for (let key in world.character.AUDIO) {
-                if (world.character.AUDIO.hasOwnProperty(key)) {
-                    world.character.AUDIO[key].muted = false;
-                }
-            }
-        }
-        if (world && world.level1 && world.level1.enemies) {
-            world.level1.enemies.forEach(enemy => {
-                if ((enemy instanceof Endboss || enemy instanceof Chicken) && enemy.AUDIO) {
-                    for (let key in enemy.AUDIO) {
-                        if (enemy.AUDIO.hasOwnProperty(key)) {
-                            enemy.AUDIO[key].muted = false;
-                        }
-                    }
-                }
-            });
-        }
-        if (world && world.AUDIO) {
-            for (let key in world.AUDIO) {
-                if (world.AUDIO.hasOwnProperty(key)) {
-                    world.AUDIO[key].muted = false;
-                }
-            }
-        }
-        if (world && world.level1 && world.level1.throwableObjects) {
-            world.level1.throwableObjects.forEach(object => {
-                if (object && object.AUDIO) {
-                    for (let key in object.AUDIO) {
-                        if (object.AUDIO.hasOwnProperty(key)) {
-                            object.AUDIO[key].muted = false;
-                        }
-                    }
-                }
-            });
-        }
-        game_music.play();
-    }
-    musicMuted = !musicMuted;
-    updateSoundIcon();
-}
-
-/**
- * Updates the sound icon based on the current music state.
- */
-function updateSoundIcon() {
-    let soundIcon = document.getElementById('sound-icon');
-    if (musicMuted) {
-        soundIcon.src = "./img_pollo_locco/speaker_on.svg";
-    } else {
-        soundIcon.src = "./img_pollo_locco/speaker_off.svg";
-    }
 }
 
 /**
@@ -397,7 +234,7 @@ function homeScreen() {
 function showLostScreen() {
     let gameOverScreen = document.getElementById('lostContainer');
     gameOverScreen.style.display = 'block';
-    if (!musicMuted) {
+    if (musicMuted) {
         game_music.pause();
         lose_music.play();
         lose_music.addEventListener('ended', function () {
@@ -418,7 +255,7 @@ function showLostScreen() {
 function gameOverScreen() {
     let gameOverScreen = document.getElementById('gameOverScreen');
     gameOverScreen.style.display = 'block';
-    if (!musicMuted) {
+    if (musicMuted) {
         game_music.pause();
         win_music.play();
         win_music.addEventListener('ended', function () {
@@ -460,15 +297,14 @@ function startGame() {
 }
 
 /**
- * Stummschaltet alle Sounds im Spiel.
+ * Pauses game music and mutes all sounds in the game world.
+ * @function muteAllSounds
  */
 function muteAllSounds() {
-    // Stummschalten der Musik
     if (game_music) {
         game_music.pause();
     }
 
-    // Stummschalten aller Sounds in der Welt
     if (world && world.muteSounds && typeof world.muteSounds === 'function') {
         world.muteSounds();
     }
