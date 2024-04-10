@@ -120,7 +120,7 @@ function isFullscreen() {
  * Toggles the game music on/off.
  */
 function toggleMusic() {
-    if (musicMuted) {
+    if (!musicMuted) {
         game_music.play();
     } else {
         game_music.pause();
@@ -135,18 +135,11 @@ function toggleMusic() {
 function updateSoundIcon() {
     let soundIcon = document.getElementById('sound-icon');
     if (musicMuted) {
-        soundIcon.src = "./img_pollo_locco/speaker_off.svg";
-    } else {
         soundIcon.src = "./img_pollo_locco/speaker_on.svg";
+    } else {
+        soundIcon.src = "./img_pollo_locco/speaker_off.svg";
     }
 }
-
-/**
- * Executes actions when the window loads.
- */
-//window.onload = function () {
-//    updateSoundIcon();
-//};
 
 /**
  * Handles touch events for mobile devices.
@@ -313,7 +306,7 @@ function startGame() {
     world = null;
     createLevel1();
     init();
-    if (musicMuted) {
+    if (!musicMuted) {
         toggleMusic();
     }
     game_music.play();
