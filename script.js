@@ -117,14 +117,6 @@ function isFullscreen() {
 }
 
 /**
- * Handles the canplaythrough event for the game music.
- */
-game_music.addEventListener('canplaythrough', function () {
-    game_music.play();
-    updateSoundIcon();
-});
-
-/**
  * Toggles the game music on/off.
  */
 function toggleMusic() {
