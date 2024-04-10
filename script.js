@@ -286,6 +286,7 @@ function gameOverScreen() {
     win_music.addEventListener('ended', function () {
         game_music.play();
     });
+    
     if (world && world.character && world.character.stopIntervals && world.character.removeCharacter) {
         world.character.stopIntervals();
         world.character.removeCharacter();
