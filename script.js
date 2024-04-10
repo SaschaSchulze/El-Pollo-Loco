@@ -144,9 +144,9 @@ function updateSoundIcon() {
 /**
  * Executes actions when the window loads.
  */
-window.onload = function () {
-    updateSoundIcon();
-};
+//window.onload = function () {
+//    updateSoundIcon();
+//};
 
 /**
  * Handles touch events for mobile devices.
@@ -313,6 +313,9 @@ function startGame() {
     world = null;
     createLevel1();
     init();
+    if (musicMuted) {
+        toggleMusic();
+    }
     game_music.play();
 }
 
