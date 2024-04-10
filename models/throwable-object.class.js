@@ -43,6 +43,7 @@ class ThrowableObject extends moveableObject {
                 this.y -= this.speedY;
     
                 if (this.y + this.height >= this.world.canvas.height - 30) {
+                    this.world.AUDIO.bottle_hit.play();
                     this.stopAnimation();
                     this.playSplashAnimation();
                 }
