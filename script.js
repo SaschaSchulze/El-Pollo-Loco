@@ -456,17 +456,7 @@ function startGame() {
     world = null;
     createLevel1();
     init();
-
-    // Musik wird nur abgespielt, wenn sie nicht stummgeschaltet ist
-    if (!musicMuted) {
-        toggleMusic();
-        game_music.play();
-    }
-
-    // Stummschalten aller Sounds, wenn stummgeschaltet
-    if (musicMuted) {
-        muteAllSounds();
-    }
+    muteAllSounds();
 }
 
 /**
