@@ -91,6 +91,10 @@ class Chicken extends moveableObject {
         this.isDead = true;
         this.loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png');
     }
+
+    muteSounds() {
+        this.chicken_hit.muted = true;
+    }
 }
 
 class ChickenSmall extends moveableObject {
@@ -185,5 +189,9 @@ class ChickenSmall extends moveableObject {
         this.chicken_hit.play();
         this.isDead = true;
         this.loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_small/2_dead/dead.png');
+    }
+
+    muteSounds() {
+        this.chicken_hit.muted = true;
     }
 }

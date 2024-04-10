@@ -17,10 +17,6 @@ class ThrowableObject extends moveableObject {
 
     ];
 
-    AUDIO = {
-        bottle_hit: new Audio('audio/glassmp3.mp3')
-    }
-
     constructor(x, y, world) {
         super().loadImage('img_pollo_locco/img/6_salsa_bottle/salsa_bottle.png');
         this.x = x;
@@ -91,7 +87,6 @@ class ThrowableObject extends moveableObject {
     playSplashAnimation() {
         if (!this.isAnimatingSplash) {
             this.isAnimatingSplash = true;
-            this.AUDIO.bottle_hit.play();
             this.loadImages(this.IMAGES_SPLASH_BOTTLES);
     
             let currentFrame = 0;

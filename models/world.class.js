@@ -9,12 +9,14 @@ class World {
     coinsBar = new CoinsBar();
     bottlesBar = new BottlesBar();
     bossBar = new BossBar();
+    throwableObjectsBottle = new ThrowableObject();
     throwableObjects = [];
 
     AUDIO = {
         chicken_hit: new Audio('audio/chicken.mp3'),
         throwing_bottle: new Audio('audio/throw.mp3'),
         coin_collect: new Audio('audio/collectCoin.mp3'),
+        bottle_hit: new Audio('audio/glassmp3.mp3')
     };
 
     constructor(canvas, keyboard) {
@@ -159,6 +161,7 @@ class World {
                         this.AUDIO.chicken_hit.play();
                         bottles.stopAnimation();
                         bottles.playSplashAnimation();
+                        this.AUDIO.bottle_hit.play();
                     }
                 }
             });
@@ -197,6 +200,7 @@ class World {
         enemy.bossHit();
         bottle.stopAnimation();
         bottle.playSplashAnimation();
+        this.AUDIO.bottle_hit.play();
         bottle.hasCollided = true;
         let newPercentage = this.bossBar.percentage - 20;
         if (newPercentage < 0) {
