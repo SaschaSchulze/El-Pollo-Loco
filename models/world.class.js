@@ -232,12 +232,16 @@ class World {
     }
 
     /**
-     * Checks for collectable bottles.
-     * It checks if the character has collected bottles,
-     * updates the status bar accordingly, and removes collected bottles from the game world.
-     */
+    * Checks for collectable bottles.
+    * It checks if the character has collected bottles,
+    * updates the status bar accordingly, and removes collected bottles from the game world.
+    */
     checkCollectableBottles() {
         if (!this.character || this.character.isDead) {
+            return;
+        }
+
+        if (this.bottlesBar.percentage >= 100) {
             return;
         }
 
@@ -274,7 +278,7 @@ class World {
         this.addObjectsToMap(this.level1.bottles);
 
         this.ctx.translate(-this.camera_x, 0);
-        
+
         this.addToMap(this.statusBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bottlesBar);
@@ -284,7 +288,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;
-        requestAnimationFrame(function () { 
+        requestAnimationFrame(function () {
             self.draw();
         });
     }
