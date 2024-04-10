@@ -1,5 +1,7 @@
 class StatusBar extends DrawableObject {
 
+    percentage = 100;
+
     IMAGES = [
         'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png', // 0
         'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png', // 1
@@ -8,8 +10,6 @@ class StatusBar extends DrawableObject {
         'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/blue/80.png', // 4
         'img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png', // 5
     ];
-
-    percentage = 100;
 
     constructor() {
         super();

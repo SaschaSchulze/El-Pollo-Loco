@@ -266,13 +266,6 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level1.backgroundObjects);
 
-        this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusBar);
-        this.addToMap(this.coinsBar);
-        this.addToMap(this.bottlesBar);
-        this.addToMap(this.bossBar);
-        this.ctx.translate(this.camera_x, 0);
-
         this.addToMap(this.character);
         this.addObjectsToMap(this.level1.clouds);
         this.addObjectsToMap(this.level1.enemies);
@@ -280,6 +273,14 @@ class World {
         this.addObjectsToMap(this.level1.coins);
         this.addObjectsToMap(this.level1.bottles);
 
+        this.ctx.translate(-this.camera_x, 0);
+        
+        this.addToMap(this.statusBar);
+        this.addToMap(this.coinsBar);
+        this.addToMap(this.bottlesBar);
+        this.addToMap(this.bossBar);
+
+        this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;

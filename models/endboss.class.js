@@ -3,7 +3,7 @@ class Endboss extends moveableObject {
     height = 400;
     width = 300;
     y = 70;
-    moveSpeed = 5;
+    moveSpeed = 20;
     isDisabled = false;
     lastHit = 0;
 
@@ -67,7 +67,7 @@ class Endboss extends moveableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 2500;
+        this.x = 4500;
         this.isDead = false;
         this.animate('animateWalkingBoss');
     }
@@ -198,7 +198,7 @@ class Endboss extends moveableObject {
         this.isHurtAnimating = true;
         let hurtCounter = 0;
         this.hurtInterval = setInterval(() => {
-            if (this.isDead || hurtCounter === 3) {
+            if (this.isDead || hurtCounter === 1) {
                 clearInterval(this.hurtInterval);
                 this.isHurtAnimating = false;
                 this.isAnimating = false;
@@ -207,7 +207,7 @@ class Endboss extends moveableObject {
             }
             this.playAnimation(this.IMAGES_HURT);
             hurtCounter++;
-        }, 200);
+        }, 100);
     }
 
     /**

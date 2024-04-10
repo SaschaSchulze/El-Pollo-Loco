@@ -1,4 +1,7 @@
 class BottlesBar extends DrawableObject {
+
+    percentage = 0;
+
     IMAGES = [
         'img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png',
         'img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/20.png',
@@ -7,8 +10,6 @@ class BottlesBar extends DrawableObject {
         'img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/80.png',
         'img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png'
     ];
-
-    percentage = 0;
 
     constructor() {
         super();

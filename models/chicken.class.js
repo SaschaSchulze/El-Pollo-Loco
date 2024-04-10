@@ -14,7 +14,7 @@ class Chicken extends moveableObject {
         super().loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
 
-        this.x = 200 + Math.random() * 2000;
+        this.x = 400 + Math.random() * (4500 - 400);
         this.speed = 0.15 + Math.random() * 0.25;
         this.isDead = false;
         this.animate();
@@ -109,7 +109,7 @@ class ChickenSmall extends moveableObject {
         super().loadImage('img_pollo_locco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
 
-        this.x = 200 + Math.random() * 2000;
+        this.x = 400 + Math.random() * (4500 - 400);
         this.speed = 0.15 + Math.random() * 0.25;
         this.isDead = false;
         this.animate();

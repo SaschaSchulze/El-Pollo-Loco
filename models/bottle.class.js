@@ -34,7 +34,7 @@ class Bottles extends moveableObject {
         let minDistance = 100;
 
         while (!isPositionValid) {
-            this.x = 0 + Math.random() * 2000;
+            this.x = 400 + Math.random() * 4000;
             this.y = 380 + Math.random();
 
             isPositionValid = this.generatedPositions.every(position => {

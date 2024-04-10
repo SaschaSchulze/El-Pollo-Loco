@@ -26,7 +26,7 @@ class Coins extends moveableObject {
      * Generates a random position for the Coins object.
      */
     generateRandomPosition() {
-        this.x = 200 + Math.random() * 2100;
+        this.x = 400 + Math.random() * 4200;
         this.y = 100 + Math.random() * 100;
     }
 
