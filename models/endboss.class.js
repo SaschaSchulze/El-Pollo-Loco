@@ -69,7 +69,9 @@ class Endboss extends moveableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.x = 4500;
         this.isDead = false;
-        this.animate('animateWalkingBoss');
+        setTimeout(() => {
+            this.animate('animateWalkingBoss');
+        }, 4000);
     }
 
     /**
